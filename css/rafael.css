@@ -704,76 +704,92 @@ body, h1, h2, h3, h4, h5, p {
 
 
 
-/* MOBILE SITE CSS (LM: 01-11-12)*/
-html.mobile, .mobile body {
-	padding: 5px;
-	padding-left:0;
-	font-weight: 400;
-	overflow-y: visible !important;
-	width: auto;
-	/* See: http://phonegap.com/2011/07/19/craftyjs-on-android-device-using-phonegap/   [remove highlight on element when tapped] */
-	-webkit-tap-highlight-color:rgba(0,0,0,0);	
+
+
+.screen_mobile {
+	display: none;
 }
 
-.mobile p {
-	color: #666666;
-	font-size: 17px;
-	line-height: 21px;
-}
-.mobile #container {
-	width: 100%;
-}
-.mobile .zebedee-handle {
-	background-color: #FFFFBA;
-	border: 1px dashed #CCCCCC;		
-	font-size: 20px;
-	padding: 5px;	
-	color: #666666;
-	text-align:center;
-	cursor:pointer;
-}
-.mobile .zebedee-content {
-	padding: 3px 3px 7px;
-}
-
-.mobile .zebedee-content > p {
-	padding-top: 5px;
-}
-
-.mobile .green_highlight {
-	border-bottom-width: 1px;
-}
-
-.mobile #mobile_weapons_list li,
-.mobile #mobile_project_list li {
-	padding: 10px;
-}
-
-/* See: http://blog.bryanbibat.net/2010/11/15/turn-links-into-rounded-buttons-via-css3/ */
-.mobile #mobile_contact_me_links a,
-.mobile .button_link {
-	font: bold 1em/1.5em sans-serif;
-	text-decoration: none;
-	color: white;
-	padding: 0.5em 1em;
-	background: #B9E142; /* old browsers */
-	background: -moz-linear-gradient(top, #B9E142 0%, #45B528 100%); /* firefox */
-	background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#B9E142), color-stop(100%,#45B528)); /* webkit */		
-	border-radius: 10px;
-	-moz-border-radius: 10px;
-	-webkit-border-radius: 10px;
-	-box-shadow: 0 1px 3px  rgba(0,0,0,0.5);
-	-moz-box-shadow: 0 1px 3px rgba(0,0,0,0.5);
-	-webkit-box-shadow: 0 1px 3px rgba(0,0,0,0.5);
-	text-shadow: 0 -1px 1px rgba(0,0,0,0.25);
-	display: block;
-}
-
-.mobile #mobile_contact_me_links a {
+@media (max-width: 767px) { 
+	.screen_mobile {
+		display: block;
+	}
 	
-	display: block
-}
+	.screen_desktop {
+		display: none;
+	}
+	
+	/* MOBILE SITE CSS (LM: 01-11-12)*/
+	html, body {
+		padding: 5px;
+		padding-left:0;
+		font-weight: 400;
+		overflow-y: visible !important;
+		width: auto;
+		/* See: http://phonegap.com/2011/07/19/craftyjs-on-android-device-using-phonegap/   [remove highlight on element when tapped] */
+		-webkit-tap-highlight-color:rgba(0,0,0,0);	
+	}
 
+	.mobile p {
+		color: #666666;
+		font-size: 20px;
+		line-height: 21px;
+	}
+	.mobile #container {
+		width: 100%;
+	}
+	.mobile .zebedee-handle {
+		background-color: #FFFFBA;
+		border: 1px dashed #CCCCCC;		
+		font-size: 20px;
+		padding: 20px;	
+		color: #666666;
+		text-align:center;
+		cursor:pointer;
+	}
+	.mobile .zebedee-content {
+		padding: 3px 3px 7px;
+	}
+
+	.mobile .zebedee-content > p {
+		padding-top: 5px;
+	}
+
+	.mobile .green_highlight {
+		border-bottom-width: 1px;
+	}
+
+	.mobile #mobile_weapons_list li,
+	.mobile #mobile_project_list li {
+		padding: 10px;
+	}
+
+	/* See: http://blog.bryanbibat.net/2010/11/15/turn-links-into-rounded-buttons-via-css3/ */
+	.mobile #mobile_contact_me_links a,
+	.mobile .button_link {
+		font: bold 1em/1.5em sans-serif;
+		text-decoration: none;
+		color: white;
+		padding: 1.5em 2em;
+		background: #45B528; /* old browsers #45B528*/				
+		border-radius: 3px;
+		-moz-border-radius: 10px;
+		-webkit-border-radius: 10px;
+		-box-shadow: 0 1px 3px  rgba(0,0,0,0.5);
+		-moz-box-shadow: 0 1px 3px rgba(0,0,0,0.5);
+		-webkit-box-shadow: 0 1px 3px rgba(0,0,0,0.5);
+		text-shadow: 0 -1px 1px rgba(0,0,0,0.25);
+		display: block;
+	}
+
+	.mobile #mobile_contact_me_links a {
+		display: block
+	}
+	
+	.zebedee-content {
+		display: none;
+	}
+}
 
 
 /* 
@@ -872,4 +888,7 @@ html.mobile, .mobile body {
   p, h2, h3 { orphans: 3; widows: 3; }
   h2, h3{ page-break-after: avoid; }
 }
+
+
+
 

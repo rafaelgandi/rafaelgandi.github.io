@@ -1,6 +1,6 @@
 /* 
 	rafael.js
-	LM: 02-17-2015
+	LM: 06-10-2015
 	Author: Rafael Gandionco
 		
 		    __         __
@@ -88,10 +88,15 @@ jQuery(function ($) {
 		height : windowHeight+'px'
 	});
 	
-	// do the colorful particle animation on load //
-	_doOnloadParticleAnimation(function () {
+	if (! window.IS_MOBILE) { // Dont call if on mobile
+		// do the colorful particle animation on load //
+		_doOnloadParticleAnimation(function () {
+			$pageContainer.fadeIn('slow');
+		});	
+	}
+	else {
 		$pageContainer.fadeIn('slow');
-	});
+	}
 	
 	// show naviation menu //
 	$('#main_navigation_con').animate({
@@ -258,5 +263,36 @@ jQuery(function ($) {
 	$('a[rel=external]').attr('target','_blank');
 	// remove the annoying dashed border on a link after it is clicked
 	$(document).on('focus', 'a', function () {this.blur();});
-	document.documentElement.className = 'desktop';	
+	//document.documentElement.className = 'desktop';	
+	
+	
+	// LM: 06-10-2015 //
+	///////////////////////// MOBILE SCRIPTS //////////////////////////
+	$.getJSON('js/projects.json', function (data) {
+		var html = '',
+			//trigger = 'touchstart';
+			//trigger = 'touchend';
+			trigger = 'click';
+		html += '<ul id="mobile_project_list" style="list-style:none;">';
+		$.each(data, function (i, proj) {
+			
+			html += '<li><a href="'+proj.link+'" target="_blank" class="button_link">'+proj.header+'</a></li>';
+		});
+		html += '</ul>';
+		$('#mobile_web_projects').html(html);
+		
+		var $accordionContents = $('section.zebedee-content');
+		$('header.zebedee-handle').on('click', function () {
+			var $me = $(this),
+				$myContent = $me.next('section.zebedee-content');
+			if (! $myContent.length) { return; }
+			if ($myContent.is(':visible')) { return; }	
+			$accordionContents.slideUp();
+			$myContent.slideDown();			
+		});
+		
+		$('header.zebedee-handle').eq(0).trigger(trigger);
+		$('#container').removeClass('invisible');
+	});
+	
 });

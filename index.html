@@ -14,24 +14,29 @@
   <meta name="description" content="rafael gandionco website portfolio web development photography">
   <meta name="author" content="rafael gandionco">
 
-  <!-- Mobile viewport optimized: j.mp/bplateviewport -->
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="msapplication-tap-highlight" content="no" />
+  <!-- See: http://debugfix.com/2011/11/android-browser-css-position-fixed-bug-solved/ -->
+  <meta name="viewport" content="width=100%, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no">
 
   <!-- Place favicon.ico & apple-touch-icon.png in the root of your domain and delete these references -->
   <link rel="shortcut icon" href="favicon.ico">
   <link rel="apple-touch-icon" href="/apple-touch-icon.png">
     <!--[if lte IE 8 ]><script>window.IS_OLDIE=!0</script><![endif]-->
   <script>
-	(function () {	 // check for mobile
+	(function() { // check for mobile
 		try {
 			var d = document,
 				// See: http://localstreamer.posterous.com/javascript-code-snippet-how-to-detect-all-mob
 				mobile = (/iphone|ipad|ipod|android|blackberry|mini|windows\sce|palm/i.test(navigator.userAgent.toLowerCase())),
 				// See: http://andylangton.co.uk/articles/javascript/get-viewport-size-javascript/
-				width = self.innerWidth || d.documentElement.clientWidth || d.getElementsByTagName('body')[0].clientWidth;	
-			if ((parseInt(width,10) < 1050 || mobile) && !self.IS_OLDIE) {self.location = 'm.html';document.body.className='hide';}		
-		}catch(e){}
-		})();
+				width = self.innerWidth || d.documentElement.clientWidth || d.getElementsByTagName('body')[0].clientWidth;
+			if ((parseInt(width, 10) < 1050 || mobile) && !self.IS_OLDIE) {
+				//self.location = 'm.html';
+				//document.body.className = 'hide';
+				window.IS_MOBILE = 1;
+			}
+		} catch (e) {}
+	})();
 	(new Image()).src = 'images/me.jpg';
 	(new Image()).src = 'images/dancing_chicken.gif';
 	(new Image()).src = 'images/pixdave.jpg';
@@ -54,7 +59,7 @@
 	</style>
   </noscript>
   <div id="oldie_msg"><p>The browser you are using is very old or your javascript is turned off :(</p></div>
-  <div id="container" role="main">
+  <div id="container" role="main" class="screen_desktop">
 	<div id="contactus_other_links">
 		<a href="http://ph.linkedin.com/pub/rafael-gandionco/45/a17/670" rel="external">
 			 <img src="http://www.linkedin.com/img/webpromo/btn_profile_bluetxt_80x15.png" width="80" height="15" border="0" alt="View rafael gandionco's profile on LinkedIn">
@@ -248,13 +253,82 @@
     <script src="js/dd_belatedpng.js"></script>
     <script>DD_belatedPNG.fix("img, .png_bg"); // Fix any <img> or .png_bg bg-images. Also, please read goo.gl/mZiyb </script>
   <![endif]-->
-  <script>
-  jQuery(function ($) {
-	/*$.getScript('http://j.maxmind.com/app/geoip.js', function () {
-		if (typeof window.geoip_latitude === 'undefined') {return;}
-		$.get('track.php?lat='+geoip_latitude()+'&long='+geoip_longitude());
-	});*/
-  });
-  </script>
+  
+	<div class="mobile screen_mobile">
+		<header class="zebedee-handle glow">Who me?</header>
+		<section class="zebedee-content" style="display: block;">
+			<p id="init_msg" class="align-c" style="padding-bottom: 20px;">
+				<span id="rafaels_head" style="margin:0 auto;display:block;margin-top:8px;">&nbsp;</span>
+				<br>
+				Hi, I'm <span class="green_highlight">Rafael Gandionco.</span> A web developer from the Philippines.
+				<br><br>		
+				I've been doing <span class="green_highlight">web development</span> stuff professionally for more than <script>document.write((new Date()).getFullYear()-2009)</script> years now.
+				<br />
+				I mainly specialize on frontend development using <span class="green_highlight">Javascript</span>,  
+				<span class="green_highlight">HTML 5</span> and <span class="green_highlight">other cool open web technologies.</span>
+				<br><br>
+				I also do a little bit of <span class="green_highlight">photography</span> as a hobby, check out some of my work 
+				<span class="green_highlight">
+				<a rel="external" target="_blank" href="http://www.flickr.com/photos/rafaelgandi/" style="text-decoration:none;color:#666666;">here</a>.
+				</span>
+			</p>
+		</section>
+		<header class="zebedee-handle glow">Weapons of choice</header>
+		<section class="zebedee-content">
+			<div class="align-c">
+			<p style="margin-top:5px;">Here are a few awesome tools I use to build webapps and websites...</p>
+			 <ul id="mobile_weapons_list" style="list-style:none;">
+				<li><a class="button_link" href="http://jquery.com" rel="external">jQuery</a></li> 
+				<li><a class="button_link" href="http://www.w3.org/html/logo/" rel="external">HTML 5</a></li>  
+				<li><a class="button_link" href="http://notepad-plus-plus.org/" rel="external">Notepad++</a></li>  			
+				<li><a class="button_link" href="http://www.businesscatalyst.com/" rel="external">Adobe Business Catalyst</a></li>  
+				<li><a class="button_link" href="http://codeigniter.com/" rel="external">Codeigniter</a></li>  
+				<li><a class="button_link" href="http://www.mysql.com/" rel="external">MySQL</a></li>  													
+			</ul>
+			<br>
+			</div>
+		</section>
+		<header class="zebedee-handle glow">Web projects</header>
+		<section class="zebedee-content">
+			<p style="margin-top:5px;" class="align-c">A few web development projects I was a part of...</p>
+			<div style="margin-top:10px;padding:10px" id="mobile_web_projects" class="align-c"></div>
+		</section>
+		<header class="zebedee-handle glow">Photography</header>
+		<section class="zebedee-content">
+			<div style="margin-top:10px;padding:10px" class="align-c">
+			  <a class="button_link" href="http://www.flickr.com/photos/rafaelgandi/" target="_blank">Flickr</a>
+			<br>
+			<a  class="button_link" href="http://500px.com/rafaelgandi/" target="_blank">500px</a>
+			<br>
+			<a  class="button_link" href="https://instagram.com/rafaelgandi/" target="_blank">Instagram</a>
+			</div>
+		</section>
+		<header class="zebedee-handle glow">Contact me!</header>
+		<section class="zebedee-content">
+			<p style="margin-top:10px;" id="mobile_contact_me_links" class="align-c">
+			  <script>		
+			// See: http://hivelogic.com/enkoder/index.php
+			var x="function f(x){var i,o=\"\",l=x.length;for(i=l-1;i>=0;i--) {try{o+=x.c" +
+			"harAt(i);}catch(e){}}return o;}f(\")\\\"function f(x,y){var i,o=\\\"\\\\\\\""+
+			"\\\\,l=x.length;for(i=0;i<l;i++){y%=127;o+=String.fromCharCode(x.charCodeAt" +
+			"(i)^(y++));}return o;}f(\\\"\\\\\\\\\\\\n\\\\\\\\000\\\\\\\\023\\\\\\\\004\\"+
+			"\\\\\\037\\\\\\\\026\\\\\\\\032\\\\\\\\001X\\\\\\\\000\\\\\\\\n\\\\\\\\020\\"+
+			"\\\\\\016\\\\\\\\036\\\\\\\\020\\\\\\\\023V\\\\\\\\\\\"\\\\=c#lwca5U(fmdb{\\"+
+			"\\\\\\177+`rrts{\\\\\\\\177xt\\\\\\\\177u]yrAHN\\\\\\\\rGJK{\\\\\\\\n\\\\\\" +
+			"\\t^BXAK\\\\\\\\022l\\\\\\\\023w^U\\\\\\\\\\\\\\\\Z\\\\\\\\027U\\\\\\\\\\\\" +
+			"\\\\\\\\\\\\033g\\\\\\\\036\\\\\\\\003L^& '/#$(#!\\\\\\\\t-&-$\\\\\\\\\\\"\\"+
+			"\\a3>?o{4huqbj`\\\"\\\\,110)\\\"(f};)lo,0(rtsbus.o nruter};)i(tArahc.x=+o{)" +
+			"--i;0=>i;1-l=i(rof}}{)e(hctac};l=+l;x=+x{yrt{)54=!)31/l(tAedoCrahc.x(elihw;" +
+			"lo=l,htgnel.x=lo,\\\"\\\"=o,i rav{)x(f noitcnuf\")"                          ;
+			while(x=eval(x));
+			</script>
+			<br>
+			<a href="http://www.facebook.com/rafaelgandi" rel="external" title="Lets be friends on facebook">Facebook</a><br>	
+			<a href="http://www.flickr.com/photos/rafaelgandi/" rel="external" title="Check out some of my photos on flickr" >Flickr</a><br>       
+			<a href="http://ph.linkedin.com/pub/rafael-gandionco/45/a17/670" rel="external" title="View rafael gandionco's profile on LinkedIn" >LinkedIn</a>       
+		   </p>
+		</section>
+		
+	</div>
 </body>
 </html>
