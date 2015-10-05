@@ -16,7 +16,7 @@
 		});
 		var channel = pusher.subscribe('raffy_channel');
 		channel.bind('raffy_event', function(data) {
-		  alert(data.message);
+		  console.log(data.message);
 		  document.getElementsByTagName('h1')[0].innerHTML = data.message;
 		});
 	  </script>
