@@ -2,9 +2,9 @@ define([
 	'vendor/domReady!', 
 	'util/helpers', 
 	'raffy/globals', 
-	'raffy/deferImages',
-	'jqplugins/masonry.min'
-], function (domReady, helpers, globals, undefined, masonry) {
+	'raffy/buildMarkup',
+	'raffy/deferImages'
+], function (domReady, helpers, globals, markup, undefined) {
 	var weaponsData = [
 			{
 				'link': 'https://developer.mozilla.org/en-US/docs/Web/JavaScript',
@@ -43,31 +43,18 @@ define([
 				'text': 'HTML5'
 			}
 		],
-		listTemplate = '',
-		html = '',
 		$weaponsPage = globals.$pages.weaponsPage;
-		
-	function doMasonry() {
-		
-	}	
-		
 		
 	// Load and build the necessary markup (Runs only once)// 	
 	if ($weaponsPage.hasClass(globals.PAGE_NO_CONTENTS_CLASS)) {
-		$.get('templates/weapons_page.html', function (res) {
-			$weaponsPage
-			.html(res)
-			.removeClass(globals.PAGE_NO_CONTENTS_CLASS);
-			// Build the the list here //
-			listTemplate = document.getElementById('weapons_list_tpl').innerHTML;
-			weaponsData.forEach(function (data) {
-				html += helpers.tpl(listTemplate, data);
-			});
-			document.getElementById('weapons_link_list').innerHTML = html;
+		markup.buildListMarkup({
+			pageTemplatePath: 'templates/weapons_page.html',
+			$pageContainer: $weaponsPage,
+			data: weaponsData,
+			listTemplateId: 'weapons_list_tpl',
+			listContainerId: 'weapons_link_list'
 		});
 	}	
-		
-	
 	
 	
 });

@@ -462,6 +462,7 @@ body, h1, h2, h3, h4, h5, p {
 
 .raffy_active_page {
 	display: block;
+	opacity: 1;
 }
 
 .loading {
@@ -469,17 +470,10 @@ body, h1, h2, h3, h4, h5, p {
 	font-weight: 400;
     line-height: 1.3em;
 	font-style: italic;
+	display: block;
+	text-align: center;
+	padding-top: 50px;
 }
- 
-/* Pages start */
-#intro_page {
-	
-} 
- 
-#photograffy_page {
-	
-} 
-/* Pages end */
  
 #raffys_head {
 	border-radius: 80px;
@@ -517,7 +511,9 @@ body, h1, h2, h3, h4, h5, p {
 } 
 
 .page_list li a:hover {
-	/* text-decoration: underline; */
+	transition: box-shadow 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+    /* transition-delay: 0.1s; */
+    box-shadow: 0 8px 17px 0 rgba(0, 0, 0, 0.2);
 } 
 
 .page_list li a picture {
@@ -532,5 +528,50 @@ body, h1, h2, h3, h4, h5, p {
 	display: block;
 }
 
+#contact_page .email_add {
+	padding-top: 80px;
+	padding-bottom: 20px;
+}
+#contact_page .email_add a {
+	text-decoration: none;
+	padding: 10px;
+	color: #666666;
+	font-size: 80px;
+	font-style: normal;
+	font-weight: 500;
+	letter-spacing: -1px;
+	line-height: 1.1em;
+	margin: 30px 0;
+	background-color: #FEF693;
+	box-shadow: 0 0 2px rgba(0,0,0,.12),0 2px 2px rgba(0,0,0,.2);
+} 
+#contact_page .email_add a:hover {
+	background-color:#FFFFBA;
+	transition: box-shadow 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+    box-shadow: 0 8px 17px 0 rgba(0, 0, 0, 0.2);
+}
 
- 
+.raffy_project_item a {
+	text-decoration: none;
+	display: block;
+	text-align: center;
+	padding: 10px;
+	border-radius: 3px;
+	box-shadow: 0 0 2px rgba(0,0,0,.12),0 2px 2px rgba(0,0,0,.2);
+}
+.raffy_project_item a:hover {
+	transition: box-shadow 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+    box-shadow: 0 8px 17px 0 rgba(0, 0, 0, 0.2);
+}
+.raffy_project_item a img {
+	display: block;
+	margin: 0 auto;
+	width: 98%;
+	border: 1px solid #ccc;
+}
+.raffy_project_item a span {
+	display: block;
+    font-size: 20px;
+    padding-top: 10px;
+}
+

@@ -17,13 +17,16 @@
   <meta name="msapplication-tap-highlight" content="no" />
   <!-- See: http://debugfix.com/2011/11/android-browser-css-position-fixed-bug-solved/ -->
   <meta name="viewport" content="width=100%, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no">
+  
+  <!-- <meta name="viewport" content="width=device-width,initial-scale=1"> -->
 
   <!-- Place favicon.ico & apple-touch-icon.png in the root of your domain and delete these references -->
   <link rel="shortcut icon" href="favicon.ico">
   <link rel="apple-touch-icon" href="/apple-touch-icon.png">
 
   <!-- CSS: implied media="all" -->
-  <link rel="stylesheet" href="css/raffy.css?v20151125a">
+  <link rel="stylesheet" href="css/raffy.css?v20151126a">
+  <link rel="stylesheet" href="css/gridism.css?v20151126a">
   
   <!-- Grab CDN's jQuery, with a protocol relative URL; fall back to local if necessary -->
   <!-- http://paulirish.com/2010/the-protocol-relative-url/-->
@@ -129,57 +132,5 @@
 	
   </div> <!--! end of #container -->
   
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-
-  
-  <script type="text/html" id="proj_tpl">
-	<li>
-		<div class="wrap">
-			<span class="img_loader i form-field-highlight">Loading...</span>
-			<img class="back" src="images/fff.gif" data-raf-src="{img}"/>
-			<span class="comment">
-				<header>{header}</header>
-				<span>URL: {link}</span>
-			</span>
-		</div>						
-	</li>
-  </script>
-  <script type="text/html" id="more_photos_tpl">
-	<div class="flickr_img" style="border:0;padding:100px;">
-		<p style="vertical-align:middle;">
-			More on 
-			<a style="text-decoration:none;" href="http://www.flickr.com/photos/rafaelgandi/" target="_blank">flickr</a> and 
-			<a style="text-decoration:none;" href="http://500px.com/rafaelgandi/" target="_blank">500px...</a>
-		</p>
-	</div>
-  </script>
-  <script type="text/html" id="flickr_photos_tpl">
-	<div class="flickr_img">
-		<span style="padding:10px 185px;" class="img_loader i">Loading...</span>
-		<a href="{link}" target="_blank" title="{title}">
-			<img src="{img}" alt="{title}" class="hide" />
-		</a>
-	</div>
-  </script>
-  <!-- end scripts-->
-  <!--[if lt IE 7 ]>
-    <script src="js/dd_belatedpng.js"></script>
-    <script>DD_belatedPNG.fix("img, .png_bg"); // Fix any <img> or .png_bg bg-images. Also, please read goo.gl/mZiyb </script>
-  <![endif]-->
-  
-	
 </body>
 </html>

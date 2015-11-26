@@ -1,5 +1,4 @@
 define([
-
 	'vendor/domReady!', 
 	'raffy/globals',
 	'jqplugins/jquery.easing.1.3'
