@@ -10,13 +10,25 @@ define([
 				'link': 'https://developer.mozilla.org/en-US/docs/Web/JavaScript',
 				'image_path': 'images/weapons/javascript.jpg',
 				'title': 'Javascript',
-				'text': 'Javascript'
+				'text': 'Vanilla Javascript'
 			},
 			{
 				'link': 'http://jquery.com',
 				'image_path': 'images/weapons/jquery.png',
 				'title': 'jQuery',
 				'text': 'jQuery'
+			},
+			{
+				'link': 'http://zeptojs.com/',
+				'image_path': 'images/weapons/zepto.jpg',
+				'title': 'Zepto Mobile Javascript Library',
+				'text': 'Zepto Mobile'
+			},
+			{
+				'link': 'http://php.net/',
+				'image_path': 'images/weapons/php.png',
+				'title': 'PHP',
+				'text': 'PHP'
 			},
 			{
 				'link': 'http://laravel.com/',
@@ -41,6 +53,12 @@ define([
 				'image_path': 'images/weapons/html5.png',
 				'title': 'HTML5',
 				'text': 'HTML5'
+			},
+			{
+				'link': 'http://phonegap.com/',
+				'image_path': 'images/weapons/phonegap.jpg',
+				'title': 'Phonegap',
+				'text': 'Phonegap'
 			}
 		],
 		$weaponsPage = globals.$pages.weaponsPage;

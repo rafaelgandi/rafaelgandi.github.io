@@ -128,6 +128,16 @@
 		"header" : "Donna Hay Website",
 		"link" : "http://donnahay.com.au",
 		"image" : "26.jpg"
+	},
+	{
+		"header" : "Kids Karate Perth",
+		"link" : "http://www.kids-karate-perth.com.au/",
+		"image" : "27.jpg"
+	},
+	{
+		"header" : "University of Western Australia",
+		"link" : "http://www.uwastudentguild.com/",
+		"image" : "28.jpg"
 	}
 
 ]
