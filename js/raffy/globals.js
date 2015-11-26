@@ -10,7 +10,8 @@ define(['vendor/domReady!'], function () {
 		$pageContainer: $('section.page_container'),
 		$pages: {
 			introPage : $('#intro_page'),
-			photograffyPage : $('#photograffy_page')
+			photograffyPage : $('#photograffy_page'),
+			weaponsPage : $('#weapons_page')
 		},
 		$contactUsOtherLinksCon: $('#contactus_other_links'),
 		$navigationCon: $('#main_navigation_con'),
@@ -31,8 +32,9 @@ define(['vendor/domReady!'], function () {
 			$page = $('#'+id);
 		if (! $page.length) {
 			throw 'No page found "'+id+'"';
-		}
+		}	
 		props.$pageContainer.stop().fadeOut(100, function () {
+			scrollTo(0,0);
 			props.$pageContainer.removeClass(ACTIVE_PAGE_CLASS);
 			$page.stop().hide().fadeIn(100);
 			//props.root.trigger(id, [$page]);

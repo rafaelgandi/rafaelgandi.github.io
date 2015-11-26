@@ -505,21 +505,25 @@ body, h1, h2, h3, h4, h5, p {
 	text-decoration: none;
 	display: block;
 	text-align: center;
-	font-size: 30px;
-	min-height: 150px;
-	
-	width: 46%;
+	font-size: 25px;
+	width: 20%;
+	min-width: 150px;
 	margin: 0 auto;
 	padding: 10px;
 	
-	/* border: 1px solid red; */
+	/* border: 1px solid #ccc; */
+	border-radius: 5px;
+	box-shadow: 0 0 2px rgba(0,0,0,.12),0 2px 2px rgba(0,0,0,.2);
 } 
-.page_list li a div {
-	
-}
+
 .page_list li a:hover {
 	/* text-decoration: underline; */
 } 
+
+.page_list li a picture {
+	display: block;
+    min-height: 160px;
+}
 
 .page_list li a img {
 	width: 150px;

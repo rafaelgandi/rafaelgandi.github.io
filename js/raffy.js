@@ -30,16 +30,12 @@ define(['raffy/globals'], function (globals) {
 		'contact_page': 'raffy/contactPage'
 	};
 	// Load contents for the page //
-	 globals.root
-	 .on('pagechange', function (e, $page) {
+	globals.root.on('pagechange', function (e, $page) {
 		if ($page.hasClass(globals.PAGE_NO_CONTENTS_CLASS)) {
 			var pageId = $page.attr('id');
-			$.get('templates/'+pageId+'.html', function (res) {
-				$page.html(res).removeClass(globals.PAGE_NO_CONTENTS_CLASS);
-				if (!! pageModules[pageId]) {
-					require([pageModules[pageId]]);
-				}
-			});
+			if (!! pageModules[pageId]) {
+				require([pageModules[pageId]]);
+			}
 		}
 	});
 });

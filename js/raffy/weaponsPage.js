@@ -1,4 +1,10 @@
-define(['vendor/domReady!', 'util/helpers', 'raffy/globals', 'raffy/deferImages'], function (domReady, helpers, globals, undefined) {
+define([
+	'vendor/domReady!', 
+	'util/helpers', 
+	'raffy/globals', 
+	'raffy/deferImages',
+	'jqplugins/masonry.min'
+], function (domReady, helpers, globals, undefined, masonry) {
 	var weaponsData = [
 			{
 				'link': 'https://developer.mozilla.org/en-US/docs/Web/JavaScript',
@@ -37,12 +43,31 @@ define(['vendor/domReady!', 'util/helpers', 'raffy/globals', 'raffy/deferImages'
 				'text': 'HTML5'
 			}
 		],
-		listTemplate = document.getElementById('weapons_list_tpl').innerHTML,
-		html = '';
+		listTemplate = '',
+		html = '',
+		$weaponsPage = globals.$pages.weaponsPage;
 		
-	weaponsData.forEach(function (data) {
-		html += helpers.tpl(listTemplate, data);
-	});
+	function doMasonry() {
+		
+	}	
+		
+		
+	// Load and build the necessary markup (Runs only once)// 	
+	if ($weaponsPage.hasClass(globals.PAGE_NO_CONTENTS_CLASS)) {
+		$.get('templates/weapons_page.html', function (res) {
+			$weaponsPage
+			.html(res)
+			.removeClass(globals.PAGE_NO_CONTENTS_CLASS);
+			// Build the the list here //
+			listTemplate = document.getElementById('weapons_list_tpl').innerHTML;
+			weaponsData.forEach(function (data) {
+				html += helpers.tpl(listTemplate, data);
+			});
+			document.getElementById('weapons_link_list').innerHTML = html;
+		});
+	}	
+		
 	
-	document.getElementById('weapons_link_list').innerHTML = html;
+	
+	
 });
