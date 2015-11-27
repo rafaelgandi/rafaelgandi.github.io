@@ -12,17 +12,17 @@ define([
 				'text': 'Flickr'
 			},
 			{
-				'link': 'http://500px.com/rafaelgandi/',
-				'image_path': 'images/photography/500px2.png',
-				'title': 'Check out photos from my 500px account',
-				'text': '500px'
-			},
-			{
 				'link': 'http://www.instagram.com/rafaelgandi/',
 				'image_path': 'images/photography/instagram.png',
 				'title': 'Check out photos from my instagram',
 				'text': 'Instagram'
-			}
+			},
+			{
+				'link': 'http://500px.com/rafaelgandi/',
+				'image_path': 'images/photography/500px2.png',
+				'title': 'Check out photos from my 500px account',
+				'text': '500px'
+			}			
 		],
 		$photograffyPage = globals.$pages.photograffyPage;
 		

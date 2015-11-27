@@ -7,7 +7,7 @@ define([
 ], function (domReady, helpers, globals, markup, undefined) {
 	var contactData = [
 			{
-				'link': 'https://developer.mozilla.org/en-US/docs/Web/JavaScript',
+				'link': 'https://www.facebook.com/rafaelgandi',
 				'image_path': 'images/contacts/fb.png',
 				'title': 'Be my friend :)',
 				'text': 'Facebook'
@@ -36,7 +36,6 @@ define([
 		return email;
 	}	
 	
-
 	// Load and build the necessary markup (Runs only once)// 	
 	if ($contactPage.hasClass(globals.PAGE_NO_CONTENTS_CLASS)) {
 		markup.buildListMarkup({

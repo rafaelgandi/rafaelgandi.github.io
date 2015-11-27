@@ -1,6 +1,6 @@
 /* 
 	raffy.js
-	LM: 2015-11-25
+	LM: 2015-11-27
 	Author: Rafael Gandionco
 		
 		    __         __
@@ -23,7 +23,7 @@ Array.prototype.forEach||(Array.prototype.forEach=function(a,b){var c,d;if(this=
 
 window.$ = window.jQuery;
 
-define(['raffy/globals', 'raffy/navigate'], function (globals) {
+define(['raffy/globals', 'raffy/navigate', 'util/isMobileFrame'], function (globals) {
 	require(['raffy/introPage']);
 	var pageModules = {
 		'photograffy_page': 'raffy/photograffyPage',
