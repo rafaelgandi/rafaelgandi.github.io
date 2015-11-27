@@ -20,7 +20,7 @@ window.$ = window.jQuery; // Explicitly map the "$" sign to jQuery.
 define(['util/Array.forEach', 'raffy/globals', 'raffy/navigate', 'util/isMobileFrame'], function (undef, globals, navigate, isMobileFrame) {
 	// Breakout of frame if in mobile and in frameset (.tk) //
 	isMobileFrame.ifTrue(function () {
-		self.location.href = globals.GITHUB_URI;
+		window.top.location.href = globals.GITHUB_URI;
 	});
 	// Load intro page scripts //
 	require(['raffy/introPage']);
