@@ -14,7 +14,8 @@ define(['vendor/domReady!'], function () {
 		},
 		$contactUsOtherLinksCon: $('#contactus_other_links'),
 		$navigationCon: $('#main_navigation_con'),
-		PAGE_NO_CONTENTS_CLASS: 'raffy_no_contents'
+		PAGE_NO_CONTENTS_CLASS: 'raffy_no_contents',
+		GITHUB_URI: 'http://rafaelgandi.github.io'
 	};	
 	return props;	
 });
