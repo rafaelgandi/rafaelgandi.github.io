@@ -59,6 +59,12 @@ define([
 				'image_path': 'images/weapons/phonegap.jpg',
 				'title': 'Phonegap',
 				'text': 'Phonegap'
+			},
+			{
+				'link': 'http://requirejs.org/',
+				'image_path': 'images/weapons/requirejs.svg',
+				'title': 'Require.js module loader',
+				'text': 'Require JS'
 			}
 		],
 		$weaponsPage = globals.$pages.weaponsPage;

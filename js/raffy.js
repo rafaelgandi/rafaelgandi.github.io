@@ -17,7 +17,12 @@ requirejs.config({
     paths: {}
 });
 window.$ = window.jQuery; // Explicitly map the "$" sign to jQuery.
-define(['util/Array.forEach', 'raffy/globals', 'raffy/navigate', 'util/isMobileFrame'], function (undef, globals, navigate, isMobileFrame) {
+define([
+	'util/Array.forEach', 
+	'raffy/globals', 
+	'raffy/navigate', 
+	'util/isMobileFrame'
+], function (undef, globals, navigate, isMobileFrame) {
 	// Breakout of frame if in mobile and in frameset (.tk) //
 	isMobileFrame.ifTrue(function () {
 		window.top.location.href = globals.GITHUB_URI;
@@ -35,6 +40,7 @@ define(['util/Array.forEach', 'raffy/globals', 'raffy/navigate', 'util/isMobileF
 		if ($page.hasClass(globals.PAGE_NO_CONTENTS_CLASS)) {
 			var pageId = $page.attr('id');
 			if (!! pageModules[pageId]) {
+				// Load the page modules //
 				require([pageModules[pageId]]);
 				delete pageModules[pageId];
 			}
