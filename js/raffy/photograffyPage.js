@@ -3,7 +3,7 @@ define([
 	'raffy/globals',
 	'raffy/buildMarkup',
 	'raffy/deferImages'
-], function (domReady, globals, markup, undefined) {
+], function (domReady, globals, markup, undef) {
 	var photographyData = [
 			{
 				'link': 'http://www.flickr.com/rafaelgandi/',

@@ -1,5 +1,5 @@
 
-define(['vendor/domReady!', 'jqplugins/jquery.inview.min'], function (domReady, undefined) {
+define(['vendor/domReady!', 'jqplugins/jquery.inview.min'], function (domReady, undef) {
 	// Load images only when scrolled
 	// See: https://github.com/protonet/jquery.inview
 	$(document).on('inview', 'img[data-raf-src]', function (e) {

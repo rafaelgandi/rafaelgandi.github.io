@@ -4,7 +4,7 @@ define([
 	'raffy/buildMarkup',
 	'util/helpers',
 	'raffy/deferImages'
-], function (domReady, globals, markup, helpers, undefined) {
+], function (domReady, globals, markup, helpers, undef) {
 	markup.loadTemplate('templates/projects_page.html', globals.$pages.projectsPage, function () {
 		var html = '',
 			oshtml = '',

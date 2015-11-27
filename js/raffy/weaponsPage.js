@@ -4,7 +4,7 @@ define([
 	'raffy/globals', 
 	'raffy/buildMarkup',
 	'raffy/deferImages'
-], function (domReady, helpers, globals, markup, undefined) {
+], function (domReady, helpers, globals, markup, undef) {
 	var weaponsData = [
 			{
 				'link': 'https://developer.mozilla.org/en-US/docs/Web/JavaScript',
