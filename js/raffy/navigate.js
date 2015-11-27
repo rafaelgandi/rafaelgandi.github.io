@@ -20,7 +20,7 @@ define(['vendor/domReady!', 'raffy/globals'], function (domReady, globals) {
 		globals.$pageContainer.stop().hide().removeClass(ACTIVE_PAGE_CLASS);
 		scrollTo(0,0);
 		$page.stop().hide().fadeIn();
-		//globals.root.trigger(id, [$page]);
+		globals.root.trigger(id, [$page]);
 		globals.root.trigger('pagechange', [$page]);
 		_setActiveMainLink(id);
 	};
@@ -31,7 +31,6 @@ define(['vendor/domReady!', 'raffy/globals'], function (domReady, globals) {
 			globals.navigateToPage(this.href);
 			return false;
 		}
-	};
-	
+	};	
 	globals.root.on('click', 'a.nav_link', Events.navigateToOtherPage);
 });

@@ -6,12 +6,6 @@ define([
 ], function (domReady, globals, markup, undefined) {
 	var photographyData = [
 			{
-				'link': 'http://www.instagram.com/rafaelgandi/',
-				'image_path': 'images/photography/instagram.png',
-				'title': 'Check out photos from my instagram',
-				'text': 'Instagram'
-			},
-			{
 				'link': 'http://www.flickr.com/rafaelgandi/',
 				'image_path': 'images/photography/flickr.png',
 				'title': 'Check out some of my photos on flickr',
@@ -22,7 +16,13 @@ define([
 				'image_path': 'images/photography/500px2.png',
 				'title': 'Check out photos from my 500px account',
 				'text': '500px'
-			}	
+			},
+			{
+				'link': 'http://www.instagram.com/rafaelgandi/',
+				'image_path': 'images/photography/instagram.png',
+				'title': 'Check out photos from my instagram',
+				'text': 'Instagram'
+			}
 		],
 		$photograffyPage = globals.$pages.photograffyPage;
 		

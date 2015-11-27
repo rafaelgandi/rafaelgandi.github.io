@@ -1,13 +1,22 @@
 <div class="page_contents page_list">
+
+	<p style="text-align:center;padding: 30px;">My personal open source projects on <a href="http://github.com/rafaelgandi" target="_blank">github</a>.</p>
+	
+	<div id="raffy_opensource_proj_con" class="grid" style="margin-bottom:130px;">
+		<em class="loading">Getting contents...</em>
+	</div>
+	
 	<p style="text-align:center;padding: 30px;">Some projects I was a part of.</p>
 	<div id="raffy_projects_wrapper">
 		<em class="loading">Getting contents...</em>	
 	</div>
-
+	
 	<script type="text/html" id="project_item_tpl">
 		<div class="unit one-quarter raffy_project_item">
 			<a href="{link}" target="_blank">
-				<img src="images/fff.gif" alt="{link}" data-raf-src="images/proj/{image}" alt="{header}">
+				<picture>
+					<img src="images/fff.gif" alt="{link}" data-raf-src="images/proj/{image}" alt="{header}">
+				</picture>
 				<span>{header}</span>
 			</a>
 		</div>
