@@ -17,7 +17,7 @@ requirejs.config({
     paths: {}
 });
 window.$ = window.jQuery; // Explicitly map the "$" sign to jQuery.
-define([
+require([
 	'util/Array.forEach', 
 	'raffy/globals', 
 	'raffy/navigate', 
