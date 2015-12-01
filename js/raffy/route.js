@@ -8,6 +8,7 @@ define(function () {
 	}
 	
 	console.dir(topp);
+	console.log(document.referrer);
 	return {};
 	
 });
