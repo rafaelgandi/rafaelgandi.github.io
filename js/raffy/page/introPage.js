@@ -1,3 +1,3 @@
-define(['vendor/domReady!'], function (domReady) {
+define(['vendor/domReady!', 'raffy/deferImages'], function (domReady, undef) {
 	
 });
