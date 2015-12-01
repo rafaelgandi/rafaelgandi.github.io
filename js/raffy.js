@@ -14,17 +14,19 @@
 */
 requirejs.config({
     baseUrl: 'js',
+	// See: http://stackoverflow.com/questions/13626715/load-timeout-for-module-domready-unnormalized2
+	// See: http://stackoverflow.com/questions/14279962/require-js-error-load-timeout-for-modules-backbone-jquerymobile
+	waitSeconds: 200,
     paths: {}
 });
 window.$ = window.jQuery; // Explicitly map the "$" sign to jQuery.
 require([
-	'vendor/domReady!',
 	'util/Array.forEach', 
 	'raffy/globals', 
 	'raffy/navigate', 
 	'util/isMobileFrame',
 	'raffy/route'
-], function (domReady, undef, globals, navigate, isMobileFrame, router) {
+], function (undef, globals, navigate, isMobileFrame, router) {
 	// Breakout of frame if in mobile and in frameset (.tk) //
 	isMobileFrame.ifTrue(function () {
 		window.top.location.href = globals.GITHUB_URI;
