@@ -18,12 +18,13 @@ requirejs.config({
 });
 window.$ = window.jQuery; // Explicitly map the "$" sign to jQuery.
 require([
+	'vendor/domReady!',
 	'util/Array.forEach', 
 	'raffy/globals', 
 	'raffy/navigate', 
 	'util/isMobileFrame',
 	'raffy/route'
-], function (undef, globals, navigate, isMobileFrame) {
+], function (domReady, undef, globals, navigate, isMobileFrame, router) {
 	// Breakout of frame if in mobile and in frameset (.tk) //
 	isMobileFrame.ifTrue(function () {
 		window.top.location.href = globals.GITHUB_URI;
@@ -35,8 +36,8 @@ require([
 		'projects_page': 'raffy/page/projectsPage',
 		'contact_page': 'raffy/page/contactPage'
 	};
-	// Load intro page scripts //
-	require([pageModules['intro_page']]);	
+	// Show main navigation //
+	require(['raffy/showMainNav']);	
 	// Load contents for the page //
 	globals.root.on('pagechange', function (e, $page) {
 		if ($page.hasClass(globals.PAGE_NO_CONTENTS_CLASS)) {
@@ -48,4 +49,15 @@ require([
 			}
 		}
 	});
+	
+	// Set the onload routes //
+	router.setDefaultLanding('intro_page');
+	router.init({
+		'/welcome': 'intro_page',
+		'/photography': 'photograffy_page',
+		'/weapons': 'weapons_page',
+		'/projects': 'projects_page',
+		'/contact': 'contact_page'
+	});	
+	
 });

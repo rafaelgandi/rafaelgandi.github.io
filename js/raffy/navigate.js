@@ -1,6 +1,7 @@
 define(['vendor/domReady!', 'raffy/globals'], function (domReady, globals) {
 	var ACTIVE_PAGE_CLASS = 'raffy_active_page',
-		ACTIVE_NAVLINK_CLASS = 'active_nav';
+		ACTIVE_NAVLINK_CLASS = 'active_nav',
+		props = {};
 		
 	function _setActiveMainLink(_pageId) {
 		// See: http://api.jquery.com/attribute-ends-with-selector/
@@ -11,7 +12,7 @@ define(['vendor/domReady!', 'raffy/globals'], function (domReady, globals) {
 	}
 	
 	// Navigate to page function
-	globals.navigateToPage = function (_pageId) {
+	var goToPage = function (_pageId) {
 		var id = _pageId.replace(/.*#/ig, ''),
 			$page = $('#'+id);
 		if (! $page.length) {
@@ -28,9 +29,12 @@ define(['vendor/domReady!', 'raffy/globals'], function (domReady, globals) {
 	var Events = {
 		navigateToOtherPage: function (e) {
 			e.preventDefault();
-			globals.navigateToPage(this.href);
+			goToPage(this.href);
 			return false;
 		}
 	};	
-	globals.root.on('click', 'a.nav_link', Events.navigateToOtherPage);
+	globals.root.on('click', 'a.nav_link', Events.navigateToOtherPage);	
+	return {
+		goToPage: goToPage
+	};
 });
