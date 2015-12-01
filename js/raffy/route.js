@@ -7,8 +7,7 @@ define(function () {
 		catch (e) { return true; }
 	}
 	
-	alert(topp.location.href);
-	
+	console.dir(topp);
 	return {};
 	
 });
