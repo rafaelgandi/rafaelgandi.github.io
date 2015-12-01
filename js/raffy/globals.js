@@ -1,9 +1,6 @@
-define(['vendor/domReady!'], function () {
-	var props = {
+define(['vendor/domReady!'], function () {	
+	return {
 		root: $(document),
-		scrollToOpt: {
-			easing:'easeOutCubic'
-		},
 		$pageContainer: $('section.page_container'),
 		$pages: {
 			introPage : $('#intro_page'),
@@ -12,10 +9,8 @@ define(['vendor/domReady!'], function () {
 			contactPage : $('#contact_page'),
 			projectsPage : $('#projects_page')
 		},
-		$contactUsOtherLinksCon: $('#contactus_other_links'),
 		$navigationCon: $('#main_navigation_con'),
 		PAGE_NO_CONTENTS_CLASS: 'raffy_no_contents',
 		GITHUB_URI: 'http://rafaelgandi.github.io'
 	};	
-	return props;	
 });

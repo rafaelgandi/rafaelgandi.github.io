@@ -462,21 +462,30 @@ body, h1, h2, h3, h4, h5, p {
 }
 
 .loading {
-	font-size: 50px;
-	font-weight: 400;
+	background: url("../images/dancing_chicken.gif") no-repeat scroll center center #fff;
+    display: block;
+    font-size: 50px;
+    font-style: italic;
+    font-weight: 400;
+    height: 339px;
     line-height: 1.3em;
-	font-style: italic;
-	display: block;
-	text-align: center;
-	padding-top: 50px;
+    margin-top: 45px;
+    padding-top: 60px;
+    text-align: center;
 }
  
 #raffys_head {
 	border-radius: 80px;
 	vertical-align:middle;
-	background: url("../images/me2.jpg") no-repeat center #fff; 
+	/* background: url("../images/me3.png") no-repeat center #fff;  */
+	background-color: #000;
 	overflow: hidden;
 	display: inline-block;
+	width: 80px;
+	height: 80px;
+}
+
+#raffys_head img {
 	width: 80px;
 	height: 80px;
 }
@@ -599,6 +608,7 @@ body, h1, h2, h3, h4, h5, p {
 		margin: 0 auto;
 		margin-bottom: 30px;
 	}
+	
 	#main_navigation_con {
 		right: 5px;
 		left: 5px;

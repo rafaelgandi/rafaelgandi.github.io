@@ -14,7 +14,7 @@ define([
 			{
 				'link': 'http://www.instagram.com/rafaelgandi/',
 				'image_path': 'images/photography/instagram.png',
-				'title': 'Check out photos from my instagram',
+				'title': '@rafaelgandi',
 				'text': 'Instagram'
 			},
 			{
