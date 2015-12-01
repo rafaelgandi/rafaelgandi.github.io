@@ -26,6 +26,11 @@ define([
 				"header" : "Boot.js",
 				"link" : "https://github.com/rafaelgandi/Bootjs",
 				"image" : "bootjs.jpg"
+			},
+			{
+				"header" : "Monthlyst",
+				"link" : "http://rafaelgandi.github.io/monthlyst",
+				"image" : "monthlyst.png"
 			}
 		];	
 		// Open source projects //

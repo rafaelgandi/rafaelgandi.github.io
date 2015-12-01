@@ -44,8 +44,8 @@ define(['vendor/domReady!', 'raffy/globals', 'raffy/navigate'], function (domRea
 	
 	globals.root.on('pagechange', function (e, $page) {		
 		var pageId = $.trim($page.attr('id').replace(/.*#/ig, ''));
-		if (routeListReverse[pageId]) {
-			window.location.hash = routeListReverse[pageId];
+		if (routeListReverse[pageId]) {		
+			window.location.hash = routeListReverse[pageId];	
 		}
 	});
 	
