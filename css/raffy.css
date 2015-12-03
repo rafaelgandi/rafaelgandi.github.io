@@ -537,6 +537,11 @@ body, h1, h2, h3, h4, h5, p {
 	padding-top: 100px;
 }
 
+#intro_page a {
+	text-decoration:none;
+	color:#666666;
+}
+
 #contact_page .email_add {
 	padding-top: 80px;
 	padding-bottom: 20px;
