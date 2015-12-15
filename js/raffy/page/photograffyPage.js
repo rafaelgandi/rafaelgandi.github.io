@@ -22,7 +22,13 @@ define([
 				'image_path': 'images/photography/500px2.png',
 				'title': 'Check out photos from my 500px account',
 				'text': '500px'
-			}			
+			},
+			{
+				'link': 'http://www.eyeem.com/rafaelgandi',
+				'image_path': 'images/photography/eyeem.png',
+				'title': 'Check out photos from my EyeEm account',
+				'text': 'EyeEm'
+			}				
 		],
 		$photograffyPage = globals.$pages.photograffyPage;
 		
