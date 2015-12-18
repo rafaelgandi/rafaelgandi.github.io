@@ -477,8 +477,8 @@ body, h1, h2, h3, h4, h5, p {
 #raffys_head {
 	border-radius: 80px;
 	vertical-align:middle;
-	/* background: url("../images/me3.png") no-repeat center #fff;  */
-	background-color: #bada55;
+	/* background: url("../images/me4.jpg") no-repeat center #bada55;  */
+	background-color: #ccc;
 	overflow: hidden;
 	display: inline-block;
 	width: 80px;
@@ -488,6 +488,7 @@ body, h1, h2, h3, h4, h5, p {
 #raffys_head img {
 	width: 80px;
 	height: 80px;
+	border-radius: 50%;
 }
 
 .page_list ul {
