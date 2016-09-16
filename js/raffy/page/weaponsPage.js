@@ -19,6 +19,12 @@ define([
 				'text': 'jQuery'
 			},
 			{
+				'link': 'https://nodejs.org/en/',
+				'image_path': 'images/weapons/nodejs.png',
+				'title': 'A JavaScript runtime built on Chrome\'s V8 JavaScript engine.',
+				'text': 'Node.js'
+			},
+			{
 				'link': 'http://zeptojs.com/',
 				'image_path': 'images/weapons/zepto.jpg',
 				'title': 'Zepto Mobile Javascript Library',

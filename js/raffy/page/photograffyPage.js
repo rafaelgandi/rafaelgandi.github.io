@@ -13,9 +13,9 @@ define([
 			},
 			{
 				'link': 'http://www.instagram.com/rafaelgandi/',
-				'image_path': 'images/photography/instagram.png',
-				'title': '@rafaelgandi',
-				'text': 'Instagram'
+				'image_path': 'images/photography/instagram2.png',
+				'title': 'Follow me! @rafaelgandi',
+				'text': '@rafaelgandi'
 			},
 			{
 				'link': 'http://500px.com/rafaelgandi/',

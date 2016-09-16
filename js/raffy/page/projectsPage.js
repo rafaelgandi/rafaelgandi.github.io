@@ -31,6 +31,11 @@ define([
 				"header" : "Monthlyst",
 				"link" : "http://rafaelgandi.github.io/monthlyst",
 				"image" : "monthlyst.png"
+			},
+			{
+				"header" : "StashLoader.js",
+				"link" : "https://github.com/rafaelgandi/StashLoader",
+				"image" : "stashloader.png"
 			}
 		];	
 		// Open source projects //

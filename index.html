@@ -57,26 +57,28 @@
 <!--[if IE 8 ]>    <html class="no-js ie8 oldie ie" lang="en"> <![endif]-->
 <!--[if (gte IE 9)|!(IE)]><!--> <html class="no-js" lang="en"> <!--<![endif]-->
 <head>
-  <meta charset="utf-8"> 
-  <!-- Always force latest IE rendering engine (even in intranet) & Chrome Frame Remove this if you use the .htaccess -->
-  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-  <title>Rafael Gandionco</title>
-  <meta name="description" content="rafael gandionco website portfolio web development photography">
-  <meta name="author" content="rafael gandionco">
-  <meta name="msapplication-tap-highlight" content="no" />
-  <!-- See: http://debugfix.com/2011/11/android-browser-css-position-fixed-bug-solved/ -->
-  <meta name="viewport" content="width=100%, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no">
-  <!-- Place favicon.ico & apple-touch-icon.png in the root of your domain and delete these references -->
-  <link rel="shortcut icon" href="favicon.ico?v20151201a">
-  <!-- CSS: implied media="all" -->
-  <link rel="stylesheet" href="css/raffy.css?v20151126a">
-  <link rel="stylesheet" href="css/gridism.css?v20151126a">
-  <!-- Grab CDN's jQuery, with a protocol relative URL; fall back to local if necessary -->
-  <!-- http://paulirish.com/2010/the-protocol-relative-url/-->
-  <script src="//code.jquery.com/jquery-1.11.2.min.js"></script>
-  <script>window.jQuery || document.write("<script src='js/jquery-1.11.2.min.js'>\x3C/script>")</script>
-  <!-- http://requirejs.org/ -->
-  <script data-main="js/raffy" src="js/require.js?v20151125a"></script>
+	<meta charset="utf-8"> 
+	<!-- Always force latest IE rendering engine (even in intranet) & Chrome Frame Remove this if you use the .htaccess -->
+	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+	<title>Rafael Gandionco</title>
+	<meta name="description" content="rafael gandionco website portfolio web development photography">
+	<meta name="author" content="rafael gandionco">
+	<meta name="msapplication-tap-highlight" content="no" />
+	<!-- See: http://debugfix.com/2011/11/android-browser-css-position-fixed-bug-solved/ -->
+	<meta name="viewport" content="width=100%, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no">
+	<!-- Place favicon.ico & apple-touch-icon.png in the root of your domain and delete these references -->
+	<link rel="shortcut icon" href="favicon.ico?v20151201a">
+	<!-- CSS: implied media="all" -->
+	<link rel="stylesheet" href="css/raffy.css?v20160916a">
+	<link rel="stylesheet" href="css/gridism.css?v20151126a">
+	<!-- https://github.com/rafaelgandi/StashLoader -->
+	<script src="js/StashLoader.js?v20160916a"></script> 
+	<script>
+		// Load and cache jQuery //
+		StashLoader.load(['js/jquery-1.11.2.min.js']);
+	</script> 
+	<!-- http://requirejs.org/ -->
+	<script data-main="js/raffy" src="js/require.js?v20151125a"></script> 
 </head>
 <body>
   <!--[if lt IE 7]>	
@@ -112,23 +114,22 @@
 	<section id="intro_page" class="page_container raffy_no_contents">
 		<div class="page_contents center">
 			<p id="init_msg" class="align-c">
-				<span id="raffys_head" title="@rafaelgandi">
-					<a href="#contact_page" class="nav_link"><img src="images/fff.gif" data-raf-src="images/me4.jpg"></a>
-				</span>
+				<span id="raffys_head" title="@rafaelgandi"></span>
 				Hi, I'm <span class="green_highlight">Rafael Gandionco.</span> A web developer and photographer from the <span class="green_highlight">Philippines.</span>
 				<br><br>		
-				I've been doing <span class="green_highlight">web development</span> stuff professionally for more than <script>document.write((new Date()).getFullYear()-2009)</script> years now.
+				<i class="emoji necktie"></i> I've been doing <span class="green_highlight">web development</span> stuff professionally for more than <script>document.write((new Date()).getFullYear()-2009)</script> years now.
 				<br>
 				I mainly specialize on <span class="green_highlight">web application</span> development using <span class="green_highlight">Javascript</span> <sup style="font-size:12px;color:#ccc;">(jQuery, Require.js, etc...)</sup>, 
 				<span class="green_highlight">PHP</span> <sup style="font-size:12px;color:#ccc;">(Laravel, Codeigniter, etc...)</sup>,
-				<span class="green_highlight">HTML 5</span> and <span class="green_highlight">other cool open web technologies.</span>
+				<span class="green_highlight">HTML 5</span> and <span class="green_highlight">other cool open web technologies.</span>		
 				<br><br>
 				I'm also an amature <span class="green_highlight">photographer</span>. I mainly take images as a hobby. You can check out links to my work 
 				<span class="green_highlight">
-					<a href="#photograffy_page" class="nav_link">here</a>.
+					<a href="#photograffy_page" class="nav_link">here</a>. <i class="emoji camera"></i>
 				</span>
 				<br><br>
-				I'm a big <span class="green_highlight"><a href="http://www.pixar.com/" target="_blank" rel="external">Pixar</a></span> fan and hmmm... what else.. Oh yeah, I like eating <span class="green_highlight">french fries</span>. French fries are awesome.
+				I'm a big <span class="green_highlight"><a href="http://www.pixar.com/" target="_blank" rel="external">Pixar</a></span> fan and hmmm... what else.. 
+				Oh yeah, I like eating <span class="green_highlight">french fries</span>. <i class="emoji fries"></i>French fries are awesome.
 				<!-- Show my email to ie6 and browsers with javascript turned off -->
 				<noscript><br /><br />Email: <span class="green_highlight">rafaelgandi AT gmail DOTCOM</span></noscript>
 				<!--[if lte IE 6 ]><br /><br />Email: <span class="green_highlight">rafaelgandi AT gmail DOTCOM</span><![endif]-->

@@ -477,18 +477,13 @@ body, h1, h2, h3, h4, h5, p {
 #raffys_head {
 	border-radius: 80px;
 	vertical-align:middle;
-	/* background: url("../images/me4.jpg") no-repeat center #bada55;  */
 	background-color: #ccc;
 	overflow: hidden;
 	display: inline-block;
 	width: 80px;
 	height: 80px;
-}
-
-#raffys_head img {
-	width: 80px;
-	height: 80px;
-	border-radius: 50%;
+	/* LM: 2016-09-16 */
+	background: #9e9f9e url("../images/me_gif_cartoon_sml.gif") no-repeat scroll 3px -8px;
 }
 
 .page_list ul {
@@ -635,8 +630,35 @@ body, h1, h2, h3, h4, h5, p {
 	}
 }
 
+/* LM: 2016-09-16 [emoji css sprites] */
 
+.emoji {
+	background-image: url('../images/emojis.jpg');
+	display: inline-block;
+	vertical-align: bottom;
+	width: 42px;
+	height: 42px;
+}
 
+.emoji.fries {
+	background-position: -961px -649px; 
+}
+
+.emoji.camera {
+	background-position: -471px -480px;
+}
+
+.emoji.smirk {
+	background-position: -160px -17px; 
+}
+
+.emoji.palm {
+	background-position: -471px -733px; 
+}
+
+.emoji.necktie {
+	background-position: -560px -271px; 
+}
 
 
 
