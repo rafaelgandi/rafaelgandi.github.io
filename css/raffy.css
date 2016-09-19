@@ -632,7 +632,8 @@ body, h1, h2, h3, h4, h5, p {
 
 /* LM: 2016-09-16 [emoji css sprites] */
 .emoji {
-	background-image: url('../images/emojis.png');
+	/* See: http://compresspng.com/ */
+	background-image: url('../images/emojis-min.png');
 	display: inline-block;
 	vertical-align: bottom;
 }
