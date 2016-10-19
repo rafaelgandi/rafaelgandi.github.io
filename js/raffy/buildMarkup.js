@@ -10,6 +10,7 @@ define([
 			_$pageCon
 			.html(res)
 			.removeClass(globals.PAGE_NO_CONTENTS_CLASS);
+			globals.root.trigger('markupbuilt');
 			_callback();
 		});
 	}
@@ -25,6 +26,7 @@ define([
 			});
 			document.getElementById(_options.listContainerId).innerHTML = html;
 			_options.afterBuild();
+			globals.root.trigger('markupbuilt');
 		});
 	}
 	

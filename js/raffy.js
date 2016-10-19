@@ -20,6 +20,13 @@ requirejs.config({
     paths: {}
 });
 window.$ = window.jQuery; // Explicitly map the "$" sign to jQuery.
+
+// LM: 2016-10-19 [Started using twitter emoji library]
+// See: http://twitter.github.io/twemoji/
+jQuery(function ($) {
+	twemoji.parse(document.body);
+});
+
 require([
 	'util/Array.forEach', 
 	'raffy/globals', 
@@ -48,8 +55,13 @@ require([
 				// Load the page modules //
 				require([pageModules[pageId]]);
 				delete pageModules[pageId];
-			}
+			}			
 		}
+	});
+	
+	// LM: 2016-10-19 [Started using twitter emoji library]
+	globals.root.on('markupbuilt', function () {		
+		twemoji.parse(document.body);
 	});
 	
 	// Set the onload routes //

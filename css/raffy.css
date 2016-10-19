@@ -630,55 +630,13 @@ body, h1, h2, h3, h4, h5, p {
 	}
 }
 
-/* LM: 2016-09-16 [emoji css sprites] */
-.emoji {
-	/* See: http://compresspng.com/ */
-	background-image: url('../images/emojis-min.png');
-	display: inline-block;
-	vertical-align: bottom;
+/* 
+	LM: 2016-10-19 [Started using twitter emoji library] 
+	See: http://twitter.github.io/twemoji/
+*/
+img.emoji {
+   height: 1em;
+   width: 1em;
+   margin: 0 .05em 0 .1em;
+   vertical-align: -0.1em;
 }
-
-.emoji.fries {
-	background-position: -1728px -9px; 
-	width: 49px;
-	height: 52px;
-}
-
-.emoji.camera {
-	background-position: -283px -2315px; 
-	width: 52px;
-	height: 48px;
-}
-
-.emoji.camera2 {
-	background-position: -213px -2319px; 
-	width: 52px;
-	height: 45px;
-}
-
-.emoji.smirk {
-	background-position: -74px -12px;
-	width: 52px;
-	height: 44px;
-}
-
-.emoji.robot {
-	background-position: -866px -306px; 
-	width: 51px;
-	height: 43px; 
-}
-
-.emoji.necktie {
-	background-position: -13px -1114px; 
-	width: 36px;
-	height: 50px; 
-}
-
-.emoji.alien {
-	background-position: -800px -302px; 
-	width: 45px;
-	height: 52px;
-}
-
-
-
