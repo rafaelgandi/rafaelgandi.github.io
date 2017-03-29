@@ -25,9 +25,6 @@ window.$ = window.jQuery; // Explicitly map the "$" sign to jQuery.
 // See: http://twitter.github.io/twemoji/
 jQuery(function ($) {
 	twemoji.parse(document.body);
-    var url = (parent !== window) ? document.referrer : document.location;
-    console.log(url);
-    console.log(location.href);
 });
 
 require([
