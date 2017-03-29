@@ -36,12 +36,7 @@ require([
 ], function (undef, globals, navigate, isMobileFrame, router) {
     // LM: 2017-03-29 [Add checking for "/blog" on the url] //
     var url = (parent !== window) ? document.referrer : document.location; // See: http://stackoverflow.com/a/7739035
-    
-    console.log(url);
-    return;
-    
-    
-    if (url.indexOf('/blog') !== -1) {
+    if (typeof url == 'string' && url.indexOf('/blog') !== -1) {
         // Redirect to my blog website instead. //
         window.top.location.href = globals.BLOG_URI;
         return;
