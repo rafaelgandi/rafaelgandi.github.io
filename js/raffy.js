@@ -1,6 +1,6 @@
 /* 
 	raffy.js
-	LM: 2015-12-01
+	LM: 2017-03-29
 	Author: Rafael Gandionco
 		
 		    __         __
@@ -37,6 +37,13 @@ require([
 	'util/isMobileFrame',
 	'raffy/route'
 ], function (undef, globals, navigate, isMobileFrame, router) {
+    // LM: 2017-03-29 [Add checking for "/blog" on the url] //
+    var url = (parent !== window) ? document.referrer : document.location; // See: http://stackoverflow.com/a/7739035
+    if (url.indexOf('/blog') !== -1) {
+        // Redirect to my blog website instead. //
+        window.top.location.href = globals.BLOG_URI;
+        return;
+    }
 	// Breakout of frame if in mobile and in frameset (.tk) //
 	isMobileFrame.ifTrue(function () {
 		window.top.location.href = globals.GITHUB_URI;

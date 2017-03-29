@@ -11,6 +11,7 @@ define(['vendor/domReady!'], function () {
 		},
 		$navigationCon: $('#main_navigation_con'),
 		PAGE_NO_CONTENTS_CLASS: 'raffy_no_contents',
-		GITHUB_URI: 'http://rafaelgandi.github.io'
+		GITHUB_URI: 'http://rafaelgandi.github.io',
+		BLOG_URI: 'https://medium.com/rafael-gandionco'
 	};	
 });
