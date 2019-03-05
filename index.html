@@ -66,6 +66,16 @@
 	<link rel="stylesheet" href="css/reset.css?v20190305">
 	<link rel="stylesheet" href="css/raffy2.css?v20190305">
 	<link rel="stylesheet" href="css/raffy2.mobile.css?v20190305">
+	<script>
+	(function () {
+		// See: https://www.smashingmagazine.com/2016/08/sghpa-single-page-app-hack-github-pages/
+		var redirect = sessionStorage.redirect;
+		delete sessionStorage.redirect;
+		if (redirect && redirect != location.href) {
+			history.replaceState(null, null, redirect);
+		}
+	})()
+	</script>
 	<!-- http://requirejs.org/ -->
 	<script data-main="js/index" src="js/require.js?v20190305"></script>
 	<script>
