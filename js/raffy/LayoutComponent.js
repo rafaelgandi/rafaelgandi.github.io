@@ -1,6 +1,6 @@
 define((require) => {    
     "use strict";
-    const { cm, componentHtml, $, ixr, helpers } = (require('ComponentModule/cm'))(require('module').id); 
+    const { cm, componentHtml, $, ixr, helpers, typeOf } = (require('ComponentModule/cm'))(require('module').id); 
 	const HeaderComponent = require('raffy/HeaderComponent');
 	const ListComponent = require('raffy/ListComponent');
 	const EmailLinkComponent = require('raffy/EmailLinkComponent');
@@ -70,13 +70,6 @@ define((require) => {
             if (this._isInsideFrame() && this._isMobile()) {
                 window.top.location.href = this.context.constants.uri.myGithubPageUri;
             }   
-            
-            console.dir(window.top.history);
-            requestAnimationFrame(() => {
-                window.top.history.pushState({}, null, '/foo');
-            });
-            
-             
             this.$element.id = 'raffy-wrapper';
             this.$HeaderComponent = HeaderComponent.renderAllComponents(this.$element);
             ListComponent.renderAllComponents(this.$element);
@@ -114,12 +107,25 @@ define((require) => {
             // See: http://stackoverflow.com/a/14301832
             return typeof window.orientation !== 'undefined';
         } 
+        _setInitialPage() {
+            if (typeOf(this.currentUri) === 'string') {
+                if (this.currentUri.indexOf('/projects') !== -1) {
+                    simpleRouter.navigate('/projects'); 
+                    return;
+                }
+                else if (this.currentUri.indexOf('/contact') !== -1) {
+                    simpleRouter.navigate('/contact'); 
+                    return;
+                }
+            }
+            simpleRouter.navigate(window.location.pathname); 
+        }
         events() {
             simpleRouter
             .route('/', (_data) => this.setState('uriIdChange', 'raffy-page-home'))
             .route('/projects', (_data) => this.setState('uriIdChange', 'raffy-page-projects'))
             .route('/contact', (_data) => this.setState('uriIdChange', 'raffy-page-contact'));
-            simpleRouter.navigate(window.location.pathname); 
+            this._setInitialPage();
             helpers.on(document.getElementById('raffy-main-navigation'), 'click', 'a[rel]', function (e) {
                 e.preventDefault();
                 simpleRouter.navigate(e.target.rel); 
