@@ -1,0 +1,9 @@
+[
+    {
+        "basePath": "../js/",
+        "out": "../js/compiled/raffy.js",
+        "es5Out": "../js/compiled/es5/raffy.js",
+        "entryFile": "../js/index.js",
+        "entryModule": "index"
+    }
+]

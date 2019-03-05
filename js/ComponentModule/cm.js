@@ -1,10 +1,9 @@
 define((require) => {
     "use strict";
-    require('domReady!');
-    const ComponentModule = require('./ComponentModule');
+    const ComponentModule = require('ComponentModule/ComponentModule');
     return function (_modId) {
         let _cm = new ComponentModule(_modId),
-            essentials = _cm.getEssentialModules();
+            essentials = _cm.getEssentialModules();            
         return {
             cm: _cm,
             globals: essentials.globals, 

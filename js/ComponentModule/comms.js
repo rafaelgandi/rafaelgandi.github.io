@@ -4,7 +4,7 @@
 */
 define((require) => {
 	"use strict"
-	require('./pubsub.min');
+	require('ComponentModule/pubsub.min');
 	// Infinit loop checker //
 	var calledOnceEvents = {},
 		eventData = {},

@@ -1,0 +1,14 @@
+{
+  "name": "vectto-gulp-builder",
+  "version": "1.0.0",
+  "description": "Build script for vectto using gulp",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Rafael Gandionco",
+  "license": "ISC",
+  "dependencies": {
+    "gulp": "^3.9.1"
+  }
+}

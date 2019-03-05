@@ -155,7 +155,7 @@ define((require) => {
 			_element.addEventListener(_eventName, function (e) {
 				if (that.typeOf(_selector) === 'string') {
 					if (e.target.matches(_selector)) {
-						_callback.call(this, e);
+						_callback.call(e.target, e);
 					}
 				}
 				else {

@@ -6,10 +6,10 @@
 */
 define((require) => {
     "use strict"; 
-    require('./Polyfills');  
-    const comms = require('./comms');  
-    const helpers = require('./helpers');    
-    require('./runwhen');  
+    require('ComponentModule/Polyfills');  
+    const comms = require('ComponentModule/comms');  
+    const helpers = require('ComponentModule/helpers');    
+    require('ComponentModule/runwhen');  
     let _componentHtmlFunctions = {},
         _componentHtmlObj = {},
         funcKey = '%FUNC%',
@@ -293,6 +293,7 @@ define((require) => {
                     } 
                     if ($containerElement) {
                         $containerElement.cm = comp;
+                        //$containerElement.cm = () => console.dir(comp);
                         // See: https://stackoverflow.com/questions/1988514/javascript-css-how-to-add-and-remove-multiple-css-classes-to-an-element                        
                         if (comp.getProps('classNames')) {
                             comp.$element.classList.add(...comp.getProps('classNames').trim().split(/\s+/));
