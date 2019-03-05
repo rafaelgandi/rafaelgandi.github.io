@@ -10,7 +10,8 @@ define(() => {
             fiveHundredPx: 'https://500px.com/rafaelgandi',
             eyeem: 'https://www.eyeem.com/u/rafaelgandi',
             github: 'https://github.com/rafaelgandi',
-            myGithubPageUri: 'http://rafaelgandi.github.com'
+            myGithubPageUri: 'http://rafaelgandi.github.com',
+            googlePhotosPage: 'https://photos.google.com/share/AF1QipNaQF_eK8IeYfQG8gitFza88P0nMq9gFnyk6FFwNLvmgAfUvZf9TdaJ6LVxhoMGdA?key=bDJqbHo2WWFKUWZ0ZDR0VkE5cS1JTWUxekN0VXdB'
         }
     };
 });

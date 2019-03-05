@@ -24,7 +24,7 @@ define((require) => {
     				<ul>
     					<li><a href="/" rel="/" data-page-container-id="raffy-page-home">Me</a></li>
     					<li><a href="${ this.context.constants.uri.medium }" target="_blank">Blog</a></li>
-    					<li><a href="${ this.context.constants.uri.instagram }">Photography</a></li>
+    					<li><a href="${ this.context.constants.uri.googlePhotosPage }">Photography</a></li>
     					<li><a href="/projects" rel="/projects" data-page-container-id="raffy-page-projects">Web Developer Projects</a></li>
     					<li><a href="/contact" rel="/contact" data-page-container-id="raffy-page-contact">Contact</a></li>
     				</ul>
