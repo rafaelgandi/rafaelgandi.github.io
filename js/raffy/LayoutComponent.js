@@ -75,11 +75,7 @@ define((require) => {
             ListComponent.renderAllComponents(this.$element);
             EmailLinkComponent.renderAllComponents(this.$element);
             this.$pagesContainers = this.$element.querySelectorAll('.raffy-page-sections'); 
-            this.$body.classList.add('raffy-opacity-1');   
-            
-            
-            console.log(this.currentUri);
-                 
+            this.$body.classList.add('raffy-opacity-1');                    
         }
         onStateChange(_stateName) {
             if (this.isIn('uriIdChange', _stateName)) {
