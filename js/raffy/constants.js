@@ -9,7 +9,8 @@ define(() => {
             flickr: 'https://www.flickr.com/photos/rafaelgandi/',
             fiveHundredPx: 'https://500px.com/rafaelgandi',
             eyeem: 'https://www.eyeem.com/u/rafaelgandi',
-            github: 'https://github.com/rafaelgandi'
+            github: 'https://github.com/rafaelgandi',
+            myGithubPageUri: 'http://rafaelgandi.github.com'
         }
     };
 });

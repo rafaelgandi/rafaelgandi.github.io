@@ -68,7 +68,7 @@ define((require) => {
         onAfterInitialRender() { 
             // Breakout of frame if in mobile and in frameset (.tk) //   
             if (this._isInsideFrame() && this._isMobile()) {
-                window.top.location.href = this.context.constants.uri.github;
+                window.top.location.href = this.context.constants.uri.myGithubPageUri;
             }    
             this.$element.id = 'raffy-wrapper';
             this.$HeaderComponent = HeaderComponent.renderAllComponents(this.$element);
