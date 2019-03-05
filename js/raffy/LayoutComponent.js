@@ -72,6 +72,9 @@ define((require) => {
             }   
             
             console.dir(window.top.history);
+            requestAnimationFrame(() => {
+                window.top.history.pushState({}, null, '/foo');
+            });
             
              
             this.$element.id = 'raffy-wrapper';
