@@ -117,6 +117,10 @@ define((require) => {
                     simpleRouter.navigate('/contact'); 
                     return;
                 }
+                else if (this.currentUri.indexOf('/blog') !== -1) {
+                    window.location.href = this.context.constants.uri.medium;
+                    return;
+                }
             }
             simpleRouter.navigate(window.location.pathname); 
         }
