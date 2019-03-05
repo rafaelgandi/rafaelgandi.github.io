@@ -114,7 +114,11 @@ define((require) => {
                     return;
                 }
                 else if (this.currentUri.indexOf('/blog') !== -1) {
-                    window.location.href = this.context.constants.uri.medium;
+                    window.top.location.href = this.context.constants.uri.medium;
+                    return;
+                }
+                else if (this.currentUri.indexOf('/photography') !== -1) {
+                    window.top.location.href = this.context.constants.uri.googlePhotosPage;
                     return;
                 }
             }
