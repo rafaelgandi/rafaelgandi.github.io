@@ -45,10 +45,10 @@ a:link {
 #raffy-main-navigation {
 	position: relative;
 	display: block;
-	padding-left: 50px;
-	padding-right: 50px;
 	background-color:#fff;
 	z-index: 90;
+	margin: 0 auto;
+	width: 70%;
 }
 #raffy-profile-img, 
 #raffy-profile-img-mobile {
@@ -100,10 +100,10 @@ a:link {
 }
 section.raffy-page-sections {
 	font-size: 1.3em;
-	padding-top: 50px;
 	transition: opacity 0.3s ease-out;
 	opacity:0;
 	display: none;
+	padding-top: 50px;
 	padding-bottom: 100px;
 }
 

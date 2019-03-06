@@ -1,7 +1,7 @@
 ;requirejs.config({baseUrl:"/js",waitSeconds:200});define("index",require=>{"use strict";const LayoutComponent=require("raffy/LayoutComponent");document.addEventListener("DOMContentLoaded",()=>{LayoutComponent.renderAllComponents()})});;;define("raffy/LayoutComponent",require=>{"use strict";const{cm,componentHtml,$,ixr,helpers,typeOf}=require("ComponentModule/cm")(require("module").id);const HeaderComponent=require("raffy/HeaderComponent");const ListComponent=require("raffy/ListComponent");const EmailLinkComponent=require("raffy/EmailLinkComponent");const simpleRouter=require("raffy/simpleRouter");const projectItems=require("raffy/projects");const openSourceProjects=require("raffy/openSourceProjects");const weapons=require("raffy/weapons");const constants=require("raffy/constants");class LayoutComponent extends cm.ComponentElement{constructor(c){super(c);this.state={uriIdChange:null};this.currentUri=parent!==window?document.referrer:document.location;this.$body=document.getElementsByTagName("body")[0];this.setContextData({constants:constants})}render(){return componentHtml`
     		<Component-x type="raffy/HeaderComponent"></Component-x>            
             <section id="raffy-page-home" class="raffy-page-sections">
-    			<p>
+    			<p style="margin-top: 2.6em;">
     				Hi, my name's Rafael Gandionco and I'm a minimalist, photographer and web developer from the Philippines.
                 </p>
                 <p>    
@@ -23,7 +23,7 @@
                 </p>  
     		</section>
     		<section id="raffy-page-projects" class="raffy-page-sections">
-                <div class="raffy-text  text-center"><h1>Tools I use for web development.</h1></div>      
+                <div class="raffy-text  text-center" style="margin-top: 80px;"><h1>Tools I use for web development.</h1></div>      
     			<Component-x type="raffy/ListComponent" items="${weapons}"></Component-x>
     			<div class="raffy-text text-center"><h1>Some of my personal open source projects on <a href="${this.context.constants.uri.github}" target="_blank">github.</a></h1></div>
                 <Component-x type="raffy/ListComponent" items="${openSourceProjects}"></Component-x>

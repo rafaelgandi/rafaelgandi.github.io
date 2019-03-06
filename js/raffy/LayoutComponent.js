@@ -25,7 +25,7 @@ define((require) => {
             return componentHtml`
     		<Component-x type="raffy/HeaderComponent"></Component-x>            
             <section id="raffy-page-home" class="raffy-page-sections">
-    			<p>
+    			<p style="margin-top: 2.6em;">
     				Hi, my name's Rafael Gandionco and I'm a minimalist, photographer and web developer from the Philippines.
                 </p>
                 <p>    
@@ -47,7 +47,7 @@ define((require) => {
                 </p>  
     		</section>
     		<section id="raffy-page-projects" class="raffy-page-sections">
-                <div class="raffy-text  text-center"><h1>Tools I use for web development.</h1></div>      
+                <div class="raffy-text  text-center" style="margin-top: 80px;"><h1>Tools I use for web development.</h1></div>      
     			<Component-x type="raffy/ListComponent" items="${ weapons }"></Component-x>
     			<div class="raffy-text text-center"><h1>Some of my personal open source projects on <a href="${ this.context.constants.uri.github }" target="_blank">github.</a></h1></div>
                 <Component-x type="raffy/ListComponent" items="${ openSourceProjects }"></Component-x>
