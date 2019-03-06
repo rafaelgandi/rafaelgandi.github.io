@@ -107,7 +107,7 @@ section.raffy-page-sections {
 }
 
 section.raffy-page-sections p {
-	line-height: 1.5em;
+	line-height: 1.7em;
 	display: block;
 	width: 60%;
 	margin: 0 auto;
@@ -168,6 +168,8 @@ ul.raffy-list div.raffy-list-desc {
 
 #raffy-page-home {
 	font-size: 1.5em;
+	text-align: center;
+	line-height: 1.6em;
 }
 
 #raffy-email-container {

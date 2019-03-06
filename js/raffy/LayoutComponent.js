@@ -26,21 +26,25 @@ define((require) => {
     		<Component-x type="raffy/HeaderComponent"></Component-x>            
             <section id="raffy-page-home" class="raffy-page-sections">
     			<p>
-    				Hi, I'm Rafael Gandionco. A web developer and photographer from the 🌴Philippines. 
+    				Hi, my name's Rafael Gandionco and I'm a minimalist, photographer and web developer from the Philippines.
                 </p>
                 <p>    
-                    I've been doing web development stuff professionally for more than 10 years now. 
-                    I mainly specialize on web application development using Javascript (jQuery, Node.js, etc...), 
-                    PHP (Laravel, Codeigniter, etc...), HTML 5 and other cool open web technologies.	
+                    Both photography and web development are an integral part of who I am. Both are an ongoing passion of mine 
+                    and each complements one another. One enables me to express how I see the world around me in a more organic 
+                    and abstract way, while the other helps me express my creativity and love of building through technology. 	
                 </p> 
                 <p>   
-                    📷 I'm also an amature photographer. I mainly take images as a hobby. You can check out 
-                    links to my work here. Or you can follow me on Instagram. 
+                    While pursuing these passions I discovered minimalism. It has helped me gain clarity in the world around me 
+                    and in turn, brought a sense of happiness and contentment back to my life. Everything in my life now either 
+                    brings me joy and love or has a meaningful purpose. Living by these values has truly opened up possibilities 
+                    for me to grow as a person. This is an ongoing process I'm taking with my life and I'm constantly learning.
+                </p>
+                <p>				
+                    Through my photography and web development with the help of the values I gained from minimalism, I hope to 
+                    help people discover the beauty in the ordinary and mundane things we find in our everyday lives and hopefully 
+                    add value and a meaningful impact in their lives whether it be a client of mine or an ordinary person who 
+                    happens to see my work.
                 </p>  
-                <p>  
-                    I'm a big Pixar fan and hmmm... what else.. Oh yeah, I like eating french fries. French fries 
-                    are awesome. 
-    			</p>
     		</section>
     		<section id="raffy-page-projects" class="raffy-page-sections">
                 <div class="raffy-text  text-center"><h1>Tools I use for web development.</h1></div>      

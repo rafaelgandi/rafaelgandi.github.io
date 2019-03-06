@@ -14,7 +14,7 @@ define((require) => {
         _componentHtmlObj = {},
         funcKey = '%FUNC%',
         objKey = '%OBJ%';    
-    // Babel cant support extending es6 native class syntax that why we are 
+    // Babel cant support extending es6 native class syntax thats why we are 
     // using es5 style class syntax here because this class is meant to be
     // extended.
     // See: https://github.com/babel/babel/issues/4269 
@@ -262,7 +262,7 @@ define((require) => {
             _context = _context || document.getElementsByTagName('body')[0];
             return _context.querySelectorAll(`[data-component-type="${ this.moduleId }"]`);
         }
-        createComponent(_componentClass, _containerElementTag = null) {
+        createComponent(_componentClass, _containerElementTag) {
             let _doCreation = () => {
                 let $containerElement = null;
                 this.iterateComponentTag(($tag) => {
@@ -270,11 +270,7 @@ define((require) => {
                         markUp = '';                       
                     $containerElement = document.createElement(_containerElementTag);             
                     if (typeof comp.render !== 'undefined') {  // Check if render() function is available                     
-                        try {
-                            markUp = comp.render($containerElement, true);
-                        } catch (err) {
-                            markUp = comp.render(null, true);
-                        }           
+                        markUp = comp.render($containerElement, true);       
                     }                      
                     $containerElement.innerHTML = markUp;
                     $containerElement.setAttribute('data-component-type', $tag.getAttribute('type'));
@@ -288,16 +284,10 @@ define((require) => {
                     if (typeof comp.onAfterInitialRender !== 'undefined') {
                         comp.onAfterInitialRender($containerElement);                        
                     } 
-                    if (typeof comp.onAfterRender !== 'undefined') { // DEPRECATED, use onAfterInitialRender() instead
-                        comp.onAfterRender($containerElement);                
-                    } 
-                    if ($containerElement) {
-                        $containerElement.cm = comp;
-                        //$containerElement.cm = () => console.dir(comp);
-                        // See: https://stackoverflow.com/questions/1988514/javascript-css-how-to-add-and-remove-multiple-css-classes-to-an-element                        
-                        if (comp.getProps('classNames')) {
-                            comp.$element.classList.add(...comp.getProps('classNames').trim().split(/\s+/));
-                        }                    
+                    $containerElement.cm = comp;
+                    // See: https://stackoverflow.com/questions/1988514/javascript-css-how-to-add-and-remove-multiple-css-classes-to-an-element                        
+                    if (comp.getProps('classNames')) {
+                        comp.$element.classList.add(...comp.getProps('classNames').trim().split(/\s+/));
                     }
                     if (typeof comp.events !== 'undefined') {
                         comp.events();
