@@ -27,6 +27,11 @@ define((require) => {
             </ul>
             <div class="clr"></div>`;
         }
+        propTypes() {
+            return {
+                items: 'array'
+            };
+        }
         onAfterInitialRender() {    
             this.$element.classList.add('raffy-list-wrapper');
             ImageLoadingComponent.renderAllComponents(this.$element);

@@ -84,7 +84,7 @@
                 </li>
             `).join("")}                    
             </ul>
-            <div class="clr"></div>`}onAfterInitialRender(){this.$element.classList.add("raffy-list-wrapper");ImageLoadingComponent.renderAllComponents(this.$element)}}return cm.createComponent(ListComponent,"div")});;;define("raffy/ImageLoadingComponent",require=>{"use strict";const{cm,componentHtml,$,ixr,helpers}=require("ComponentModule/cm")(require("module").id);cm.componentStyle(componentHtml`
+            <div class="clr"></div>`}propTypes(){return{items:"array"}}onAfterInitialRender(){this.$element.classList.add("raffy-list-wrapper");ImageLoadingComponent.renderAllComponents(this.$element)}}return cm.createComponent(ListComponent,"div")});;;define("raffy/ImageLoadingComponent",require=>{"use strict";const{cm,componentHtml,$,ixr,helpers}=require("ComponentModule/cm")(require("module").id);cm.componentStyle(componentHtml`
         <style>
             .@ixr(img) {
                 transition: opacity 1s ease-in-out;
