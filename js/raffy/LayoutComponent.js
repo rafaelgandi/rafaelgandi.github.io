@@ -105,33 +105,34 @@ define((require) => {
         } 
         _setInitialPage() {
             if (typeOf(this.currentUri) === 'string') {
-                if (this.currentUri.indexOf(this.context.constants.projects) !== -1) {
-                    simpleRouter.navigate(this.context.constants.projects); 
+                if (this.currentUri.indexOf(this.context.constants.routes.projects) !== -1) {
+                    simpleRouter.navigate(this.context.constants.routes.projects); 
                     return;
                 }
-                else if (this.currentUri.indexOf(this.context.constants.contact) !== -1) {
-                    simpleRouter.navigate(this.context.constants.contact); 
+                else if (this.currentUri.indexOf(this.context.constants.routes.contact) !== -1) {
+                    simpleRouter.navigate(this.context.constants.routes.contact); 
                     return;
                 }
-                else if (this.currentUri.indexOf(this.context.constants.blog) !== -1) {
+                else if (this.currentUri.indexOf(this.context.constants.routes.blog) !== -1) {
                     window.top.location.href = this.context.constants.uri.medium;
                     return;
                 }
-                else if (this.currentUri.indexOf(this.context.constants.photography) !== -1) {
+                else if (this.currentUri.indexOf(this.context.constants.routes.photography) !== -1) {
                     window.top.location.href = this.context.constants.uri.googlePhotosPage;
                     return;
                 }
                 else {
-                    simpleRouter.navigate(this.context.constants.home); 
+                    simpleRouter.navigate(this.context.constants.routes.home); 
+                    return;
                 }
-            }
+            }        
             simpleRouter.navigate(window.location.pathname); 
         }
         events() {
             simpleRouter
-            .route(this.context.constants.home, (_data) => this.setState('uriIdChange', 'raffy-page-home'))
-            .route(this.context.constants.projects, (_data) => this.setState('uriIdChange', 'raffy-page-projects'))
-            .route(this.context.constants.contact, (_data) => this.setState('uriIdChange', 'raffy-page-contact'));
+            .route(this.context.constants.routes.home, (_data) => this.setState('uriIdChange', 'raffy-page-home'))
+            .route(this.context.constants.routes.projects, (_data) => this.setState('uriIdChange', 'raffy-page-projects'))
+            .route(this.context.constants.routes.contact, (_data) => this.setState('uriIdChange', 'raffy-page-contact'));
             this._setInitialPage();
             helpers.on(document.getElementById('raffy-main-navigation'), 'click', 'a[rel]', function (e) {
                 e.preventDefault();
