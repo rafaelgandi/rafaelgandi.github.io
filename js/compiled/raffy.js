@@ -48,13 +48,18 @@
     			<div>
     				<a href="#" id="raffy-mobile-menu-trigger">Menu</a>
     				<a href="${this.context.constants.routes.home}" id="raffy-profile-img-mobile">
-                        <img src="images/profile_me.jpg">
+                        <picture>
+                            <source type="image/webp" srcset="images/profile_me.webp">
+                            <img src="images/profile_me.jpg">
+                        </picture>
                     </a>				
     			</div>			
     		</header>
     		<header id="raffy-main-navigation">
     			<a href="${this.context.constants.routes.home}" id="raffy-profile-img" title="@rafaelgandi">
-                    <img src="images/profile_me.jpg" alt="rafael gadionco">
+                    <picture>
+                        <img src="images/profile_me.jpg" alt="rafael gadionco">
+                    </picture>
                 </a>
     			<nav>
     				<ul>
