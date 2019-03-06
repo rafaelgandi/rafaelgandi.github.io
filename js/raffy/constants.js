@@ -12,6 +12,13 @@ define(() => {
             github: 'https://github.com/rafaelgandi',
             myGithubPageUri: 'http://rafaelgandi.github.com',
             googlePhotosPage: 'https://www.instagram.com/rafaelgandi/'
+        },
+        routes: {
+            home: '/',
+            blog: '/blog',
+            photography: '/photography',
+            projects: '/projects',
+            contact: '/contact'
         }
     };
 });

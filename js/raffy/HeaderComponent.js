@@ -11,22 +11,22 @@ define((require) => {
             <header id="raffy-main-navigation-mobile">
     			<div>
     				<a href="#" id="raffy-mobile-menu-trigger">Menu</a>
-    				<a href="/" id="raffy-profile-img-mobile">
+    				<a href="${ this.context.constants.home }" id="raffy-profile-img-mobile">
                         <img src="images/profile_me.jpg">
                     </a>				
     			</div>			
     		</header>
     		<header id="raffy-main-navigation">
-    			<a href="/" id="raffy-profile-img" title="@rafaelgandi">
+    			<a href="${ this.context.constants.home }" id="raffy-profile-img" title="@rafaelgandi">
                     <img src="images/profile_me.jpg" alt="rafael gadionco">
                 </a>
     			<nav>
     				<ul>
-    					<li><a href="/" rel="/" data-page-container-id="raffy-page-home">Me</a></li>
+    					<li><a href="${ this.context.constants.home }" rel="${ this.context.constants.home }" data-page-container-id="raffy-page-home">Me</a></li>
     					<li><a href="${ this.context.constants.uri.medium }" target="_top">Blog</a></li>
     					<li><a href="${ this.context.constants.uri.googlePhotosPage }" target="_blank">Photography</a></li>
-    					<li><a href="/projects" rel="/projects" data-page-container-id="raffy-page-projects">Web Developer Projects</a></li>
-    					<li><a href="/contact" rel="/contact" data-page-container-id="raffy-page-contact">Contact</a></li>
+    					<li><a href="${ this.context.constants.projects }" rel="${ this.context.constants.projects }" data-page-container-id="raffy-page-projects">Web Developer Projects</a></li>
+    					<li><a href="${ this.context.constants.contact }" rel="${ this.context.constants.contact }" data-page-container-id="raffy-page-contact">Contact</a></li>
     				</ul>
     				<div class="clr"></div>
     			</nav>

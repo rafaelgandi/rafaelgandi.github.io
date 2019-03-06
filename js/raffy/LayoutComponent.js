@@ -105,30 +105,33 @@ define((require) => {
         } 
         _setInitialPage() {
             if (typeOf(this.currentUri) === 'string') {
-                if (this.currentUri.indexOf('/projects') !== -1) {
-                    simpleRouter.navigate('/projects'); 
+                if (this.currentUri.indexOf(this.context.constants.projects) !== -1) {
+                    simpleRouter.navigate(this.context.constants.projects); 
                     return;
                 }
-                else if (this.currentUri.indexOf('/contact') !== -1) {
-                    simpleRouter.navigate('/contact'); 
+                else if (this.currentUri.indexOf(this.context.constants.contact) !== -1) {
+                    simpleRouter.navigate(this.context.constants.contact); 
                     return;
                 }
-                else if (this.currentUri.indexOf('/blog') !== -1) {
+                else if (this.currentUri.indexOf(this.context.constants.blog) !== -1) {
                     window.top.location.href = this.context.constants.uri.medium;
                     return;
                 }
-                else if (this.currentUri.indexOf('/photography') !== -1) {
+                else if (this.currentUri.indexOf(this.context.constants.photography) !== -1) {
                     window.top.location.href = this.context.constants.uri.googlePhotosPage;
                     return;
+                }
+                else {
+                    simpleRouter.navigate(this.context.constants.home); 
                 }
             }
             simpleRouter.navigate(window.location.pathname); 
         }
         events() {
             simpleRouter
-            .route('/', (_data) => this.setState('uriIdChange', 'raffy-page-home'))
-            .route('/projects', (_data) => this.setState('uriIdChange', 'raffy-page-projects'))
-            .route('/contact', (_data) => this.setState('uriIdChange', 'raffy-page-contact'));
+            .route(this.context.constants.home, (_data) => this.setState('uriIdChange', 'raffy-page-home'))
+            .route(this.context.constants.projects, (_data) => this.setState('uriIdChange', 'raffy-page-projects'))
+            .route(this.context.constants.contact, (_data) => this.setState('uriIdChange', 'raffy-page-contact'));
             this._setInitialPage();
             helpers.on(document.getElementById('raffy-main-navigation'), 'click', 'a[rel]', function (e) {
                 e.preventDefault();
