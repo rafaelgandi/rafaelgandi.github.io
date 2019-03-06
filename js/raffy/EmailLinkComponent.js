@@ -9,7 +9,7 @@ define((require) => {
         render() {  
             return this.decodeEmail();
         }
-        onAfterRender() {
+        onAfterInitialRender() {
             this.$element.id = 'raffy-email-container';
         }
         decodeEmail() {
