@@ -285,10 +285,7 @@ define((require) => {
                         comp.onAfterInitialRender($containerElement);                        
                     } 
                     $containerElement.cm = comp;
-                    // See: https://stackoverflow.com/questions/1988514/javascript-css-how-to-add-and-remove-multiple-css-classes-to-an-element                        
-                    
-                    console.log(comp.getProps('classNames'), this.moduleId)
-                    
+                    // See: https://stackoverflow.com/questions/1988514/javascript-css-how-to-add-and-remove-multiple-css-classes-to-an-element                                        
                     if (comp.getProps('classNames')) {
                         comp.$element.classList.add(...comp.getProps('classNames').trim().split(/\s+/));
                     }
