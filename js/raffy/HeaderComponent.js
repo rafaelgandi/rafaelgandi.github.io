@@ -41,6 +41,7 @@ define((require) => {
         } 
         onAfterInitialRender() {    
             this.$mainNavigationHeader = this.$element.querySelector('#raffy-main-navigation');
+            this.$body = document.getElementsByTagName('body')[0];
         }   
         clearActiveLink() {
             this.$mainNavigationHeader.querySelectorAll('a[rel]').forEach(($a) => {
@@ -59,10 +60,12 @@ define((require) => {
             .on(this.$element, 'click', '#raffy-mobile-menu-trigger', (e) => {
                 e.preventDefault();
                 this.$mainNavigationHeader.classList.toggle('raff-show-mobile-nav');
+                this.$body.classList.toggle('raff-stop-body-scroll');
                 return false;
             })
             .on(this.$element, 'click', '#raffy-main-navigation a[rel]', (e) => {
                 this.$mainNavigationHeader.classList.remove('raff-show-mobile-nav');
+                this.$body.classList.remove('raff-stop-body-scroll');
             });
         }
     }      

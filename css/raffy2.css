@@ -36,6 +36,16 @@ a:hover {
 a:link { 
 	-webkit-tap-highlight-color: #366376; 
 }
+.raff-stop-body-scroll {
+	/* See: https://stackoverflow.com/a/27263789 */
+	position: fixed;
+}
+.raffy-show-page {
+	display: block !important;
+}
+.raffy-opacity-1 {
+	opacity: 1 !important;
+}
 #raffy-wrapper {
 	margin-top: 50px;
 	padding: 20px;
@@ -93,12 +103,6 @@ a:link {
 #raffy-main-navigation li a:hover,
 #raffy-main-navigation li a.raffy-active-page-link {
 	color: #366376 !important;
-}
-.raffy-show-page {
-	display: block !important;
-}
-.raffy-opacity-1 {
-	opacity: 1 !important;
 }
 section.raffy-page-sections {
 	font-size: 1.3em;
