@@ -29,9 +29,9 @@ define((require) => {
     				Hi, my name's Rafael Gandionco and I'm a minimalist, photographer and web developer from the Philippines.
                 </p>
                 <p>    
-                    Both photography and web development are an integral part of who I am. Both are an ongoing passion of mine 
-                    and each complements one another. One enables me to express how I see the world around me in a more organic 
-                    and abstract way, while the other helps me express my creativity and love of building through technology. 	
+                    Both photography and web development are an ongoing passion of mine and are an integral part og who I am. 
+                    Each complements one another. One enables me to express how I see the world around me in a more organic and 
+                    abstract way, while the other helps me express my creativity and love of building through technology. 	
                 </p> 
                 <p>   
                     While pursuing these passions I discovered minimalism. It has helped me gain clarity in the world around me 

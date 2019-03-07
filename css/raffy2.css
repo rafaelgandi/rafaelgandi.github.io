@@ -66,8 +66,10 @@ a:link {
 }
 #raffy-profile-img img {
 	position: absolute;
-	top: -33px;
-    left: -64px;
+	top: -16px;
+    left: -16px;
+    width: 150px;
+    height: 150px;
 }
 #raffy-main-navigation nav {
 	float: right;

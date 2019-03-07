@@ -5,9 +5,9 @@
     				Hi, my name's Rafael Gandionco and I'm a minimalist, photographer and web developer from the Philippines.
                 </p>
                 <p>    
-                    Both photography and web development are an integral part of who I am. Both are an ongoing passion of mine 
-                    and each complements one another. One enables me to express how I see the world around me in a more organic 
-                    and abstract way, while the other helps me express my creativity and love of building through technology. 	
+                    Both photography and web development are an ongoing passion of mine and are an integral part og who I am. 
+                    Each complements one another. One enables me to express how I see the world around me in a more organic and 
+                    abstract way, while the other helps me express my creativity and love of building through technology. 	
                 </p> 
                 <p>   
                     While pursuing these passions I discovered minimalism. It has helped me gain clarity in the world around me 
@@ -49,8 +49,8 @@
     				<a href="#" id="raffy-mobile-menu-trigger">Menu</a>
     				<a href="${this.context.constants.routes.home}" id="raffy-profile-img-mobile">
                         <picture>
-                            <source type="image/webp" srcset="images/profile_me.webp">
-                            <img src="images/profile_me.jpg">
+                            <source type="image/webp" srcset="images/profile2_comp.webp">
+                            <img src="images/profile2_comp.jpg" alt="rafael gadionco">
                         </picture>
                     </a>				
     			</div>			
@@ -58,7 +58,8 @@
     		<header id="raffy-main-navigation">
     			<a href="${this.context.constants.routes.home}" id="raffy-profile-img" title="@rafaelgandi">
                     <picture>
-                        <img src="images/profile_me.jpg" alt="rafael gadionco">
+                        <source type="image/webp" srcset="images/profile2_comp.webp">
+                        <img src="images/profile2_comp.jpg" alt="rafael gadionco">
                     </picture>
                 </a>
     			<nav>

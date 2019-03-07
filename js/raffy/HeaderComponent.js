@@ -13,8 +13,8 @@ define((require) => {
     				<a href="#" id="raffy-mobile-menu-trigger">Menu</a>
     				<a href="${ this.context.constants.routes.home }" id="raffy-profile-img-mobile">
                         <picture>
-                            <source type="image/webp" srcset="images/profile_me.webp">
-                            <img src="images/profile_me.jpg">
+                            <source type="image/webp" srcset="images/profile2_comp.webp">
+                            <img src="images/profile2_comp.jpg" alt="rafael gadionco">
                         </picture>
                     </a>				
     			</div>			
@@ -22,7 +22,8 @@ define((require) => {
     		<header id="raffy-main-navigation">
     			<a href="${ this.context.constants.routes.home }" id="raffy-profile-img" title="@rafaelgandi">
                     <picture>
-                        <img src="images/profile_me.jpg" alt="rafael gadionco">
+                        <source type="image/webp" srcset="images/profile2_comp.webp">
+                        <img src="images/profile2_comp.jpg" alt="rafael gadionco">
                     </picture>
                 </a>
     			<nav>
