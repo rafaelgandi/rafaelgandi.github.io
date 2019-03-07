@@ -40,6 +40,9 @@ a:link {
 	/* See: https://stackoverflow.com/a/27263789 */
 	position: fixed;
 }
+.raff-stop-body-scroll .raffy-page-sections {
+	filter: blur(0.3em);
+}
 .raffy-show-page {
 	display: block !important;
 }
