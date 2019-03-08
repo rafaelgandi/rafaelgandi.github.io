@@ -29,21 +29,18 @@ define((require) => {
     				Hi, my name's Rafael Gandionco and I'm a minimalist, photographer and web developer from the Philippines.
                 </p>
                 <p>    
-                    Both photography and web development are an ongoing passion of mine and are an integral part og who I am. 
+                    Both photography and web development are an ongoing passion of mine and are an integral part of who I am. 
                     Each complements one another. One enables me to express how I see the world around me in a more organic and 
-                    abstract way, while the other helps me express my creativity and love of building through technology. 	
+                    abstract way, while the other helps me express my love of building software.  	
                 </p> 
                 <p>   
-                    While pursuing these passions I discovered minimalism. It has helped me gain clarity in the world around me 
-                    and in turn, brought a sense of happiness and contentment back to my life. Everything in my life now either 
-                    brings me joy and love or has a meaningful purpose. Living by these values has truly opened up possibilities 
-                    for me to grow as a person. This is an ongoing process I'm taking with my life and I'm constantly learning.
+                    While pursuing these passions I discovered minimalism. Minimalism has brought back clarity in my life. 
+                    It has redefined what success means to me. I'm currently in the process of applying it on every facet of my life.
+
                 </p>
                 <p>				
                     Through my photography and web development with the help of the values I gained from minimalism, I hope to 
-                    help people discover the beauty in the ordinary and mundane things we find in our everyday lives and hopefully 
-                    add value and a meaningful impact in their lives whether it be a client of mine or an ordinary person who 
-                    happens to see my work.
+                    help people discover the beauty in the ordinary things we find in our everyday lives and hopefully have a meaningful impact.
                 </p>  
     		</section>
     		<section id="raffy-page-projects" class="raffy-page-sections">
