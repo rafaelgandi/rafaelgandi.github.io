@@ -139,7 +139,7 @@ define((require) => {
                 e.preventDefault();
                 simpleRouter.navigate(e.target.rel); 
                 return false;
-            });   
+            }); 
         }
     }      
     return cm.createComponent(LayoutComponent, 'div');

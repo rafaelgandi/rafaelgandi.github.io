@@ -37,8 +37,10 @@ a:link {
 	-webkit-tap-highlight-color: #366376; 
 }
 .raff-stop-body-scroll {
-	/* See: https://stackoverflow.com/a/27263789 */
-	position: fixed;
+	/* See: https://benfrain.com/preventing-body-scroll-for-modals-in-ios/ */
+	/* See: https://css-tricks.com/almanac/properties/t/touch-action/ */
+	overflow: hidden !important; 
+	touch-action: none;
 }
 .raff-stop-body-scroll .raffy-page-sections {
 	filter: blur(0.3em);
