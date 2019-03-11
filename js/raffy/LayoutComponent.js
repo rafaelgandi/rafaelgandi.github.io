@@ -29,18 +29,20 @@ define((require) => {
     				Hi, my name's Rafael Gandionco and I'm a minimalist, photographer and web developer from the Philippines.
                 </p>
                 <p>    
-                    Both photography and web development are an ongoing passion of mine and are an integral part of who I am. 
-                    Each complements one another. One enables me to express how I see the world around me in a more organic and 
-                    abstract way, while the other helps me express my love of building software.  	
+                    Both photography and web development are an ongoing passion of mine. Each complements one another. One enables 
+                    me to express how I see the world around me in a more organic and abstract way, while the other helps me express 
+                    my creativity in building software.   	
                 </p> 
                 <p>   
-                    While pursuing these passions I discovered minimalism. Minimalism has brought back clarity in my life. 
-                    It has redefined what success means to me. I'm currently in the process of applying it on every facet of my life.
+                    While pursuing these passions I discovered minimalism. Minimalism has brought back clarity in my life. It has 
+                    redefined what success means to me. I'm currently in the process of applying it on every facet of my life.
+
 
                 </p>
                 <p>				
-                    Through my photography and web development with the help of the values I gained from minimalism, I hope to 
-                    help people discover the beauty in the ordinary things we find in our everyday lives and hopefully have a meaningful impact.
+                    Through my photography and web development with the help of the values I learned from minimalism, I hope to help 
+                    people discover the beauty in the ordinary things and situations we find in our everyday lives and hopefully have 
+                    a meaningful impact.
                 </p>  
     		</section>
     		<section id="raffy-page-projects" class="raffy-page-sections">

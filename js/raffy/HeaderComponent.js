@@ -1,7 +1,7 @@
 define((require) => {    
     "use strict";
     const { cm, componentHtml, $, ixr, helpers } = (require('ComponentModule/cm'))(require('module').id); 
-    class HeaderComponent extends cm.ComponentElement { 
+    class HeaderComponent extends cm.ComponentElement {  
         constructor(c) { 
             super(c);       
             this.state = {};
@@ -12,9 +12,11 @@ define((require) => {
     			<div>
     				<a href="#" id="raffy-mobile-menu-trigger">Menu</a>
     				<a href="${ this.context.constants.routes.home }" id="raffy-profile-img-mobile">
+                        <!-- See: https://www.html5rocks.com/en/tutorials/responsive/picture-element/ -->
                         <picture>
-                            <source type="image/webp" srcset="images/profile2_comp.webp">
-                            <img src="images/profile2_comp.jpg" alt="rafael gadionco">
+                            <source type="image/webp" srcset="images/profile3_comp.webp">
+                            <source type="image/jpeg" srcset="images/profile3_comp_moz.jpg">
+                            <img src="images/profile3_comp.jpg" alt="rafael gadionco">
                         </picture>
                     </a>				
     			</div>			
@@ -22,8 +24,9 @@ define((require) => {
     		<header id="raffy-main-navigation">
     			<a href="${ this.context.constants.routes.home }" id="raffy-profile-img" title="@rafaelgandi">
                     <picture>
-                        <source type="image/webp" srcset="images/profile2_comp.webp">
-                        <img src="images/profile2_comp.jpg" alt="rafael gadionco">
+                        <source type="image/webp" srcset="images/profile3_comp.webp">
+                        <source type="image/jpeg" srcset="images/profile3_comp_moz.jpg">
+                        <img src="images/profile3_comp.jpg" alt="rafael gadionco">
                     </picture>
                 </a>
     			<nav>
@@ -31,7 +34,7 @@ define((require) => {
     					<li><a href="${ this.context.constants.routes.home }" rel="${ this.context.constants.routes.home }" data-page-container-id="raffy-page-home">Me</a></li>
     					<li><a href="${ this.context.constants.uri.medium }" target="_top">Blog</a></li>
     					<li><a href="${ this.context.constants.uri.googlePhotosPage }" target="_top">Photography</a></li>
-    					<li><a href="${ this.context.constants.routes.projects }" rel="${ this.context.constants.routes.projects }" data-page-container-id="raffy-page-projects">Web Developer Projects</a></li>
+    					<li><a href="${ this.context.constants.routes.projects }" rel="${ this.context.constants.routes.projects }" data-page-container-id="raffy-page-projects">Web Development</a></li>
     					<li><a href="${ this.context.constants.routes.contact }" rel="${ this.context.constants.routes.contact }" data-page-container-id="raffy-page-contact">Contact</a></li>
     				</ul>
     				<div class="clr"></div>

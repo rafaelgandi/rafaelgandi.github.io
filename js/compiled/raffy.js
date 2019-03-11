@@ -5,18 +5,20 @@
     				Hi, my name's Rafael Gandionco and I'm a minimalist, photographer and web developer from the Philippines.
                 </p>
                 <p>    
-                    Both photography and web development are an ongoing passion of mine and are an integral part of who I am. 
-                    Each complements one another. One enables me to express how I see the world around me in a more organic and 
-                    abstract way, while the other helps me express my love of building software.  	
+                    Both photography and web development are an ongoing passion of mine. Each complements one another. One enables 
+                    me to express how I see the world around me in a more organic and abstract way, while the other helps me express 
+                    my creativity in building software.   	
                 </p> 
                 <p>   
-                    While pursuing these passions I discovered minimalism. Minimalism has brought back clarity in my life. 
-                    It has redefined what success means to me. I'm currently in the process of applying it on every facet of my life.
+                    While pursuing these passions I discovered minimalism. Minimalism has brought back clarity in my life. It has 
+                    redefined what success means to me. I'm currently in the process of applying it on every facet of my life.
+
 
                 </p>
                 <p>				
-                    Through my photography and web development with the help of the values I gained from minimalism, I hope to 
-                    help people discover the beauty in the ordinary things we find in our everyday lives and hopefully have a meaningful impact.
+                    Through my photography and web development with the help of the values I learned from minimalism, I hope to help 
+                    people discover the beauty in the ordinary things and situations we find in our everyday lives and hopefully have 
+                    a meaningful impact.
                 </p>  
     		</section>
     		<section id="raffy-page-projects" class="raffy-page-sections">
@@ -45,9 +47,11 @@
     			<div>
     				<a href="#" id="raffy-mobile-menu-trigger">Menu</a>
     				<a href="${this.context.constants.routes.home}" id="raffy-profile-img-mobile">
+                        <!-- See: https://www.html5rocks.com/en/tutorials/responsive/picture-element/ -->
                         <picture>
-                            <source type="image/webp" srcset="images/profile2_comp.webp">
-                            <img src="images/profile2_comp.jpg" alt="rafael gadionco">
+                            <source type="image/webp" srcset="images/profile3_comp.webp">
+                            <source type="image/jpeg" srcset="images/profile3_comp_moz.jpg">
+                            <img src="images/profile3_comp.jpg" alt="rafael gadionco">
                         </picture>
                     </a>				
     			</div>			
@@ -55,8 +59,9 @@
     		<header id="raffy-main-navigation">
     			<a href="${this.context.constants.routes.home}" id="raffy-profile-img" title="@rafaelgandi">
                     <picture>
-                        <source type="image/webp" srcset="images/profile2_comp.webp">
-                        <img src="images/profile2_comp.jpg" alt="rafael gadionco">
+                        <source type="image/webp" srcset="images/profile3_comp.webp">
+                        <source type="image/jpeg" srcset="images/profile3_comp_moz.jpg">
+                        <img src="images/profile3_comp.jpg" alt="rafael gadionco">
                     </picture>
                 </a>
     			<nav>
@@ -64,7 +69,7 @@
     					<li><a href="${this.context.constants.routes.home}" rel="${this.context.constants.routes.home}" data-page-container-id="raffy-page-home">Me</a></li>
     					<li><a href="${this.context.constants.uri.medium}" target="_top">Blog</a></li>
     					<li><a href="${this.context.constants.uri.googlePhotosPage}" target="_top">Photography</a></li>
-    					<li><a href="${this.context.constants.routes.projects}" rel="${this.context.constants.routes.projects}" data-page-container-id="raffy-page-projects">Web Developer Projects</a></li>
+    					<li><a href="${this.context.constants.routes.projects}" rel="${this.context.constants.routes.projects}" data-page-container-id="raffy-page-projects">Web Development</a></li>
     					<li><a href="${this.context.constants.routes.contact}" rel="${this.context.constants.routes.contact}" data-page-container-id="raffy-page-contact">Contact</a></li>
     				</ul>
     				<div class="clr"></div>
