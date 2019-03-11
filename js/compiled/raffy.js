@@ -12,8 +12,6 @@
                 <p>   
                     While pursuing these passions I discovered minimalism. Minimalism has brought back clarity in my life. It has 
                     redefined what success means to me. I'm currently in the process of applying it on every facet of my life.
-
-
                 </p>
                 <p>				
                     Through my photography and web development with the help of the values I learned from minimalism, I hope to help 
