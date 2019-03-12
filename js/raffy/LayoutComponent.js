@@ -54,15 +54,15 @@ define((require) => {
     		<section id="raffy-page-contact" class="raffy-page-sections">
     			<Component-x type="raffy/EmailLinkComponent"></Component-x>
     			<div id="raffy-contact-links">
-    				<a href="${ this.context.constants.uri.instagram }" target="_blank">Instagram</a>
-    				<a href="${ this.context.constants.uri.facebook }" target="_blank">Facebook</a>
-    				<a href="${ this.context.constants.uri.linkedin }" target="_blank">LinkedIn</a>
-    				<a href="${ this.context.constants.uri.zerothreetwo }" target="_blank">032</a>
-    				<a href="${ this.context.constants.uri.medium }" target="_blank">Medium</a>
-    				<a href="${ this.context.constants.uri.flickr }" target="_blank">Flickr</a>
-    				<a href="${ this.context.constants.uri.fiveHundredPx }" target="_blank">500px</a>
-    				<a href="${ this.context.constants.uri.eyeem }" target="_blank">EyeEm</a>
-    				<a href="${ this.context.constants.uri.github }" target="_blank">Github</a>
+    				<a href="${ this.context.constants.uri.instagram }" target="_blank" rel="noopener">Instagram</a>
+    				<a href="${ this.context.constants.uri.facebook }" target="_blank" rel="noopener">Facebook</a>
+    				<a href="${ this.context.constants.uri.linkedin }" target="_blank" rel="noopener">LinkedIn</a>
+    				<a href="${ this.context.constants.uri.zerothreetwo }" target="_blank" rel="noopener">032</a>
+    				<a href="${ this.context.constants.uri.medium }" target="_blank" rel="noopener">Medium</a>
+    				<a href="${ this.context.constants.uri.flickr }" target="_blank" rel="noopener">Flickr</a>
+    				<a href="${ this.context.constants.uri.fiveHundredPx }" target="_blank" rel="noopener">500px</a>
+    				<a href="${ this.context.constants.uri.eyeem }" target="_blank" rel="noopener">EyeEm</a>
+    				<a href="${ this.context.constants.uri.github }" target="_blank" rel="noopener">Github</a>
     			</div>
     		</section>`;
         } 
