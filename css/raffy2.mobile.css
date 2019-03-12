@@ -23,7 +23,31 @@
 	left: 10px;
     font-size: 1.8em;
     top: 21px;
+	display: inline-block;
+	transition: transform 0.5s ease-out;
 }
+/* See: https://www.w3schools.com/howto/tryit.asp?filename=tryhow_css_menu_icon_js */
+#raffy-mobile-menu-trigger .burger-menu-bars {
+	width: 35px;
+	height: 5px;
+	background-color: #366376;
+	margin: 6px 0;
+	transition: 0.4s;
+	pointer-events: none;
+}
+#raffy-mobile-menu-trigger.burger-menu-bars-close {
+	transform: rotate(360deg);
+}
+.burger-menu-bars-close .bar1 {
+	transform: rotate(-45deg) translate(-9px, 6px);
+}
+.burger-menu-bars-close .bar2 {
+	opacity: 0;
+}
+.burger-menu-bars-close .bar3 {
+	transform: rotate(45deg) translate(-8px, -8px);
+}
+
 #raffy-profile-img-mobile {
 	right: 10px;
     width: 70px;

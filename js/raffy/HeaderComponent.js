@@ -10,7 +10,11 @@ define((require) => {
             return componentHtml`
             <header id="raffy-main-navigation-mobile">
     			<div>
-    				<a href="#" id="raffy-mobile-menu-trigger">Menu</a>
+    				<a href="#" id="raffy-mobile-menu-trigger">
+                        <div class="burger-menu-bars bar1" style="margin-top:0;"></div>
+                        <div class="burger-menu-bars bar2"></div>
+                        <div class="burger-menu-bars bar3"></div>
+                    </a>
     				<a href="${ this.context.constants.routes.home }" id="raffy-profile-img-mobile">
                         <!-- See: https://www.html5rocks.com/en/tutorials/responsive/picture-element/ -->
                         <picture>
@@ -58,17 +62,29 @@ define((require) => {
             .classList
             .add('raffy-active-page-link');
         }
+        _updateBurgerMenu() {
+            let $trigger = document.getElementById('raffy-mobile-menu-trigger'),
+                closeClass = 'burger-menu-bars-close';
+            if (this.$mainNavigationHeader.classList.contains('raff-show-mobile-nav')) {
+                $trigger.classList.add(closeClass);
+            }   
+            else {
+                $trigger.classList.remove(closeClass);
+            } 
+        }
         events() {
             helpers
             .on(this.$element, 'click', '#raffy-mobile-menu-trigger', (e) => {
-                e.preventDefault();
+                e.preventDefault();                
                 this.$mainNavigationHeader.classList.toggle('raff-show-mobile-nav');
                 this.$body.classList.toggle('raff-stop-body-scroll');
+                this._updateBurgerMenu();
                 return false;
             })
             .on(this.$element, 'click', '#raffy-main-navigation a[rel]', (e) => {
                 this.$mainNavigationHeader.classList.remove('raff-show-mobile-nav');
                 this.$body.classList.remove('raff-stop-body-scroll');
+                this._updateBurgerMenu();
             });
         }
     }      
