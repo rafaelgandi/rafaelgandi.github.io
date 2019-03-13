@@ -4,7 +4,6 @@ requirejs.config({
 	// See: http://stackoverflow.com/questions/14279962/require-js-error-load-timeout-for-modules-backbone-jquerymobile
 	waitSeconds: 200
 });
-
 define((require) => {
 	"use strict";
 	const LayoutComponent = require('raffy/LayoutComponent');
