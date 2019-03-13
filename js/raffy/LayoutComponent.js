@@ -26,21 +26,21 @@ define((require) => {
     		<Component-x type="raffy/HeaderComponent"></Component-x>            
             <section id="raffy-page-home" class="raffy-page-sections">
     			<p style="margin-top: 2.6em;">
-    				Hi, my name's Rafael Gandionco and I'm a minimalist, photographer and web developer from the Philippines.
+    				Hi, my name's Rafael Gandionco and I'm a minimalist, photographer, and web developer from the Philippines.
                 </p>
                 <p>    
-                    Both photography and web development are an ongoing passion of mine. Each complements one another. One enables 
-                    me to express how I see the world around me in a more organic and abstract way, while the other helps me express 
-                    my creativity in building software.   	
+                    Both photography and web development are an ongoing passion of mine. For me, one complements the other. One 
+                    enables me to express how I see the world around me in a more organic and abstract way, while the other helps 
+                    me express my creativity in building software.   	
                 </p> 
                 <p>   
-                    While pursuing these passions I discovered minimalism. Minimalism has brought back clarity in my life. It has 
-                    redefined what success means to me. I'm currently in the process of applying it on every facet of my life.
+                    While pursuing these passions I discovered minimalism. Minimalism has brought back clarity in my life. It taught 
+                    me the value of having more with less. It has redefined what success means to me. I'm currently in the process of 
+                    applying it on every facet of my life.
                 </p>
                 <p>				
                     Through my photography and web development with the help of the values I learned from minimalism, I hope to help 
-                    people discover the beauty in the ordinary things and situations we find in our everyday lives and hopefully have 
-                    a meaningful impact.
+                    people discover the beauty in the ordinary things and situations we find in our everyday lives.
                 </p>  
     		</section>
     		<section id="raffy-page-projects" class="raffy-page-sections">
@@ -54,15 +54,15 @@ define((require) => {
     		<section id="raffy-page-contact" class="raffy-page-sections">
     			<Component-x type="raffy/EmailLinkComponent"></Component-x>
     			<div id="raffy-contact-links">
-    				<a href="${ this.context.constants.uri.instagram }" target="_blank" rel="noopener">Instagram</a>
-    				<a href="${ this.context.constants.uri.facebook }" target="_blank" rel="noopener">Facebook</a>
-    				<a href="${ this.context.constants.uri.linkedin }" target="_blank" rel="noopener">LinkedIn</a>
-    				<a href="${ this.context.constants.uri.zerothreetwo }" target="_blank" rel="noopener">032</a>
-    				<a href="${ this.context.constants.uri.medium }" target="_blank" rel="noopener">Medium</a>
-    				<a href="${ this.context.constants.uri.flickr }" target="_blank" rel="noopener">Flickr</a>
-    				<a href="${ this.context.constants.uri.fiveHundredPx }" target="_blank" rel="noopener">500px</a>
-    				<a href="${ this.context.constants.uri.eyeem }" target="_blank" rel="noopener">EyeEm</a>
-    				<a href="${ this.context.constants.uri.github }" target="_blank" rel="noopener">Github</a>
+    				<a href="${ this.context.constants.uri.instagram }" target="_blank" rel="noreferrer">Instagram</a>
+    				<a href="${ this.context.constants.uri.facebook }" target="_blank" rel="noreferrer">Facebook</a>
+    				<a href="${ this.context.constants.uri.linkedin }" target="_blank" rel="noreferrer">LinkedIn</a>
+    				<a href="${ this.context.constants.uri.zerothreetwo }" target="_blank" rel="noreferrer">032</a>
+    				<a href="${ this.context.constants.uri.medium }" target="_blank" rel="noreferrer">Medium</a>
+    				<a href="${ this.context.constants.uri.flickr }" target="_blank" rel="noreferrer">Flickr</a>
+    				<a href="${ this.context.constants.uri.fiveHundredPx }" target="_blank" rel="noreferrer">500px</a>
+    				<a href="${ this.context.constants.uri.eyeem }" target="_blank" rel="noreferrer">EyeEm</a>
+    				<a href="${ this.context.constants.uri.github }" target="_blank" rel="noreferrer">Github</a>
     			</div>
     		</section>`;
         } 

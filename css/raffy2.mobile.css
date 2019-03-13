@@ -20,16 +20,16 @@
 	top: 5px;
 }
 #raffy-mobile-menu-trigger {
-	left: 10px;
+	left: 15px;
     font-size: 1.8em;
-    top: 21px;
-	display: inline-block;
-	transition: transform 0.5s ease-out;
+    top: 25px;
+    display: inline-block;
+    transition: transform 0.5s ease-out;
 }
 /* See: https://www.w3schools.com/howto/tryit.asp?filename=tryhow_css_menu_icon_js */
 #raffy-mobile-menu-trigger .burger-menu-bars {
 	width: 35px;
-	height: 5px;
+	height: 3px;
 	background-color: #366376;
 	margin: 6px 0;
 	transition: 0.4s;
@@ -45,7 +45,7 @@
 	opacity: 0;
 }
 .burger-menu-bars-close .bar3 {
-	transform: rotate(45deg) translate(-8px, -8px);
+	transform: rotate(45deg) translate(-7px, -4px);
 }
 
 #raffy-profile-img-mobile {
