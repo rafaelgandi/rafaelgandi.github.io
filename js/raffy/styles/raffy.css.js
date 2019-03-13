@@ -12,9 +12,6 @@ define((require) => {
         .redb {border: 1px solid red !important;}
         .hide {display: none;}
         .text-center {text-align: center;}
-        Component-x {
-        	display: none;
-        }
         body {
         	margin: 0;
         	padding: 0;
