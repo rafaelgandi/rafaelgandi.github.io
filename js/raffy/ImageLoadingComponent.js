@@ -4,8 +4,7 @@
 define((require) => {    
     "use strict";
     const { cm, componentHtml, $, ixr, helpers } = (require('ComponentModule/cm'))(require('module').id); 
-    cm.componentStyle(componentHtml`
-        <style>
+    cm.componentStyle(componentHtml`<style>
             .@ixr(img) {
                 transition: opacity 1s ease-in-out;
             }
@@ -34,8 +33,7 @@ define((require) => {
                     background-position: 468px 0
                 }
             }            
-        </style>
-    `);
+    </style>`);
     class ImageLoadingComponent extends cm.ComponentElement { 
         constructor(c) { 
             super(c);

@@ -196,7 +196,8 @@ define((require) => {
             });    
             _css = _css
             .replace(/<style>/ig, '')
-            .replace(/<\/style>/ig, '');  
+            .replace(/<\/style>/ig, '')  
+            .replace(/\s+/ig, ' ');  
             if (style.styleSheet){
                 // This is required for IE8 and below.
                 style.styleSheet.cssText = _css;

@@ -19,6 +19,11 @@ define(() => {
             photography: '/photography',
             projects: '/projects',
             contact: '/contact'
+        },
+        css: {
+            fontFamily: "'Montserrat', sans-serif",
+            linkNormalColor: '#8E9A9C',
+            linkHighlightColor: '#366376',
         }
     };
 });
