@@ -2,7 +2,7 @@
 	Comms Event Bus
 	@author: Rafael Gandionco <www.rafaelgandi.tk>
 */
-define((require) => {
+define(() => {
 	"use strict"
 	require('ComponentModule/pubsub.min');
 	// Infinit loop checker //

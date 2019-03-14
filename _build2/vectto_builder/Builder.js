@@ -17,8 +17,8 @@ class Builder {
         this.entryModule = _data.entryModule;
         this.modules = [];
         this.addModules(_modules);
-        this.modules.push(this.entryModule);
         this.getModuleDependencies(this.entryFile);
+        this.modules.push(this.entryModule);        
         this.babelPresetPath = '';
         this.customTransform = (_code) => _code;    
     }
@@ -55,22 +55,14 @@ class Builder {
             content = stripComments(content);
         } catch(err) {}
         content.replace(cjsRequireRegExp, (match, dep) => {
-            dep = dep.replace('es!', '').replace('./', '');
-            if (
-                dep.indexOf('domReady') == -1 && 
-                dep.indexOf('senju') == -1 && 
-                dep.indexOf('module') == -1 && 
-                dep.indexOf('jquery') == -1
-            ) {
-                if (this.modules.indexOf(dep) == -1 && modArr.indexOf(dep) == -1) {
-                    modArr.push(dep);
-                }                
-            }            
+            if (this.modules.indexOf(dep) == -1 && modArr.indexOf(dep) == -1) {
+                modArr.push(dep);
+            }       
         });
         if (modArr.length) {
             modArr.forEach((dep) => {
-                this.modules.push(dep);
                 this.getModuleDependencies(this._makeFilename(dep));
+                this.modules.push(dep);
             });
         }
     }

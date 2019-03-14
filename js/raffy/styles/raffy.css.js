@@ -1,5 +1,5 @@
-define((require) => {
-    const { cm, componentHtml } = (require('ComponentModule/cm'))(require('module').id); 
+define(() => {
+    const { cm, componentHtml } = (require('ComponentModule/cm'))('raffy/styles/raffy.css'); 
     const constants = require('raffy/constants');
     cm.componentStyle(componentHtml`<style>        
         html.desktop, .desktop body {

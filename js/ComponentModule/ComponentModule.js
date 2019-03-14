@@ -4,7 +4,7 @@
     @version: 1.0 (vanilla js)
     LM: 2019-02-25
 */
-define((require) => {
+define(() => {
     "use strict"; 
     require('ComponentModule/Polyfills');  
     const comms = require('ComponentModule/comms');  

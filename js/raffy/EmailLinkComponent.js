@@ -1,6 +1,6 @@
-define((require) => {    
+define(() => {    
     "use strict";
-    const { cm, componentHtml, $, ixr, helpers, typeOf } = (require('ComponentModule/cm'))(require('module').id); 
+    const { cm, componentHtml, $, ixr, helpers, typeOf } = (require('ComponentModule/cm'))('raffy/EmailLinkComponent'); 
     class EmailLinkComponent extends cm.ComponentElement { 
         constructor(c) { 
             super(c);       

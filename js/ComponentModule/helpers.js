@@ -1,4 +1,4 @@
-define((require) => {
+define(() => {
 	"use strict";
 	let weakMap = new WeakMap();	
 	return {				

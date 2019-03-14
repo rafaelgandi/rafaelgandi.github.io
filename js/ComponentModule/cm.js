@@ -1,4 +1,4 @@
-define((require) => {
+define(() => {
     "use strict";
     const ComponentModule = require('ComponentModule/ComponentModule');
     return function (_modId) {

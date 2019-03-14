@@ -23,9 +23,12 @@
 		}
 	})()
 	</script>
-	<!-- http://requirejs.org/ -->
-	<script data-main="js/index" src="js/require.js?v20190305"></script>			
 	<script>
+		(function () {
+		    let modules = {};
+		    window.define = function (_moduleId, _factory) { modules[_moduleId] = _factory(_moduleId); };
+		    window.require = function (_moduleId) { return modules[_moduleId]; };
+		})();
 		try {
 			eval("var bar = (x) => x+1");
 			document.write("<script src='/js/compiled/raffy.js'>\x3C/script>");

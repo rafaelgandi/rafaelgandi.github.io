@@ -1,9 +1,9 @@
 /*
     Image loading placeholder component
 */
-define((require) => {    
+define(() => {    
     "use strict";
-    const { cm, componentHtml, $, ixr, helpers } = (require('ComponentModule/cm'))(require('module').id); 
+    const { cm, componentHtml, $, ixr, helpers } = (require('ComponentModule/cm'))('raffy/ImageLoadingComponent'); 
     cm.componentStyle(componentHtml`<style>
             .@ixr(img) {
                 transition: opacity 1s ease-in-out;

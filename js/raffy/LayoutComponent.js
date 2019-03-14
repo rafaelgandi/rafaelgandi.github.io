@@ -1,8 +1,8 @@
-define((require) => {    
+define(() => {    
     "use strict";
     require('raffy/styles/raffy.css');
     require('raffy/styles/raffy.mobile.css');
-    const { cm, componentHtml, $, ixr, helpers, typeOf } = (require('ComponentModule/cm'))(require('module').id); 
+    const { cm, componentHtml, $, ixr, helpers, typeOf } = (require('ComponentModule/cm'))('raffy/LayoutComponent'); 
 	const HeaderComponent = require('raffy/HeaderComponent');
 	const ListComponent = require('raffy/ListComponent');
 	const EmailLinkComponent = require('raffy/EmailLinkComponent');

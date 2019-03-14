@@ -1,6 +1,6 @@
-define((require) => {    
+define(() => {    
     "use strict";
-    const { cm, componentHtml, $, ixr, helpers, typeOf } = (require('ComponentModule/cm'))(require('module').id); 
+    const { cm, componentHtml, $, ixr, helpers, typeOf } = (require('ComponentModule/cm'))('raffy/ListComponent'); 
     const ImageLoadingComponent = require('raffy/ImageLoadingComponent');
     class ListComponent extends cm.ComponentElement { 
         constructor(c) { 

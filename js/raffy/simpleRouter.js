@@ -2,7 +2,7 @@
     See: https://css-tricks.com/using-the-html5-history-api/
     See: https://developer.mozilla.org/en-US/docs/Web/API/History_API
 */
-define((require) => {
+define(() => {
     "use strict";
     function removeEndSlashes(_str = '') {
         return _str
