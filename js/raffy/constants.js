@@ -11,7 +11,7 @@ define(() => {
             eyeem: 'https://www.eyeem.com/u/rafaelgandi',
             github: 'https://github.com/rafaelgandi',
             myGithubPageUri: 'http://rafaelgandi.github.com',
-            googlePhotosPage: 'https://photos.app.goo.gl/v8MNMGrZS2Pwk3oj9'
+            googlePhotosPage: 'http://tinyurl.com/RafaelGandioncoPhotography' // https://photos.app.goo.gl/v8MNMGrZS2Pwk3oj9
         },
         routes: {
             home: '/',
