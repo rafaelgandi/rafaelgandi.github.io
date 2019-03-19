@@ -60,6 +60,7 @@ gulp.task('build', () => {
     // Compress images with Imagemin 
     // See: https://web.dev/fast/use-imagemin-to-compress-images 
     // See: https://web.dev/fast/use-imagemin-to-compress-images/codelab-imagemin-gulp
+    /** /
     gulp.src('../images/proj/*')
     .pipe(imagemin([
         mozjpeg({quality: 50})
@@ -71,5 +72,6 @@ gulp.task('build', () => {
       pngquant({ quality: [0.5, 0.5] })
     ]))
     .pipe(gulp.dest('../images/weapons/'));
+    /**/
 
 });
