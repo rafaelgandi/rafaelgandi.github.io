@@ -2,6 +2,10 @@ const gulp = require('gulp');
 const Builder = require('./vectto_builder/Builder');
 const ComponentModuleTransforms = require('./vectto_builder/ComponentModuleTransforms');
 const fileMaps = require('./filemap.json');
+const imagemin = require('gulp-imagemin');
+const pngquant = require('imagemin-pngquant');
+const mozjpeg = require('imagemin-mozjpeg')
+
 // See: https://github.com/gulpjs/gulp/blob/master/docs/writing-a-plugin/using-buffers.md
 // See: https://github.com/gulpjs/gulp/blob/master/docs/writing-a-plugin/guidelines.md
 // See: https://github.com/saan1984/GulpLetterType/blob/master/index.js
@@ -53,4 +57,19 @@ gulp.task('build', () => {
         console.log('\x1b[41m%s\x1b[0m', 'WARNING! Branch has changed. Please run "gulp build" again.');
         process.exit();            
     });
+    // Compress images with Imagemin 
+    // See: https://web.dev/fast/use-imagemin-to-compress-images 
+    // See: https://web.dev/fast/use-imagemin-to-compress-images/codelab-imagemin-gulp
+    gulp.src('../images/proj/*')
+    .pipe(imagemin([
+        mozjpeg({quality: 50})
+    ]))
+    .pipe(gulp.dest('../images/proj/'));
+    // PNG
+    gulp.src('../images/weapons/*')
+    .pipe(imagemin([
+      pngquant({ quality: [0.5, 0.5] })
+    ]))
+    .pipe(gulp.dest('../images/weapons/'));
+
 });
