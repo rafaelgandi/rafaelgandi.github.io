@@ -5,6 +5,6 @@ module.exports = function (_code) {
     // Minify styles inside style tags
     _code = _code.replace(/<style>([^<]+)<\/style>/igm, (match, css) => {
         return `<style>${ css.replace(/\s+/ig, ' ') }</style>`;
-    });      
+    });
     return _code;
 };

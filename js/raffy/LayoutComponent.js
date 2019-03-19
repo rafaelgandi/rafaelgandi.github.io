@@ -6,6 +6,7 @@ define(() => {
 	const HeaderComponent = require('raffy/HeaderComponent');
 	const ListComponent = require('raffy/ListComponent');
 	const EmailLinkComponent = require('raffy/EmailLinkComponent');
+	const ContactLinksComponent = require('raffy/ContactLinksComponent');
     const simpleRouter = require('raffy/simpleRouter');
     const projectItems = require('raffy/projects');
     const openSourceProjects = require('raffy/openSourceProjects');
@@ -55,17 +56,7 @@ define(() => {
     		</section>
     		<section id="raffy-page-contact" class="raffy-page-sections">
     			<Component-x type="raffy/EmailLinkComponent"></Component-x>
-    			<div id="raffy-contact-links">
-    				<a href="${ this.context.constants.uri.instagram }" target="_blank" rel="noreferrer">Instagram</a>
-    				<a href="${ this.context.constants.uri.facebook }" target="_blank" rel="noreferrer">Facebook</a>
-    				<a href="${ this.context.constants.uri.linkedin }" target="_blank" rel="noreferrer">LinkedIn</a>
-    				<a href="${ this.context.constants.uri.zerothreetwo }" target="_blank" rel="noreferrer">032</a>
-    				<a href="${ this.context.constants.uri.medium }" target="_blank" rel="noreferrer">Medium</a>
-    				<a href="${ this.context.constants.uri.flickr }" target="_blank" rel="noreferrer">Flickr</a>
-    				<a href="${ this.context.constants.uri.fiveHundredPx }" target="_blank" rel="noreferrer">500px</a>
-    				<a href="${ this.context.constants.uri.eyeem }" target="_blank" rel="noreferrer">EyeEm</a>
-    				<a href="${ this.context.constants.uri.github }" target="_blank" rel="noreferrer">Github</a>
-    			</div>
+    			<Component-x type="raffy/ContactLinksComponent"></Component-x>
     		</section>`;
         } 
         onAfterInitialRender() { 
@@ -77,6 +68,7 @@ define(() => {
             this.$HeaderComponent = HeaderComponent.renderAllComponents(this.$element);
             ListComponent.renderAllComponents(this.$element);
             EmailLinkComponent.renderAllComponents(this.$element);
+            ContactLinksComponent.renderAllComponents(this.$element);
             this.$pagesContainers = this.$element.querySelectorAll('.raffy-page-sections'); 
             this.$body.classList.add('raffy-opacity-1');                    
         }
