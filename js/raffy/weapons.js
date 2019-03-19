@@ -5,13 +5,7 @@ define(() => {
             'image': 'images/weapons/javascript.svg',
             'desc': 'Javascript',
             'header': 'Vanilla Javascript'
-        },
-        {
-            'link': 'http://jquery.com',
-            'image': 'images/weapons/jquery.svg',
-            'desc': 'jQuery',
-            'header': 'jQuery'
-        },
+        },        
         {
             'link': 'https://nodejs.org/en/',
             'image': 'images/weapons/nodejs.svg',
@@ -53,6 +47,12 @@ define(() => {
             'image': 'images/weapons/phonegap.svg',
             'desc': 'Phonegap',
             'header': 'Phonegap'
+        },
+        {
+            'link': 'http://jquery.com',
+            'image': 'images/weapons/jquery.svg',
+            'desc': 'jQuery',
+            'header': 'jQuery'
         },
         {
             'link': 'http://requirejs.org/',
