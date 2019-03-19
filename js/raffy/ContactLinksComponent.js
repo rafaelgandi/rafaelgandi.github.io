@@ -1,6 +1,6 @@
 define(() => {    
     "use strict";
-    const { cm, componentHtml, $, ixr, helpers, typeOf } = (require('ComponentModule/cm'))('raffy/ContactLinksComponent'); 
+    const { cm, componentHtml } = (require('ComponentModule/cm'))('raffy/ContactLinksComponent'); 
     class ContactLinksComponent extends cm.ComponentElement { 
         constructor(c) { 
             super(c);       
