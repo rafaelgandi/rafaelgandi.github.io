@@ -159,6 +159,7 @@ define(() => {
         ul.raffy-list img {
         	display: block;
         	max-width: 100%;
+            min-width: 100px;
         	max-height: 150px;
         	margin: 0 auto;
         	border:0;
