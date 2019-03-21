@@ -89,6 +89,7 @@ define(() => {
     		transform: translateX(-350px);
     		transition: transform 0.3s ease-out;
     		box-shadow: 10px 2px 33px -11px rgba(0,0,0,0.46);
+            will-change: transform;
     	}
     	#raffy-main-navigation.raff-show-mobile-nav {
     		transform: translateX(-50px);
