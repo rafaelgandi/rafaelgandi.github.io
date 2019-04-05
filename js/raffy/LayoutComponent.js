@@ -129,7 +129,7 @@ define(() => {
             .route(this.context.constants.routes.projects, (_data) => this.setState('uriIdChange', 'raffy-page-projects'))
             .route(this.context.constants.routes.contact, (_data) => this.setState('uriIdChange', 'raffy-page-contact'));
             this._setInitialPage();
-            helpers.on(document.getElementById('raffy-main-navigation'), 'click', 'a[rel]', function (e) {
+            helpers.on(document.getElementById('raffy-main-navigation'), 'click', 'a[rel]', (e) => {
                 e.preventDefault();
                 simpleRouter.navigate(e.target.rel); 
                 return false;

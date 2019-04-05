@@ -1,7 +1,11 @@
 define(() => {
     const { cm, componentHtml } = (require('ComponentModule/cm'))('raffy/styles/raffy.css'); 
     const constants = require('raffy/constants');
-    cm.componentStyle(componentHtml`<style>        
+    cm.componentStyle(componentHtml`<style>   
+        html {
+            /* See: https://developers.google.com/web/updates/2013/12/300ms-tap-delay-gone-away */
+            touch-action: manipulation;
+        }     
         html.desktop, .desktop body {
         	overflow: hidden;
         	width: 100%;

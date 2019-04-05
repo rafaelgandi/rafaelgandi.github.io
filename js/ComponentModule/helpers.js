@@ -149,7 +149,7 @@ define(() => {
 			// See: https://gomakethings.com/true-type-checking-with-vanilla-js/
 			return Object.prototype.toString.call(_variable).slice(8, -1).toLowerCase();
 		},
-		on: function (_element, _eventName, _selector, _callback = (() => {})) {
+		on: function (_element, _eventName, _selector, _callback = (() => {}), _eventParam = false) {
 			let that = this;
 			_callback = (this.typeOf(_selector) === 'function') ? _selector : _callback;
 			_element.addEventListener(_eventName, function (e) {
@@ -161,7 +161,7 @@ define(() => {
 				else {
 					_callback.call(this, e);
 				}
-			});
+			}, _eventParam);
 			return this;
 		}
 	};

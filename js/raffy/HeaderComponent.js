@@ -10,7 +10,7 @@ define(() => {
             return componentHtml`
             <header id="raffy-main-navigation-mobile">
     			<div>
-    				<a href="#" id="raffy-mobile-menu-trigger">
+    				<a href="#" id="raffy-mobile-menu-trigger"> 
                         <div class="burger-menu-bars bar1" style="margin-top:0;"></div>
                         <div class="burger-menu-bars bar2"></div>
                         <div class="burger-menu-bars bar3"></div>
