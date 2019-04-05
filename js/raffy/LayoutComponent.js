@@ -131,6 +131,7 @@ define(() => {
             this._setInitialPage();
             helpers.on(document.getElementById('raffy-main-navigation'), 'click', 'a[rel]', (e) => {
                 e.preventDefault();
+                this.$HeaderComponent.cm.hideMobileSideBarNav();
                 simpleRouter.navigate(e.target.rel); 
                 return false;
             }); 

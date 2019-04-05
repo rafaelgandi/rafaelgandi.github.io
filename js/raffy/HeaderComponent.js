@@ -72,6 +72,13 @@ define(() => {
                 $trigger.classList.remove(closeClass);
             } 
         }
+        hideMobileSideBarNav() {
+            requestAnimationFrame(() => {
+                this.$mainNavigationHeader.classList.remove('raff-show-mobile-nav');
+                this.$body.classList.remove('raff-stop-body-scroll');
+                this._updateBurgerMenu(); 
+            });   
+        }
         events() {
             helpers
             .on(this.$element, 'click', '#raffy-mobile-menu-trigger', (e) => {
@@ -82,13 +89,6 @@ define(() => {
                     this._updateBurgerMenu();
                 });                              
                 return false;
-            })
-            .on(this.$element, 'click', '#raffy-main-navigation a[rel]', (e) => {
-                requestAnimationFrame(() => {
-                    this.$mainNavigationHeader.classList.remove('raff-show-mobile-nav');
-                    this.$body.classList.remove('raff-stop-body-scroll');
-                    this._updateBurgerMenu(); 
-                });                
             });
         }
     }      
