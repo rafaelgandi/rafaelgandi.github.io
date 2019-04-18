@@ -3,10 +3,15 @@
     @author: Rafael Gandionco <www.rafaelgandi.tk>
 */ 
 "use strict";  
-const babel = require("babel-core"); // See: https://babeljs.io/docs/usage/api/
+// See: https://babeljs.io/docs/en/babel-core/#options
+// See: https://hackernoon.com/using-babel-7-with-node-7e401bc28b04
+const babel = require("@babel/core"); // See: https://babeljs.io/docs/usage/api/
 const fs = require('fs');
 const stripComments = require('strip-comments'); // See: https://www.npmjs.com/package/strip-comments
 const jetpack = require('fs-jetpack'); // See: https://github.com/szwacz/fs-jetpack#writepath-data-options
+
+
+console.log(babel.version);
 
 class Builder {
     constructor(_data, _modules = []) {
@@ -81,6 +86,7 @@ class Builder {
             let file = this._makeFilename(mod),
                 code = jetpack.read(file, 'utf8');                  
             if (typeof code == 'string') {
+                code = this.customTransform(code); // LM: 2019-04-18
                 if (code.indexOf('@!dontReplaceDefine@') == -1) { // Identifier if you dont want define() to be modified
                     code = ';' + code.replace('define(', 'define("'+mod+'",') + ';';
                 }  
@@ -88,9 +94,7 @@ class Builder {
             try {
                 returnCode += stripComments(code);
             } catch(err) {}
-        });  
-        // LM: 2018-05-14
-        returnCode = this.customTransform(returnCode);       
+        });    
         try {
             return babel.transform(returnCode, { 
                 minified: true,
@@ -111,7 +115,7 @@ class Builder {
                 minified: true
             }).code;     
         jetpack.write(this.es5Out, es5Code);  
-        console.log('\x1b[33m%s\x1b[0m', 'Transpiled ES5: ' + this.es5Out, this.getTime());  
+        console.log('\x1b[33m%s\x1b[0m', 'Babel ' + babel.version + ' Transpiled ES5: ' + this.es5Out, this.getTime()); 
     }
     compile() {
         let code = this.concat();
