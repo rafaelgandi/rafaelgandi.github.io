@@ -10,7 +10,7 @@ define(() => {
             helpers: essentials.helpers, 
             comms: essentials.comms, 
             runwhen: essentials.runwhen, 
-            componentHtml: essentials.componentHtml, 
+            componentHtml: essentials.componentHtml.bind(_cm), 
             ixr: (_val) => _cm.ixr(_val),
             pint: essentials.helpers.pint,
             typeOf: essentials.helpers.typeOf

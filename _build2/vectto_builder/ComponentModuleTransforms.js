@@ -10,13 +10,12 @@ module.exports = function (_code) {
     if (_code.indexOf('"use component";') == -1) { return _code; }
     let replaceWithHtmlTag = '';
     _code = _code.replace('"use component";', '');   
-    _code.replace(/component\([\S]+, ([\S]+)\);/g, (match, tag) => {
+    _code.replace(/component\([\S]+,\s+([\S]+)\);/g, (match, tag) => {
         replaceWithHtmlTag = tag;
     });  
-    _code.replace(/class ([a-zA-Z0-9_$]+) extends cm.ComponentElement/g, (match, className) => {
+    _code.replace(/class\s+([a-zA-Z0-9_$]+)\s+extends\s+cm.ComponentElement/g, (match, className) => {
         _code = `${ _code } ; return cm.createComponent(${ className }, ${ replaceWithHtmlTag });`;
     });      
-    _code = `AMD.define((require) => { "use strict"; require('domReady!'); const component = require('vectto/util/ComponentModule/cm'); ${ _code }});`;
-    //console.log(_code);
+    _code = `define(() => { "use strict"; const component = require('ComponentModule/cm'); ${ _code }});`;
     return _code;
 };

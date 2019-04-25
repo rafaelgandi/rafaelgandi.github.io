@@ -2,18 +2,19 @@
     Component Module Helper 
     @author: Rafael Gandionco <www.rafaelgandi.tk>
     @version: 1.0 (vanilla js)
-    LM: 2019-02-25
+    LM: 2019-04-25
 */
 define(() => {
     "use strict"; 
     require('ComponentModule/Polyfills');  
     const comms = require('ComponentModule/comms');  
     const helpers = require('ComponentModule/helpers');    
+    const eventNames = require('ComponentModule/eventNames');    
     require('ComponentModule/runwhen');  
     let _componentHtmlFunctions = {},
         _componentHtmlObj = {},
-        funcKey = '%FUNC%',
-        objKey = '%OBJ%';    
+        funcKey = '%FUNC_Cholo%',
+        objKey = '%OBJ_Cholo%';    
     // Babel cant support extending es6 native class syntax thats why we are 
     // using es5 style class syntax here because this class is meant to be
     // extended.
@@ -126,6 +127,31 @@ define(() => {
         this.context = Object.assign(this.context, _data);
         return this;
     };
+    //  LM: 2019-04-25
+    // Synthetic events //
+    ComponentElement.prototype._processSyntheticEvents = function (_moduleId) {
+        if (this.$element) {
+            eventNames.forEach((eventName) => {
+                helpers.on(this.$element, eventName, `[data-cm-hasEvent="true"][data-cm-event-parentComp="${ _moduleId }"]`, (e) => {
+                    let $me = e.target,
+                        eventType = e.type,
+                        attrFuncKey,                      
+                        eventHandler = helpers.dom.data($me, `syntheticEventHandler-${ eventType }`);                                              
+                    if (eventHandler) { return eventHandler(e); }  
+                    else {
+                        attrFuncKey = $me.getAttribute(`data-cm-event-${ eventType }`);
+                        if (!! attrFuncKey) {
+                            $me.removeAttribute(`data-cm-event-${ eventType }`);
+                            helpers.dom.data($me, `syntheticEventHandler-${ eventType }`,  _componentHtmlFunctions[attrFuncKey]);                     
+                            delete _componentHtmlFunctions[attrFuncKey];
+                            eventHandler = helpers.dom.data($me, `syntheticEventHandler-${ eventType }`);
+                            return eventHandler(e);
+                        }         
+                    }       
+                });
+            });
+        }            
+    };
     // LM: 2018-10-29
     // Store class for sharing data between components. Inspired by Unstated(https://github.com/jamiebuilds/unstated) 
     function Store(_storeName) {
@@ -177,7 +203,15 @@ define(() => {
                 else if (typeof _values[i] == 'boolean') {
                     _values[i] = _values[i].toString();
                 }
+                // Make sure to convert into string on printing out to the browser //
+                try {
+                    _values[i] = _values[i].toString();
+                } catch (err) {}
                 str += string + (_values[i] || '');            
+            });
+            // Handle synthetic events //
+            str = str.replace(/_on([A-Z][^=]+)=/igm, (match, eventName) => {
+                return `data-cm-hasEvent="true" data-cm-event-parentComp="${ this.moduleId }" data-cm-event-${ eventName.toLowerCase() }=`;
             });
 			return str;
         }
@@ -290,6 +324,8 @@ define(() => {
                     if (comp.getProps('classNames')) {
                         comp.$element.classList.add(...comp.getProps('classNames').trim().split(/\s+/));
                     }
+                    // Setup synthetic events for component here //
+                    comp._processSyntheticEvents(this.moduleId); 
                     if (typeof comp.events !== 'undefined') {
                         comp.events();
                     }

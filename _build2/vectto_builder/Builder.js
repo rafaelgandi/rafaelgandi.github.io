@@ -9,10 +9,6 @@ const babel = require("@babel/core"); // See: https://babeljs.io/docs/usage/api/
 const fs = require('fs');
 const stripComments = require('strip-comments'); // See: https://www.npmjs.com/package/strip-comments
 const jetpack = require('fs-jetpack'); // See: https://github.com/szwacz/fs-jetpack#writepath-data-options
-
-
-console.log(babel.version);
-
 class Builder {
     constructor(_data, _modules = []) {
         this.entryFile = _data.entryFile;
