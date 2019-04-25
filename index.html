@@ -25,18 +25,16 @@
 			history.replaceState(null, null, redirect);
 		}
 	})();
-	</script>
-	<script>
-		(function () {
-		    let modules = {};
-		    window.define = function (_moduleId, _factory) { modules[_moduleId] = _factory(_moduleId); };
-		    window.require = function (_moduleId) { return modules[_moduleId]; };
-		})();
-		try {
-			eval("var bar = (x) => x+1");
-			document.write("<script src='/js/compiled/raffy.js'>\x3C/script>");
-		}
-		catch (e) { document.write("<script src='/js/compiled/es5/raffy.js'>\x3C/script>"); }
+	(function () { // AMD Shiv
+		let modules = {};
+		window.define = function (_moduleId, _factory) { modules[_moduleId] = _factory(_moduleId); };
+		window.require = function (_moduleId) { return modules[_moduleId]; };
+	})();
+	try {
+		eval("var bar = (x) => x+1");
+		document.write("<script src='/js/compiled/raffy.js'>\x3C/script>");
+	}
+	catch (e) { document.write("<script src='/js/compiled/es5/raffy.js'>\x3C/script>"); }
 	</script>		
 </head>
 <body><Component-x type="raffy/LayoutComponent"></Component-x></body>
