@@ -11,7 +11,8 @@ define(() => {
 			}
 		},	
 		pint: function (_str) {
-			var num = parseInt(_str, 10);
+			//var num = parseInt(_str, 10);
+			let num = parseFloat(_str);
 			if (isNaN(num)) { return 0; }
 			return num;
 		},	

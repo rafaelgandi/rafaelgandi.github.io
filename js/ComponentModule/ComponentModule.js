@@ -2,7 +2,7 @@
     Component Module Helper 
     @author: Rafael Gandionco <www.rafaelgandi.tk>
     @version: 1.0 (vanilla js)
-    LM: 2019-04-25
+    LM: 2019-05-02
 */
 define(() => {
     "use strict"; 
@@ -210,7 +210,7 @@ define(() => {
                 str += string + (_values[i] || '');            
             });
             // Handle synthetic events //
-            str = str.replace(/_on([A-Z][^=]+)=/igm, (match, eventName) => {
+            str = str.replace(/_on([A-Z][a-zA-Z]+)=/igm, (match, eventName) => {
                 return `data-cm-hasEvent="true" data-cm-event-parentComp="${ this.moduleId }" data-cm-event-${ eventName.toLowerCase() }=`;
             });
 			return str;
