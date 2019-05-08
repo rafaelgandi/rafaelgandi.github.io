@@ -40,7 +40,7 @@ class ImageLoadingComponent extends cm.ComponentElement {
         this.state = {};        
     }  
     render() {  
-        return componentHtml`<img src="about:blank" alt="${ this.props.alt || '' }" class="${ this.props.classNames || '' } ${ cm.ixr('hide') } ${ cm.ixr('img') }">`;
+        return componentHtml`<img src="about:blank" alt="${ this.props.alt || '' }" class="${ this.props.classNames || '' } ${ cm.ixr('hide') } ${ cm.ixr('img') }" loading="lazy">`;
     }  
     onAfterInitialRender() {    
         let that = this;
