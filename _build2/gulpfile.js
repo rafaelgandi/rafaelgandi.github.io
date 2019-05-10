@@ -28,7 +28,12 @@ gulp.task('build', () => {
     let buildsArr = [];
     fileMaps.forEach((data) => {
         let build = new Builder(data);
-        build.setBabelPresetPath('./vectto_builder/node_modules/@babel/preset-env');
+        build.setBabelPresetPath([
+            './vectto_builder/node_modules/@babel/preset-env'        
+        ])
+        .setBabelPluginPaths([
+            './vectto_builder/node_modules/@babel/plugin-transform-async-to-generator'
+        ]); 
         build.setCustomTransform((_code) => ComponentModuleTransforms(_code));
         build.compile();
         buildsArr.push(build);

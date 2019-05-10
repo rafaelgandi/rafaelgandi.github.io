@@ -20,7 +20,8 @@ class Builder {
         this.addModules(_modules);
         this.getModuleDependencies(this.entryFile);
         this.modules.push(this.entryModule);        
-        this.babelPresetPath = '';
+        this.babelPresetPath = [];
+        this.babelPluginsPaths = [];
         this.customTransform = (_code) => _code;    
     }
     getTime() {
@@ -101,17 +102,30 @@ class Builder {
         }
     }
     setBabelPresetPath(_presetPath) {
+        if (! _presetPath instanceof Array) {
+            _presetPath = [_presetPath];
+        }
         this.babelPresetPath = _presetPath;  
         return this;
     }
+    setBabelPluginPaths(_plugins = []) {
+        this.babelPluginsPaths = [...this.babelPluginsPaths, ..._plugins];
+        return this;
+    }
     babelTranspile(_code) {
-        let that = this,
+        // Needed to make async/await fetaure to work. //
+        // See: https://babeljs.io/docs/en/babel-polyfill#usage-in-browser
+        let polyfillCode = jetpack.read(__dirname + '/node_modules/@babel/polyfill/dist/polyfill.min.js', 'utf8'),
+            that = this,
             es5Code = babel.transform(_code, { 
-                presets: [that.babelPresetPath],
-                minified: true
+                presets: that.babelPresetPath,
+                plugins: that.babelPluginsPaths,
+                minified: true,
+                // See: https://stackoverflow.com/questions/34973442/how-to-stop-babel-from-transpiling-this-to-undefined-and-inserting-use-str
+                sourceType: 'script'
             }).code;     
-        jetpack.write(this.es5Out, es5Code);  
-        console.log('\x1b[33m%s\x1b[0m', 'Babel ' + babel.version + ' Transpiled ES5: ' + this.es5Out, this.getTime()); 
+        jetpack.write(this.es5Out, ';' + polyfillCode + ';' + es5Code);  
+        console.log('\x1b[33m%s\x1b[0m', 'Babel ' + babel.version + ' Transpiled ES5: ' + this.es5Out, this.getTime());
     }
     compile() {
         let code = this.concat();

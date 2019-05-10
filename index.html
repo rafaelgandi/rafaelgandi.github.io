@@ -31,7 +31,7 @@
 		window.require = function (_moduleId) { return modules[_moduleId]; };
 	})();
 	try {
-		eval("var bar = (x) => x+1");
+		eval("var bar = async (x) => x+1");
 		document.write("<script src='/js/compiled/raffy.js'>\x3C/script>");
 	}
 	catch (e) { document.write("<script src='/js/compiled/es5/raffy.js'>\x3C/script>"); }
