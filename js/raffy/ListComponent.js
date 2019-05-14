@@ -12,10 +12,9 @@ class ListComponent extends cm.ComponentElement {
         ${ this.props.items.map((item) => componentHtml`
             <li>
                 <a href="${ item.link }" class="raffy-list-image-link" target="_blank">
-                    <Component-x 
-                    type="raffy/ImageLoadingComponent" 
+                    <ImageLoadingComponent 
                     containerClass="raffy-list-img-con" 
-                    src="${ item.image }"></Component-x>
+                    src="${ item.image }"></ImageLoadingComponent>
                     
                     <div class="raffy-list-desc">
                         ${ (typeOf(item.desc) === 'undefined') ? item.header : item.desc }

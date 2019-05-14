@@ -25,7 +25,7 @@ class LayoutComponent extends cm.ComponentElement {
     }  
     render() {  
         return componentHtml`
-		<Component-x type="raffy/HeaderComponent" onMainMenuTrigger="${ this.onMainMenuTrigger.bind(this) }"></Component-x>            
+		<HeaderComponent onMainMenuTrigger="${ this.onMainMenuTrigger.bind(this) }"></HeaderComponent>            
         <section id="raffy-page-home" class="raffy-page-sections">
 			<p style="margin-top: 2.6em;">
 				Hi, my name's Rafael Gandionco and I'm a minimalist, photographer, and web developer from the Philippines.
@@ -47,15 +47,15 @@ class LayoutComponent extends cm.ComponentElement {
 		</section>
 		<section id="raffy-page-projects" class="raffy-page-sections">
             <div class="raffy-text  text-center" style="margin-top: 80px;"><h1>Tools I use for web development.</h1></div>      
-			<Component-x type="raffy/ListComponent" items="${ weapons }"></Component-x>
+			<ListComponent items="${ weapons }"></ListComponent>
 			<div class="raffy-text text-center"><h1>Some of my personal open source projects on <a href="${ this.context.constants.uri.github }" target="_blank">github.</a></h1></div>
-            <Component-x type="raffy/ListComponent" items="${ openSourceProjects }"></Component-x>
+            <ListComponent items="${ openSourceProjects }"></ListComponent>
 			<div class="raffy-text  text-center"><h1>A few client projects I was a part of building.</h1></div>            
-			<Component-x type="raffy/ListComponent" items="${ projectItems }"></Component-x>
+			<ListComponent items="${ projectItems }"></ListComponent>
 		</section>
 		<section id="raffy-page-contact" class="raffy-page-sections">
-			<Component-x type="raffy/EmailLinkComponent"></Component-x>
-			<Component-x type="raffy/ContactLinksComponent"></Component-x>
+			<EmailLinkComponent></EmailLinkComponent>
+			<ContactLinksComponent></ContactLinksComponent>
 		</section>`;
     } 
     onAfterInitialRender() { 

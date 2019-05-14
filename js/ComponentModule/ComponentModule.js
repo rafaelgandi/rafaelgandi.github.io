@@ -2,7 +2,7 @@
     Component Module Helper 
     @author: Rafael Gandionco <www.rafaelgandi.tk>
     @version: 1.0 (vanilla js)
-    LM: 2019-05-02
+    LM: 2019-05-15
 */
 define(() => {
     "use strict"; 
@@ -14,7 +14,8 @@ define(() => {
     let _componentHtmlFunctions = {},
         _componentHtmlObj = {},
         funcKey = '%FUNC_Cholo%',
-        objKey = '%OBJ_Cholo%';    
+        objKey = '%OBJ_Cholo%';   
+    window._COMPONENT_IDS = window._COMPONENT_IDS || {};     
     // Babel cant support extending es6 native class syntax thats why we are 
     // using es5 style class syntax here because this class is meant to be
     // extended.
@@ -177,6 +178,12 @@ define(() => {
             this.ComponentElement = ComponentElement; 
             this.Store = Store; 
             this.$head = document.head || document.getElementsByTagName('head')[0];
+            let componentTagName = this._makeIntoTagName(this.moduleId);
+            // Check if there are component tag name collisions here //
+            if (helpers.typeOf(_COMPONENT_IDS[componentTagName]) !== 'undefined') {
+                throw `${ componentTagName } component tag name is already used by "${ this.moduleId }"`;
+            }
+            _COMPONENT_IDS[componentTagName] = this.moduleId;
         }
         tagTemplateHtml(_strings, ..._values) {
             // See: http://wesbos.com/tagged-template-literals/
@@ -213,6 +220,13 @@ define(() => {
             str = str.replace(/_on([A-Z][a-zA-Z]+)=/igm, (match, eventName) => {
                 return `data-cm-hasEvent="true" data-cm-event-parentComp="${ this.moduleId }" data-cm-event-${ eventName.toLowerCase() }=`;
             });
+            // Replace component tag names //
+            for (let p in _COMPONENT_IDS) {
+                let tagName = p,
+                    componentId = _COMPONENT_IDS[p];
+                str = str.replace(new RegExp(`<${ tagName }`, 'igm'), `<Component-x type="${ componentId }" `);    
+                str = str.replace(new RegExp(`</${ tagName }>`, 'igm'), `</Component-x>`);    
+            }
 			return str;
         }
         ixr(_name) {
@@ -247,6 +261,10 @@ define(() => {
         }
         declareCommEvents(_events = []) {
             return this;
+        }
+        _makeIntoTagName(_componentId) {
+            let basename = _componentId.trim().split('/').pop();
+            return basename;
         }
         getEssentialModules() {
             const that = this;
