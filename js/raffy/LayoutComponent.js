@@ -1,7 +1,6 @@
 "use component";
-require('raffy/styles/raffy.css');
-require('raffy/styles/raffy.mobile.css');
 const { cm, componentHtml, $, ixr, helpers, typeOf } = component('raffy/LayoutComponent', 'div'); 
+const cssLoaded = cm.componentStyleFrom('/js/raffy/styles/raffy.css');                     
 const HeaderComponent = require('raffy/HeaderComponent');
 const ListComponent = require('raffy/ListComponent');
 const EmailLinkComponent = require('raffy/EmailLinkComponent');
@@ -11,6 +10,7 @@ const projectItems = require('raffy/projects');
 const openSourceProjects = require('raffy/openSourceProjects');
 const weapons = require('raffy/weapons');
 const constants = require('raffy/constants');
+
 class LayoutComponent extends cm.ComponentElement { 
     constructor(c) { 
         super(c);       
@@ -69,7 +69,9 @@ class LayoutComponent extends cm.ComponentElement {
         EmailLinkComponent.renderAllComponents(this.$element);
         ContactLinksComponent.renderAllComponents(this.$element);
         this.$pagesContainers = this.$element.querySelectorAll('.raffy-page-sections'); 
-        this.$body.classList.add('raffy-opacity-1');                    
+        cssLoaded.then(() => {
+            this.$body.classList.add('raffy-opacity-1');    
+        });                          
     }
     onStateChange(_stateName) {
         if (this.isIn('uriIdChange', _stateName)) {

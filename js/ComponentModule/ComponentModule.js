@@ -256,11 +256,18 @@ define(() => {
             this.$head.appendChild(style);
             return this;
 		}
+        async componentStyleFrom(_url, _callback) {
+            // See: https://scotch.io/tutorials/how-to-use-the-javascript-fetch-api-to-get-data
+            let response = await fetch(_url, {
+                    cache: 'no-cache'
+                }),
+                css = await response.text();
+            this.componentStyle(css);
+            _callback && _callback();
+            return css;
+        }
         parentSelector(_parentSelector, _childrenCss = '') {            
             return _childrenCss.replace(/__PARENT__/ig, _parentSelector);
-        }
-        declareCommEvents(_events = []) {
-            return this;
         }
         _makeIntoTagName(_componentId) {
             let basename = _componentId.trim().split('/').pop();

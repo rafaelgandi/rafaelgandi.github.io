@@ -1,17 +1,15 @@
 {
-  "name": "vectto-gulp-builder",
+  "name": "rafaelgandi-build",
   "version": "1.0.0",
-  "description": "Build script for vectto using gulp",
-  "main": "index.js",
+  "description": "",
+  "main": "gulpfile.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "Rafael Gandionco",
   "license": "ISC",
-  "dependencies": {
-    "gulp": "^3.9.1",
-    "gulp-imagemin": "^5.0.3",
-    "imagemin-mozjpeg": "^8.0.0",
-    "imagemin-pngquant": "^7.0.0"
+  "devDependencies": {
+    "gulp": "^4.0.2",
+    "gulp-sass": "^4.0.2"
   }
 }
