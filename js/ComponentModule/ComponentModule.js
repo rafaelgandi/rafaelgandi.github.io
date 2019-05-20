@@ -2,7 +2,7 @@
     Component Module Helper 
     @author: Rafael Gandionco <www.rafaelgandi.tk>
     @version: 1.0 (vanilla js)
-    LM: 2019-05-15
+    LM: 2019-05-20
 */
 define(() => {
     "use strict"; 
@@ -181,7 +181,7 @@ define(() => {
             let componentTagName = this._makeIntoTagName(this.moduleId);
             // Check if there are component tag name collisions here //
             if (helpers.typeOf(_COMPONENT_IDS[componentTagName]) !== 'undefined') {
-                throw `${ componentTagName } component tag name is already used by "${ this.moduleId }"`;
+                throw `"${ this.moduleId }" cannot use <${ componentTagName }/> component tag name as it is already used by "${ _COMPONENT_IDS[componentTagName] }"`;
             }
             _COMPONENT_IDS[componentTagName] = this.moduleId;
         }
@@ -239,9 +239,12 @@ define(() => {
             style.type = 'text/css';
             style.setAttribute('data-from', this.moduleId);    
             if (_css instanceof Array) { _css = _css.join(''); }
-            _css = _css.replace(/@ixr\s*\(\s*([^'"\s]+)\s*\)/g, (match, ixrStr) => {
+            _css = _css.replace(/@ixr\s*\(\s*([^'"\s]+)\s*\)/g, (match, ixrStr) => { // for normal css file use @ixr(<string>)
                 return this.ixr(ixrStr.trim());
-            });    
+            });  
+            _css = _css.replace(/__ixr\s*\[\s*([^'"\s\)]+)\s*\]/g, (match, ixrStr) => { // for sass files use __ixr[<string>]
+                return this.ixr(ixrStr.trim());
+            });  
             _css = _css
             .replace(/<style>/ig, '')
             .replace(/<\/style>/ig, '')  
@@ -278,7 +281,7 @@ define(() => {
             return { helpers, comms, runwhen, componentHtml: that.componentHtml };
         }
         iterateComponentTag(_callback) {
-            let $components = document.querySelectorAll(`Component-x[type="${ this.moduleId }"]`);
+            let $components = document.querySelectorAll(`Component-x[type="${ this.moduleId }"]`);        
             if (! $components.length) { return; } 
             $components.forEach((elem) => {
                 // LM: 2017-10-19
