@@ -5,7 +5,7 @@
 	LM: 2018-07-12
 	Version: 1.0
  */
-var runwhen = (function (self) {
+window.runwhen = (function (self) {
 	// See: https://www.nczonline.net/blog/2012/03/13/its-time-to-start-using-javascript-strict-mode/
 	"use strict";
 	var cachedChecks = {},

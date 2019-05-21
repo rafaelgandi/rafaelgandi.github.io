@@ -1,15 +1,16 @@
 "use component";
 const { cm, componentHtml, $, ixr, helpers, typeOf } = component('raffy/LayoutComponent', 'div'); 
 const cssLoaded = cm.componentStyleFrom('/js/raffy/styles/raffy.css');                     
-const HeaderComponent = require('raffy/HeaderComponent');
-const ListComponent = require('raffy/ListComponent');
-const EmailLinkComponent = require('raffy/EmailLinkComponent');
-const ContactLinksComponent = require('raffy/ContactLinksComponent');
-const simpleRouter = require('raffy/simpleRouter');
-const projectItems = require('raffy/projects');
-const openSourceProjects = require('raffy/openSourceProjects');
-const weapons = require('raffy/weapons');
-const constants = require('raffy/constants');
+
+import HeaderComponent from 'raffy/HeaderComponent';  
+import ListComponent from 'raffy/ListComponent';  
+import EmailLinkComponent from 'raffy/EmailLinkComponent';
+import ContactLinksComponent from 'raffy/ContactLinksComponent';  
+import simpleRouter from 'raffy/simpleRouter';
+import projectItems from 'raffy/projects';
+import openSourceProjects from 'raffy/openSourceProjects';
+import weapons from 'raffy/weapons';
+import constants from 'raffy/constants'; 
 
 class LayoutComponent extends cm.ComponentElement { 
     constructor(c) { 

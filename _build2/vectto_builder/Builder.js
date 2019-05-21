@@ -44,6 +44,18 @@ class Builder {
             return self.indexOf(value) === index;
         });
     }
+    _simpleTransformEs2015Modules(_code) {
+        _code = _code.replace(/import\s+([a-zA-Z0-9_$]+)\s+from\s+(\S+)/img, (_match, _vars, _path) => {
+            return `const ${ _vars } = require(${ _path.replace(';', '') });`;
+        });
+        _code = _code.replace(/import\s+([\'\"]\S+[\'\"])/img, (_match,_path) => {
+            return `require(${ _path.replace(';', '') })`;
+        });
+        _code = _code.replace(/^export\s+/igm, 'return ');
+        _code = _code.replace(/^export default\s+/igm, 'return ');
+        _code = `define(() => { "use strict"; ${ _code } });`;
+        return _code;
+    }
     getModuleDependencies(_file = '') {
         let modArr = [],
             //cjsRequireRegExp = /\s*require\s*\(\s*["\']([^\'"\s]+)["\']\s*\)/g;
@@ -53,6 +65,7 @@ class Builder {
             return; 
         }
         let content = jetpack.read(_file, 'utf8');
+        content = this._simpleTransformEs2015Modules(content);  // So that we can use require() to get the module paths/names
         try {
             content = stripComments(content);
         } catch(err) {}
@@ -84,6 +97,7 @@ class Builder {
                 code = jetpack.read(file, 'utf8');                  
             if (typeof code == 'string') {
                 code = this.customTransform(code); // LM: 2019-04-18
+                code = this._simpleTransformEs2015Modules(code); // LM: 2019-05-21                
                 if (code.indexOf('@!dontReplaceDefine@') == -1) { // Identifier if you dont want define() to be modified
                     code = ';' + code.replace('define(', 'define("'+mod+'",') + ';';
                 }  

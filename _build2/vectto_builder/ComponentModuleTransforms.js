@@ -16,6 +16,6 @@ module.exports = function (_code) {
     _code.replace(/class\s+([a-zA-Z0-9_$]+)\s+extends\s+cm.ComponentElement/g, (match, className) => {
         _code = `${ _code } ; return cm.createComponent(${ className }, ${ replaceWithHtmlTag });`;
     });      
-    _code = `define(() => { "use strict"; const component = require('ComponentModule/cm'); ${ _code }});`;
+    _code = `const component = require('ComponentModule/cm'); ${ _code };`;
     return _code;
 };
