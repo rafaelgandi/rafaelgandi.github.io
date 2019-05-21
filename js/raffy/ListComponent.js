@@ -1,6 +1,6 @@
 "use component";
 const { cm, componentHtml, $, ixr, helpers, typeOf } = component('raffy/ListComponent', 'div'); 
-const ImageLoadingComponent = require('raffy/ImageLoadingComponent');
+import ImageLoadingComponent from 'raffy/ImageLoadingComponent';
 class ListComponent extends cm.ComponentElement { 
     constructor(c) { 
         super(c);       

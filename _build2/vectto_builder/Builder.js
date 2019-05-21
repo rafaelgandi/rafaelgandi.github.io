@@ -51,8 +51,8 @@ class Builder {
         _code = _code.replace(/import\s+([\'\"]\S+[\'\"])/img, (_match,_path) => {
             return `require(${ _path.replace(';', '') })`;
         });
-        _code = _code.replace(/^export\s+/igm, 'return ');
         _code = _code.replace(/^export default\s+/igm, 'return ');
+        _code = _code.replace(/^export\s+/igm, 'return ');    
         _code = `define(() => { "use strict"; ${ _code } });`;
         return _code;
     }
