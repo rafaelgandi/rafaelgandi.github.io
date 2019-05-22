@@ -2,7 +2,7 @@
     Component Module Helper 
     @author: Rafael Gandionco <www.rafaelgandi.tk>
     @version: 1.0 (vanilla js)
-    LM: 2019-05-20
+    LM: 2019-05-22
 */
 import 'ComponentModule/Polyfills';
 import comms from 'ComponentModule/comms';  
@@ -329,23 +329,22 @@ class ComponentModule {
             this.iterateComponentTag(($tag) => {
                 let comp = new _componentClass($tag),
                     markUp = '';                       
-                $containerElement = document.createElement(_containerElementTag);             
+                comp.$element = document.createElement(_containerElementTag);    
+                comp.$element.cm = comp;         
                 if (typeof comp.render !== 'undefined') {  // Check if render() function is available                     
-                    markUp = comp.render($containerElement, true);       
+                    markUp = comp.render(comp.$element, true);       
                 }                      
-                $containerElement.innerHTML = markUp;
-                $containerElement.setAttribute('data-component-type', $tag.getAttribute('type'));
+                comp.$element.innerHTML = markUp;
+                comp.$element.setAttribute('data-component-type', $tag.getAttribute('type'));
                 // LM: 2018-10-09 [ Set any context data found ]
                 if (! this.isEmptyObject(comp.context)) {                        
-                    helpers.dom.data($containerElement, '_componentContextData_', comp.context);
-                    $containerElement.setAttribute('data-component-hasContext', true);
+                    helpers.dom.data(comp.$element, '_componentContextData_', comp.context);
+                    comp.$element.setAttribute('data-component-hasContext', true);
                 }         
-                this.elementReplaceWith($tag, $containerElement);                 
-                comp.$element = $containerElement;
+                this.elementReplaceWith($tag, comp.$element);                                 
                 if (typeof comp.onAfterInitialRender !== 'undefined') {
-                    comp.onAfterInitialRender($containerElement);                        
-                } 
-                $containerElement.cm = comp;
+                    comp.onAfterInitialRender(comp.$element);                        
+                }             
                 // See: https://stackoverflow.com/questions/1988514/javascript-css-how-to-add-and-remove-multiple-css-classes-to-an-element                                        
                 if (comp.getProps('classNames')) {
                     comp.$element.classList.add(...comp.getProps('classNames').trim().split(/\s+/));
