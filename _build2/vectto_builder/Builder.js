@@ -44,17 +44,20 @@ class Builder {
             return self.indexOf(value) === index;
         });
     }
-    _simpleTransformEs2015Modules(_code) {
-        _code = _code.replace(/import\s+([a-zA-Z0-9_$]+)\s+from\s+(\S+)/img, (_match, _vars, _path) => {
+    _simpleTransformEs2015Modules(code) {
+        code = code.replace(/import\s+([a-zA-Z0-9_$]+)\s+from\s+(\S+)/img, (_match, _vars, _path) => { // [Sample:]-> import myModule from '/modules/my-module.js';
             return `const ${ _vars } = require(${ _path.replace(';', '') });`;
         });
-        _code = _code.replace(/import\s+([\'\"]\S+[\'\"])/img, (_match,_path) => {
+        code = code.replace(/import\s+\*\s+as\s+([a-zA-Z0-9_$]+)\s+from\s+(\S+)/img, (_match, _vars, _path) => { // [Sample:]-> import * as myModule from '/modules/my-module.js';
+            return `const ${ _vars } = require(${ _path.replace(';', '') });`;
+        });
+        code = code.replace(/import\s+([\'\"]\S+[\'\"])/img, (_match,_path) => { // [Sample:]-> import '/modules/my-module.js';
             return `require(${ _path.replace(';', '') })`;
         });
-        _code = _code.replace(/^export default\s+/igm, 'return ');
-        _code = _code.replace(/^export\s+/igm, 'return ');    
-        _code = `define(() => { "use strict"; ${ _code } });`;
-        return _code;
+        code = code.replace(/^export default\s+/igm, 'return ');
+        code = code.replace(/^export\s+/igm, 'return ');    
+        code = `define(() => { "use strict"; ${ code } });`;
+        return code;
     }
     getModuleDependencies(_file = '') {
         let modArr = [],
