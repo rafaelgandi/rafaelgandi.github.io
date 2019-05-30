@@ -2,7 +2,7 @@
     Component Module Helper 
     @author: Rafael Gandionco <www.rafaelgandi.tk>
     @version: 1.0 (vanilla js)
-    LM: 2019-05-22
+    LM: 2019-05-30
 */
 import 'ComponentModule/Polyfills';
 import comms from 'ComponentModule/comms';  
@@ -222,8 +222,9 @@ class ComponentModule {
         for (let p in _COMPONENT_IDS) {
             let tagName = p,
                 componentId = _COMPONENT_IDS[p];
-            str = str.replace(new RegExp(`<${ tagName }`, 'igm'), `<Component-x type="${ componentId }" `);    
-            str = str.replace(new RegExp(`</${ tagName }>`, 'igm'), `</Component-x>`);    
+            str = str.replace(new RegExp(`<${ tagName }>`, 'igm'), `<Component-x type="${ componentId }">`);    
+            str = str.replace(new RegExp(`<${ tagName }\\s+`, 'igm'), `<Component-x type="${ componentId }" `);    
+            str = str.replace(new RegExp(`</${ tagName }>`, 'igm'), `</Component-x>`);
         }
         return str;
     }
