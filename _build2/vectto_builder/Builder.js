@@ -16,6 +16,7 @@ class Builder {
         this.es5Out = _data.es5Out;
         this.basePath = _data.basePath;
         this.entryModule = _data.entryModule;
+        this.noFollow = _data.noFollow || [];
         this.modules = [];
         this.addModules(_modules);
         this.getModuleDependencies(this.entryFile);
@@ -29,7 +30,14 @@ class Builder {
         return `[${ date.getHours() }:${ date.getMinutes() }:${ date.getSeconds() }]`;
     }
     _makeFilename(_module) {
-        return this.basePath + _module + '.js';
+        // See: https://flaviocopes.com/how-to-check-if-file-exists-node/
+        if (fs.existsSync(this.basePath + _module + '.js')) {
+            return this.basePath + _module + '.js';
+        }
+        else { // check if in directory
+            let moduleFilename = _module.split('/').pop().trim();
+            return this.basePath + _module + '/' + moduleFilename + '.js';
+        }
     }
     addModules(_modules = []) {
         if (! _modules.length) { return this; }
@@ -71,11 +79,16 @@ class Builder {
         content = this._simpleTransformEs2015Modules(content);  // So that we can use require() to get the module paths/names
         try {
             content = stripComments(content);
-        } catch(err) {}
+        } catch(err) {
+            console.log(content);
+            throw err;
+        }
         content.replace(cjsRequireRegExp, (match, dep) => {
-            if (this.modules.indexOf(dep) == -1 && modArr.indexOf(dep) == -1) {
-                modArr.push(dep);
-            }       
+            if (this.noFollow.indexOf(dep) === -1) {
+                if (this.modules.indexOf(dep) === -1 && modArr.indexOf(dep) === -1) {
+                    modArr.push(dep);
+                }  
+            }         
         });
         if (modArr.length) {
             modArr.forEach((dep) => {
@@ -145,7 +158,9 @@ class Builder {
         console.log('\x1b[33m%s\x1b[0m', 'Babel ' + babel.version + ' Transpiled ES5: ' + this.es5Out, this.getTime());
     }
     compile() {
-        let code = this.concat();
+        let code = this.concat(),
+            modList = '\n\n/*' + this.modules.join(', ') + '*/';
+        code = code + modList;    
         jetpack.write(this.out, code);
         // See: https://stackoverflow.com/questions/9781218/how-to-change-node-jss-console-font-color
         console.log('\x1b[36m%s\x1b[0m', 'Concat ES6: ' + this.out, this.getTime()); 
