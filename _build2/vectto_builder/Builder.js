@@ -30,14 +30,7 @@ class Builder {
         return `[${ date.getHours() }:${ date.getMinutes() }:${ date.getSeconds() }]`;
     }
     _makeFilename(_module) {
-        // See: https://flaviocopes.com/how-to-check-if-file-exists-node/
-        if (fs.existsSync(this.basePath + _module + '.js')) {
-            return this.basePath + _module + '.js';
-        }
-        else { // check if in directory
-            let moduleFilename = _module.split('/').pop().trim();
-            return this.basePath + _module + '/' + moduleFilename + '.js';
-        }
+        return this.basePath + _module + '.js';
     }
     addModules(_modules = []) {
         if (! _modules.length) { return this; }
