@@ -18,7 +18,7 @@ class HeaderComponent extends cm.ComponentElement {
                     <!-- See: https://www.html5rocks.com/en/tutorials/responsive/picture-element/ -->
                     <picture>
                         <source type="image/webp" srcset="images/profile3_comp.webp">
-                        <source type="image/jpeg" srcset="images/profile3_comp_moz.jpg">
+                        <source type="image/jpeg" srcset="images/profile3_comp_moz.jpg">  
                         <img src="images/profile3_comp.jpg" alt="rafael gadionco">
                     </picture>
                 </a>				
