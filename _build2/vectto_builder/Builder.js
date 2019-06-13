@@ -109,6 +109,7 @@ class Builder {
                 code = this._simpleTransformEs2015Modules(code); // LM: 2019-05-21                
                 if (code.indexOf('@!dontReplaceDefine@') == -1) { // Identifier if you dont want define() to be modified
                     code = ';' + code.replace('define(', 'define("'+mod+'",') + ';';
+                    code = code.replace(/__CURRENT_MODULE_PATH/ig, '"' + mod + '"');
                 }  
             }                               
             try {

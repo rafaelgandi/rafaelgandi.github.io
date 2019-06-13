@@ -1,5 +1,5 @@
 "use component";
-const { cm, componentHtml } = component('raffy/ContactLinksComponent', 'div'); 
+const { cm, componentHtml } = component(__CURRENT_MODULE_PATH, 'div'); 
 class ContactLinksComponent extends cm.ComponentElement { 
     constructor(c) { 
         super(c);       

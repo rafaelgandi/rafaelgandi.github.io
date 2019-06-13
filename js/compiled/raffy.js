@@ -10,7 +10,7 @@
                     <!-- See: https://www.html5rocks.com/en/tutorials/responsive/picture-element/ -->
                     <picture>
                         <source type="image/webp" srcset="images/profile3_comp.webp">
-                        <source type="image/jpeg" srcset="images/profile3_comp_moz.jpg">
+                        <source type="image/jpeg" srcset="images/profile3_comp_moz.jpg">  
                         <img src="images/profile3_comp.jpg" alt="rafael gadionco">
                     </picture>
                 </a>				
@@ -27,8 +27,8 @@
 			<nav>
 				<ul>
 					<li><a href="${this.context.constants.routes.home}" rel="${this.context.constants.routes.home}" data-page-container-id="raffy-page-home">Me</a></li>
-					<li><a href="${this.context.constants.uri.medium}" target="_top">Blog</a></li>
-					<li><a href="${this.context.constants.uri.googlePhotosPage}" target="_top">Photography</a></li>
+					<li><a href="${this.context.constants.uri.medium}" target="_blank">Blog</a></li>
+					<li><a href="${this.context.constants.uri.googlePhotosPage}" target="_blank">Photography</a></li>
 					<li><a href="${this.context.constants.routes.projects}" rel="${this.context.constants.routes.projects}" data-page-container-id="raffy-page-projects">Web Development</a></li>
 					<li><a href="${this.context.constants.routes.contact}" rel="${this.context.constants.routes.contact}" data-page-container-id="raffy-page-contact">Contact</a></li>
 				</ul>

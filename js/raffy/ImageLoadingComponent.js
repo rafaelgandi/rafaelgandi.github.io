@@ -2,7 +2,7 @@
     Image loading placeholder component
 */
 "use component";
-const { cm, componentHtml, $, ixr, helpers } = component('raffy/ImageLoadingComponent', 'div'); 
+const { cm, componentHtml, $, ixr, helpers } = component(__CURRENT_MODULE_PATH, 'div'); 
 cm.componentStyle(componentHtml`<style>
         .@ixr(img) {
             transition: opacity 1s ease-in-out;

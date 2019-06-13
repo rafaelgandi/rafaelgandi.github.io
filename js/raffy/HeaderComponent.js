@@ -1,5 +1,5 @@
 "use component";
-const { cm, componentHtml, $, ixr, helpers } = component('raffy/HeaderComponent', 'div'); 
+const { cm, componentHtml, $, ixr, helpers } = component(__CURRENT_MODULE_PATH, 'div'); 
 class HeaderComponent extends cm.ComponentElement {  
     constructor(c) { 
         super(c);       

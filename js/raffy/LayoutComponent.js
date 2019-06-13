@@ -1,5 +1,5 @@
 "use component";
-const { cm, componentHtml, $, ixr, helpers, typeOf } = component('raffy/LayoutComponent', 'div'); 
+const { cm, componentHtml, $, ixr, helpers, typeOf } = component(__CURRENT_MODULE_PATH, 'div'); 
 const cssLoaded = cm.componentStyleFrom('/js/raffy/styles/raffy.css');                     
 
 import HeaderComponent from 'raffy/HeaderComponent';  

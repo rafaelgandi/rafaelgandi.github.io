@@ -1,5 +1,5 @@
 "use component";
-const { cm, componentHtml, $, ixr, helpers, typeOf } = component('raffy/ListComponent', 'div'); 
+const { cm, componentHtml, $, ixr, helpers, typeOf } = component(__CURRENT_MODULE_PATH, 'div'); 
 import ImageLoadingComponent from 'raffy/ImageLoadingComponent';
 class ListComponent extends cm.ComponentElement { 
     constructor(c) { 

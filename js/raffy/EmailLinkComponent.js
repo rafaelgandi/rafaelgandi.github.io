@@ -1,5 +1,5 @@
 "use component";
-const { cm, componentHtml, $, ixr, helpers, typeOf } = component('raffy/EmailLinkComponent', 'div'); 
+const { cm, componentHtml, $, ixr, helpers, typeOf } = component(__CURRENT_MODULE_PATH, 'div'); 
 class EmailLinkComponent extends cm.ComponentElement { 
     constructor(c) { 
         super(c);       
