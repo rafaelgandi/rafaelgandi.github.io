@@ -241,9 +241,9 @@ class ComponentModule {
         _css = _css.replace(/@ixr\s*\(\s*([^'"\s]+)\s*\)/g, (match, ixrStr) => { // for normal css file use @ixr(<string>)
             return this.ixr(ixrStr.trim());
         });  
-        _css = _css.replace(/__ixr\s*\[\s*([^'"\s\)]+)\s*\]/g, (match, ixrStr) => { // for sass files use __ixr[<string>]
+        _css = _css.replace(/__ixr\s*\[\s*([^'"\s\]]+)\s*\]/g, (match, ixrStr) => { // for sass files use __ixr[<string>]
             return this.ixr(ixrStr.trim());
-        });  
+        }); 
         _css = _css
         .replace(/<style>/ig, '')
         .replace(/<\/style>/ig, '')  
