@@ -324,6 +324,13 @@ class ComponentModule {
         _context = _context || document.getElementsByTagName('body')[0];
         return _context.querySelectorAll(`[data-component-type="${ this.moduleId }"]`);
     }
+    _normalizeTypeName(type = '') {
+        let dirtyType = helpers.typeOf(type);
+        if (dirtyType.indexOf('element') !== -1) { return 'dom'; }
+        if (dirtyType == 'numeric') { return 'number'; }
+        if (dirtyType == 'bool') { return 'boolean'; }
+        return dirtyType;
+    }
     createComponent(_componentClass, _containerElementTag) {
         let _doCreation = () => {
             let $containerElement = null;
@@ -366,8 +373,10 @@ class ComponentModule {
                                 if (helpers.typeOf(propTypeMap[prop]) !== 'array') {
                                     propTypeMap[prop] = [propTypeMap[prop]];
                                 }
-                                if (propTypeMap[prop].indexOf(helpers.typeOf(p)) == -1) {
-                                    throw `[PROP TYPE ERROR] Component property "${ prop }" is expecting "${ propTypeMap[prop].join(' or ') }" but is assigned "${ helpers.typeOf(p) }" on component "${ this.moduleId }"`;
+                                if (propTypeMap[prop].indexOf('any') == -1) {
+                                    if (propTypeMap[prop].indexOf(this._normalizeTypeName(p)) == -1) {
+                                        throw `[PROP TYPE ERROR] Component property "${ prop }" is expecting "${ propTypeMap[prop].join(' or ') }" but is assigned "${ helpers.typeOf(p) }" with value:(${ p }) on component "${ this.moduleId }"`;
+                                    }    
                                 }                                
                             }    
                         }
