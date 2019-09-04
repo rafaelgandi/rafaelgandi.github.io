@@ -8,6 +8,7 @@ export default class EmailLinkComponent extends cm.ComponentElement {
     render() {  
         let $temp = document.createElement('div');
         $temp.innerHTML = this.decodeEmail();
+        // See: https://mrfrontend.org/2017/10/2-ways-get-child-elements-javascript/
         return (
             <div data-component-type={__CURRENT_MODULE_PATH} id="raffy-email-container">
                 { $temp.children[0] }
