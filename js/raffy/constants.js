@@ -1,4 +1,4 @@
-export ({
+export default ({
     uri: {
         instagram: 'https://www.instagram.com/rafaelgandi/',
         facebook: 'https://www.facebook.com/rafaelgandi',

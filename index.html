@@ -28,16 +28,16 @@
 	})();
 	(function () { // AMD Shiv
 		let modules = {};
-		window.define = function (modulePath, factory) { modules[modulePath] = factory(modulePath); };
 		window.require = function (modulePath) { return modules[modulePath]; };
+		window.define = function (modulePath, factory) { modules[modulePath] = factory(window.require); };		
 	})();
 	</script>		
 </head>
 <body>
-	<Component-x type="raffy/LayoutComponent"></Component-x>
+	<div id="placeholder-raffy-layout-component">Loading...</div>
 	<!-- See: https://www.sitepoint.com/using-es-modules/ -->
 	<!-- See: https://jakearchibald.com/2017/es-modules-in-browsers/ -->
-	<script type="module" src="/js/compiled/raffy.js?20190628"></script>
-	<script nomodule src="/js/compiled/es5/raffy.js?20190628"></script>
+	<script type="module" src="/js/compiled/raffy.js?20190904"></script>
+	<script nomodule src="/js/compiled/es5/raffy.js?20190904"></script>
 </body>
 </html>

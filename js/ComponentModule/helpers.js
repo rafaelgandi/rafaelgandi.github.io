@@ -51,6 +51,21 @@ export ({
 			// See: https://clubmate.fi/append-and-prepend-elements-with-pure-javascript/
 			return _element.insertBefore(_prependThis, _element.firstChild);
 		},
+		empty: (_element) => {
+			while (_element.firstChild) {
+				 _element.removeChild(_element.firstChild)
+			}
+		},
+		replaceWith: (_oldElement, _newElement) => {
+	        // See: https://usefulangle.com/post/82/pure-javascript-replace-element
+	        if (! Element.prototype.replaceWith && typeof _newElement == 'object') { // For old browers
+	            let parent = _oldElement.parentNode;
+	            parent.replaceChild(_newElement, _oldElement);
+	        }
+	        else {
+	            _oldElement.replaceWith(_newElement);
+	        }            
+	    },
 		data: (_element, _key, _value = null) => {
 			// See: https://blog.garstasio.com/you-dont-need-jquery/utils/#associate-data-with-an-html-element
 			if (! weakMap.get(_element)) { weakMap.set(_element, {}); }

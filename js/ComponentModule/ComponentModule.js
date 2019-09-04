@@ -1,105 +1,41 @@
 /*
     Component Module Helper 
     @author: Rafael Gandionco <www.rafaelgandi.tk>
-    @version: 1.0 (vanilla js)
-    LM: 2019-05-30
+    @version: 2.0 (vanilla js)
+    LM: 2019-09-04
 */
 import 'ComponentModule/Polyfills';
 import comms from 'ComponentModule/comms';  
 import helpers from 'ComponentModule/helpers';    
 import eventNames from 'ComponentModule/eventNames';    
 import 'ComponentModule/runwhen';  
-let _componentHtmlFunctions = {},
-    _componentHtmlObj = {},
-    funcKey = '%FUNC_Cholo%',
-    objKey = '%OBJ_Cholo%';   
-window._COMPONENT_IDS = window._COMPONENT_IDS || {};     
+import jsxToDom from '/ComponentModule/jsxToDom';
+let _componentSyntheticEventHandlers = {},
+    funcKey = '%FUNC_Cholo%';   
 // Babel cant support extending es6 native class syntax thats why we are 
 // using es5 style class syntax here because this class is meant to be
 // extended.
 // See: https://github.com/babel/babel/issues/4269 
-function ComponentElement($componentElem) {
-    let that = this;
-    this._$compElem = $componentElem;
-    this._propsCache = {};
+function ComponentElement() {
     this.context = {};
-    // See: https://ponyfoo.com/articles/es6-proxies-in-depth  
-    if (typeof Proxy !== 'undefined') {
-        this.props = new Proxy({}, {
-            get(target, key) {                                                 
-                return that.getProps(key);    
-            },
-            set(target, key, value) {
-                console.warn(`Warning! ${ key } is a readonly props value and should not be assigned "${ value }"`);
-                return true;
-            }
-        });
-    }
     this.state = {};     
     this.helpers = helpers;                       
-    this.runwhen = runwhen;              
-    // LM: 2018-10-09 [ Get any context data passed by parent component ] //
-    if (this._$compElem.closest('[data-component-hasContext]')) {
-        let $parent = this._$compElem.closest('[data-component-hasContext]');
-        this.context = Object.assign(this.context, this.helpers.dom.data($parent, '_componentContextData_'));
-    }               
+    this.runwhen = runwhen;                       
 }
-ComponentElement.prototype.getProps = function (_attr) {   
-    let that = this;
-    if (typeof this._propsCache[_attr] == 'undefined') {                       
-        this._propsCache[_attr] = (() => {
-            if (typeof that._$compElem.getAttribute(_attr) !== 'undefined') {
-                let prop = that._$compElem.getAttribute(_attr);
-                if (! prop) {
-                    return undefined;
-                }
-                if (prop.toLowerCase().trim() == 'false') { // Check if boolean
-                    prop = false;
-                }  
-                else if (prop.toLowerCase().trim() == 'true') { // Check if boolean
-                    prop = true;
-                } 
-                else if (prop.indexOf(funcKey) !== -1) { // Check if function
-                    if (typeof _componentHtmlFunctions[prop] !== 'undefined') {
-                        prop = _componentHtmlFunctions[prop];
-                        delete _componentHtmlFunctions[prop];
-                    }                        
-                }  
-                else if (prop.indexOf(objKey) !== -1) { // Check if object
-                    if (typeof _componentHtmlObj[prop] !== 'undefined') {
-                        prop = _componentHtmlObj[prop];
-                        delete _componentHtmlObj[prop];
-                    }                        
-                }  
-                else if (/^[0-9\.]+$/.test(prop)) { // Check if is a number. See: https://stackoverflow.com/questions/1779013/check-if-string-contains-only-digits/1779019
-                    return parseFloat(prop);
-                } 
-                return prop;      
-            }
-            else { 
-                if (_attr == 'classNames') {
-                    return '';
-                }                   
-                return undefined;
-            }
-        })();
-    }                                         
-    return this._propsCache[_attr];
-};
 ComponentElement.prototype.setState = function (_name, _value) {
-    if (typeof _name == 'object') {
+    if (typeof _name === 'object') {
         let calledStateProps = [];
         for (let p in _name) {
             this.state[p] = _name[p];  
             calledStateProps.push(p);
         }
-        if (typeof this.onStateChange == 'function') { 
+        if (typeof this.onStateChange === 'function') { 
             this.onStateChange(calledStateProps);
         }       
     }
     else {
         this.state[_name] = _value;
-        if (typeof this.onStateChange == 'function') {
+        if (typeof this.onStateChange === 'function') {
             this.onStateChange([_name]);
         }    
     }
@@ -116,9 +52,6 @@ ComponentElement.prototype.isIn = function (_arrayNeedle, _arrayHaystack) {
     }
     return false;
 };
-ComponentElement.prototype.getParentComponentElements = function (_moduleId) {
-    return this.$element.closest(`[data-component-type="${ _moduleId }"]`);
-};
 ComponentElement.prototype.getChildComponentElements = function (_moduleId) {
     return this.$element.querySelectorAll(`[data-component-type="${ _moduleId }"]`);
 };
@@ -128,7 +61,7 @@ ComponentElement.prototype.setContextData = function (_data = {}) {
 };
 //  LM: 2019-04-25
 // Synthetic events //
-ComponentElement.prototype._processSyntheticEvents = function (_moduleId) {
+ComponentElement.prototype.processSyntheticEvents = function (_moduleId) {
     if (this.$element) {
         eventNames.forEach((eventName) => {
             helpers.on(this.$element, eventName, `[data-cm-hasEvent="true"][data-cm-event-parentComp="${ _moduleId }"]`, (e) => {
@@ -141,8 +74,8 @@ ComponentElement.prototype._processSyntheticEvents = function (_moduleId) {
                     attrFuncKey = $me.getAttribute(`data-cm-event-${ eventType }`);
                     if (!! attrFuncKey) {
                         $me.removeAttribute(`data-cm-event-${ eventType }`);
-                        helpers.dom.data($me, `syntheticEventHandler-${ eventType }`,  _componentHtmlFunctions[attrFuncKey]);                     
-                        delete _componentHtmlFunctions[attrFuncKey];
+                        helpers.dom.data($me, `syntheticEventHandler-${ eventType }`,  _componentSyntheticEventHandlers[attrFuncKey]);                     
+                        delete _componentSyntheticEventHandlers[attrFuncKey];
                         eventHandler = helpers.dom.data($me, `syntheticEventHandler-${ eventType }`);
                         return eventHandler(e);
                     }         
@@ -175,13 +108,8 @@ class ComponentModule {
         this.moduleId = _moduleId.trim(); 
         this.ComponentElement = ComponentElement; 
         this.Store = Store; 
+        this.jsxToDom = jsxToDom;
         this.$head = document.head || document.getElementsByTagName('head')[0];
-        let componentTagName = this._makeIntoTagName(this.moduleId);
-        // Check if there are component tag name collisions here //
-        if (helpers.typeOf(_COMPONENT_IDS[componentTagName]) !== 'undefined') {
-            throw `"${ this.moduleId }" cannot use <${ componentTagName }/> component tag name as it is already used by "${ _COMPONENT_IDS[componentTagName] }"`;
-        }
-        _COMPONENT_IDS[componentTagName] = this.moduleId;
     }
     tagTemplateHtml(_strings, ..._values) {
         // See: http://wesbos.com/tagged-template-literals/
@@ -191,45 +119,8 @@ class ComponentModule {
         });
         return str;
     }
-    componentHtml(_strings, ..._values) {
-        // See: http://wesbos.com/tagged-template-literals/
-        let str = '';
-        _strings.forEach((string, i) => {
-            if (typeof _values[i] == 'function') {
-                let key = funcKey + '_' + Math.random().toString(36).substr(2, 9) + (new Date()).getTime(); 
-                _componentHtmlFunctions[key] = _values[i];
-                _values[i] = key;                    
-            }
-            else if (typeof _values[i] == 'object') {
-                let key = objKey + '_' + Math.random().toString(36).substr(2, 9) + (new Date()).getTime(); 
-                _componentHtmlObj[key] = _values[i];                
-                _values[i] = key;
-            }
-            else if (typeof _values[i] == 'boolean') {
-                _values[i] = _values[i].toString();
-            }
-            // Make sure to convert into string on printing out to the browser //
-            try {
-                _values[i] = _values[i].toString();
-            } catch (err) {}
-            str += string + (_values[i] || '');            
-        });
-        // Handle synthetic events //
-        str = str.replace(/_on([A-Z][a-zA-Z]+)=/igm, (match, eventName) => {
-            return `data-cm-hasEvent="true" data-cm-event-parentComp="${ this.moduleId }" data-cm-event-${ eventName.toLowerCase() }=`;
-        });
-        // Replace component tag names //
-        for (let p in _COMPONENT_IDS) {
-            let tagName = p,
-                componentId = _COMPONENT_IDS[p];
-            str = str.replace(new RegExp(`<${ tagName }>`, 'igm'), `<Component-x type="${ componentId }">`);    
-            str = str.replace(new RegExp(`<${ tagName }\\s+`, 'igm'), `<Component-x type="${ componentId }" `);    
-            str = str.replace(new RegExp(`</${ tagName }>`, 'igm'), `</Component-x>`);
-        }
-        return str;
-    }
     ixr(_name) {
-        var mod = this.moduleId.replace(/\//ig, '_');
+        let mod = this.moduleId.replace(/\//ig, '_');
         return mod + '8__' + _name + '__8';
     }
     componentStyle(_css) {
@@ -268,33 +159,12 @@ class ComponentModule {
         _callback && _callback();
         return css;
     }
-    parentSelector(_parentSelector, _childrenCss = '') {            
-        return _childrenCss.replace(/__PARENT__/ig, _parentSelector);
-    }
-    _makeIntoTagName(_componentId) {
-        let basename = _componentId.trim().split('/').pop();
-        return basename;
-    }
     getEssentialModules() {
-        const that = this;
-        return { helpers, comms, runwhen, componentHtml: that.componentHtml };
-    }
-    iterateComponentTag(_callback) {
-        let $components = document.querySelectorAll(`Component-x[type="${ this.moduleId }"]`);        
-        if (! $components.length) { return; } 
-        $components.forEach((elem) => {
-            // LM: 2017-10-19
-            // We only render top level(parent) components, its up to the component 
-            // themselves to manually render any child components. 
-            let $closest = elem.closest('Component-x');
-            if (! $closest || $closest === elem) {
-                _callback(elem);
-            }	
-        });
+        return { helpers, comms, runwhen, componentHtml: this.tagTemplateHtml, html:  this.tagTemplateHtml };
     }
     elementReplaceWith(_oldElement, _newElement) {
         // See: https://usefulangle.com/post/82/pure-javascript-replace-element
-        if (! Element.prototype.replaceWith && typeof _newElement == 'object') { // For old browers
+        if (! Element.prototype.replaceWith && typeof _newElement === 'object') { // For old browers
             let parent = _oldElement.parentNode;
             parent.replaceChild(_newElement, _oldElement);
         }
@@ -311,8 +181,8 @@ class ComponentModule {
             try {
                 return Object.keys(_obj).length === 0 && _obj.constructor === Object;
             } catch (err2) {
-                for(var prop in _obj) {
-                    if(_obj.hasOwnProperty(prop)) {
+                for (let prop in _obj) {
+                    if (_obj.hasOwnProperty(prop)) {
                         return false;
                     }                            
                 }
@@ -324,76 +194,115 @@ class ComponentModule {
         _context = _context || document.getElementsByTagName('body')[0];
         return _context.querySelectorAll(`[data-component-type="${ this.moduleId }"]`);
     }
-    _normalizeTypeName(type = '') {
-        let dirtyType = helpers.typeOf(type);
-        if (dirtyType.indexOf('element') !== -1) { return 'dom'; }
-        if (dirtyType == 'numeric') { return 'number'; }
-        if (dirtyType == 'bool') { return 'boolean'; }
-        return dirtyType;
+    _normalizeComponentPropertyTypes(props) {
+        for (let p in props) {
+            if (props.hasOwnProperty(p)) {
+                if (props[p] === 'false') {
+                    props[p] = false;
+                }
+                else if (props[p] === 'true') {
+                    props[p] = true;
+                }
+                else if (/^[0-9\.]+$/.test(props[p])) {
+                    props[p] = parseFloat(props[p]);
+                }
+            }
+        }
+        return props;
     }
-    createComponent(_componentClass, _containerElementTag) {
-        let _doCreation = () => {
-            let $containerElement = null;
-            this.iterateComponentTag(($tag) => {
-                let comp = new _componentClass($tag),
-                    markUp = '';                       
-                comp.$element = document.createElement(_containerElementTag);    
-                comp.$element.cm = comp;         
-                if (typeof comp.render !== 'undefined') {  // Check if render() function is available                     
-                    markUp = comp.render(comp.$element, true);       
-                }                      
-                comp.$element.innerHTML = markUp;
-                comp.$element.setAttribute('data-component-type', $tag.getAttribute('type'));
-                // LM: 2018-10-09 [ Set any context data found ]
-                if (! this.isEmptyObject(comp.context)) {                        
-                    helpers.dom.data(comp.$element, '_componentContextData_', comp.context);
-                    comp.$element.setAttribute('data-component-hasContext', true);
-                }         
-                this.elementReplaceWith($tag, comp.$element);                                 
-                if (typeof comp.onAfterInitialRender !== 'undefined') {
-                    comp.onAfterInitialRender(comp.$element);                        
-                }             
-                // See: https://stackoverflow.com/questions/1988514/javascript-css-how-to-add-and-remove-multiple-css-classes-to-an-element                                        
-                if (comp.getProps('classNames')) {
-                    comp.$element.classList.add(...comp.getProps('classNames').trim().split(/\s+/));
+    cholo(tag, props, ...children) {
+        if (helpers.typeOf(tag) !== 'string') { 
+            const comp = new tag(children, props);            
+            if (!! props) {
+                if ('context' in props) {
+                    comp.context = Object.assign(comp.context, props.context);
                 }
-                // Setup synthetic events for component here //
-                comp._processSyntheticEvents(this.moduleId); 
-                if (typeof comp.events !== 'undefined') {
-                    comp.events();
+                props = this._normalizeComponentPropertyTypes(props);
+            }
+            comp.props = props;
+            comp.children = children;
+            comp.$element = comp.render();
+            if (!! props && ('ref' in props) && helpers.typeOf(props.ref) === 'function') {
+                props.ref(comp.$element);
+            }
+            comp.$element.cm = comp;
+            comp.$element.setAttribute('data-from-jsx', 'true');
+            comp.$element.setAttribute('data-not-in-dom-yet', 'true');
+            if (! this.isEmptyObject(comp.context)) {
+                comp.$element.setAttribute('data-component-hasContext', true);	
+            }            
+            if (!! props) {
+                if (helpers.typeOf(props.classNames) !== 'undefined') {
+                    comp.$element.classList.add(props.classNames);
                 }
-                // LM: 2019-01-16 [Type checking added to component properties]
-                // NOTE: Type checking is done last and is inside a rAF function to make it async and more performant.
-                requestAnimationFrame(() => {
-                    if (helpers.typeOf(comp.propTypes) == 'function') {
-                        let propTypeMap = comp.propTypes();
-                        for (let prop in propTypeMap) {
-                            let p = comp.getProps(prop);
-                            if (helpers.typeOf(p) !== 'undefined') {
-                                if (helpers.typeOf(propTypeMap[prop]) !== 'array') {
-                                    propTypeMap[prop] = [propTypeMap[prop]];
-                                }
-                                if (propTypeMap[prop].indexOf('any') == -1) {
-                                    if (propTypeMap[prop].indexOf(this._normalizeTypeName(p)) == -1) {
-                                        throw `[PROP TYPE ERROR] Component property "${ prop }" is expecting "${ propTypeMap[prop].join(' or ') }" but is assigned "${ helpers.typeOf(p) }" with value:(${ p }) on component "${ this.moduleId }"`;
-                                    }    
-                                }                                
-                            }    
+                if (helpers.typeOf(props.className) !== 'undefined') {
+                    comp.$element.classList.add(props.className);
+                }
+            }
+            return comp.$element;
+        }
+        else { // regular html tags will be strings to create the elements
+            // fragments to append multiple children to the initial node
+            const fragments = document.createDocumentFragment();
+            const element = document.createElement(tag);
+            children.forEach(function handleAppends(child) {
+                if (child instanceof HTMLElement) { 
+                    fragments.appendChild(child);
+                } 
+                else if (helpers.typeOf(child) === 'string' || helpers.typeOf(child) === 'number'){
+                    const textnode = document.createTextNode(child);
+                    fragments.appendChild(textnode);
+                }
+                else if (child instanceof Array) {
+                    child.forEach(handleAppends);
+                }
+                // For text nodes
+                // See: https://stackoverflow.com/questions/24971177/javascript-check-if-child-node-is-element-or-text-node
+                // See: https://developer.mozilla.org/en-US/docs/Web/API/Node/nodeType
+                else if (typeof child === 'object' && ('nodeType' in child) && child.nodeType === Node.TEXT_NODE) {
+                    fragments.appendChild(child);
+                }
+            });
+            element.appendChild(fragments);        
+            for (let p in props) {
+                // Handle synthetic event properties //
+                if (p.indexOf('_on') !== -1) {
+                    p.replace(/_on([A-Z][a-zA-Z]+)/igm, (match, eventName) => {
+                        element.setAttribute('data-cm-hasEvent', true);
+                        element.setAttribute('data-cm-event-parentComp', this.moduleId);
+                        let key = funcKey + '_' + Math.random().toString(36).substr(2, 9) + (new Date()).getTime(); 
+                        if (helpers.typeOf(props[p]) === 'function') {
+                            _componentSyntheticEventHandlers[key] = props[p];
+                        }                        
+                        element.setAttribute('data-cm-event-' + eventName.toLowerCase(), key);
+                    });                
+                }
+                else {
+					if (p === 'defaultChecked') { // Special cases for input checkbox. 
+						element.checked = props[p];
+					}
+					else if (p === 'defaultSelected') { // Special cases for input radio.
+						element.selected = props[p];
+					}
+                    else if (p === 'className') { // If passing className instead of class
+						element.className = props[p];
+					}
+                    else if (p === 'htmlFor') { // If passing htmlFor instead of for on labels
+						element.htmlFor = props[p];
+					}
+                    else if (p === 'ref') { // For the special "ref" property to get a reference to this element
+                        if (helpers.typeOf(props[p]) === 'function') {
+                            props[p](element);
                         }
                     }
-                });                   
-            });
-        }
-        _doCreation();
-        return {
-            getComponentElements: (_context = null) => this.getComponentElements(_context),
-            getModuleId: () => this.moduleId,
-            renderAllComponents: (_context = null) => {
-                _doCreation();
-                let $elements = this.getComponentElements(_context);
-                return ($elements.length === 1) ? $elements[0] : $elements;
+					else {
+						// Merge element with attributes
+						element.setAttribute(p, props[p]);
+					}                   
+                }
             }
-        }; 
-    }    
+            return element;
+        }
+    }   
 }
-export ComponentModule;
+export default ComponentModule;

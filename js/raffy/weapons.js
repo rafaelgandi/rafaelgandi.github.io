@@ -1,4 +1,4 @@
-export [
+export default [
     {
         'link': 'https://developer.mozilla.org/en-US/docs/Web/JavaScript',
         'image': 'images/weapons/javascript.svg',
@@ -46,17 +46,5 @@ export [
         'image': 'images/weapons/phonegap.svg',
         'desc': 'Phonegap',
         'header': 'Phonegap'
-    },
-    {
-        'link': 'http://jquery.com',
-        'image': 'images/weapons/jquery.svg',
-        'desc': 'jQuery',
-        'header': 'jQuery'
-    },
-    {
-        'link': 'http://requirejs.org/',
-        'image': 'images/weapons/requirejs.svg',
-        'desc': 'Require.js module loader',
-        'header': 'Require JS'
     }
 ];

@@ -1,5 +1,5 @@
 import ComponentModule from 'ComponentModule/ComponentModule';
-export function (_modId) {
+export default function (_modId) {
     let _cm = new ComponentModule(_modId),
         essentials = _cm.getEssentialModules();            
     return {
@@ -8,9 +8,9 @@ export function (_modId) {
         helpers: essentials.helpers, 
         comms: essentials.comms, 
         runwhen: essentials.runwhen, 
-        componentHtml: essentials.componentHtml.bind(_cm), 
+        componentHtml: essentials.html, 
         ixr: (_val) => _cm.ixr(_val),
         pint: essentials.helpers.pint,
         typeOf: essentials.helpers.typeOf
     };    
-};
+}

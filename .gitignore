@@ -7,3 +7,4 @@ composer.lock
 .phpintel
 /nbproject
 /laradock
+/~_build2

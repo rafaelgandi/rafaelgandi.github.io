@@ -1,4 +1,4 @@
-export [
+export default [
     {
         "header" : "Wasabi Artisan",
         "desc" : "<strong>Wasabi Artisan</strong>", 

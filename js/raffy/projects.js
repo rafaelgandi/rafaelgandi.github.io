@@ -1,4 +1,4 @@
-export [
+export default [
     {
         "header" : "Jack London Studios",
         "link" : "http://www.jacklondonstudios.ca",
