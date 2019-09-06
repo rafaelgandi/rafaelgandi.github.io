@@ -2,7 +2,7 @@
     Component Module Helper 
     @author: Rafael Gandionco <www.rafaelgandi.tk>
     @version: 2.0 (vanilla js)
-    LM: 2019-09-04
+    LM: 2019-09-06
 */
 import 'ComponentModule/Polyfills';
 import comms from 'ComponentModule/comms';  
@@ -245,13 +245,19 @@ class ComponentModule {
             // fragments to append multiple children to the initial node
             const fragments = document.createDocumentFragment();
             const element = document.createElement(tag);
-            children.forEach(function handleAppends(child) {
+            children.forEach(function handleAppends(child) {            
                 if (child instanceof HTMLElement) { 
                     fragments.appendChild(child);
                 } 
                 else if (helpers.typeOf(child) === 'string' || helpers.typeOf(child) === 'number'){
                     const textnode = document.createTextNode(child);
                     fragments.appendChild(textnode);
+                }
+                else if (NodeList.prototype.isPrototypeOf(child)) { // See: https://stackoverflow.com/a/36857902
+                    // Convert NodeList to Array 
+                    // See: https://gomakethings.com/converting-a-nodelist-to-an-array-with-vanilla-javascript/
+                    child = Array.prototype.slice.call(child);
+                    child.forEach(handleAppends);
                 }
                 else if (child instanceof Array) {
                     child.forEach(handleAppends);
