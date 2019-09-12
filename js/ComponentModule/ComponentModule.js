@@ -120,7 +120,7 @@ class ComponentModule {
         return str;
     }
     ixr(_name) {
-        let mod = this.moduleId.replace(/\//ig, '_');
+        let mod = this.moduleId.replace(/\//ig, '_').replace(/\./ig, '_');
         return mod + '8__' + _name + '__8';
     }
     componentStyle(_css) {
