@@ -1,5 +1,6 @@
 
 // See: https://rollupjs.org/guide/en/#plugins-overview
+// See: https://github.com/rollup/awesome
 // Samples: https://github.com/GoogleChromeLabs/proxx/tree/master/lib
 module.exports = function (options) {
     return {
@@ -14,9 +15,9 @@ module.exports = function (options) {
             
         },
         transform: function (code, id) {
-            console.log('===========================');
-            console.log(id)
-            console.log(code)
+            // console.log('===========================');
+            // console.log(id)
+            // console.log(code)
             return code.replace('___COMP', "'hoooooo'");
         }
     };

@@ -2,6 +2,7 @@ const rollup = require('rollup');
 const rimraf = require('rimraf');
 const babel = require('rollup-plugin-babel');
 const includePaths = require('rollup-plugin-includepaths');
+const iife = require('rollup-plugin-iife');
 const simpleBuildPlugin = require('./my-plugins/simpleBuildPlugin');
  
 
@@ -30,6 +31,8 @@ const inputOptions = {
         includePaths({
             paths: ['../testb/src']
         }),
+        // See: https://github.com/eight04/rollup-plugin-iife
+        iife(),
         simpleBuildPlugin()
     ]
 };
@@ -39,7 +42,7 @@ const outputOptions = {
     // See: https://rollupjs.org/guide/en/#outputentryfilenames
     entryFileNames: '[name]-[format].js',
     // See: https://rollupjs.org/guide/en/#outputformat
-    format: 'cjs' 
+    format: 'esm' 
 };
 
 const watchOptions = {
@@ -56,6 +59,7 @@ const watcher = rollup.watch(watchOptions);
 console.log('Watching...');
 watcher.on('event', (e) => {
     //console.log(e);
+    console.log(new Date());
 });
 
 
