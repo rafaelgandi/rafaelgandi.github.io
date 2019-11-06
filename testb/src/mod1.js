@@ -3,5 +3,5 @@ export function func1() {
 }
 
 export function func2() {
-    return 'func2'
+    return 'func2  !';
 }

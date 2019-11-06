@@ -9,6 +9,8 @@
     </head>
 
     <body>
-        <script src="dest/index-esm.js"></script>
+        <!-- See: https://github.com/rollup/rollup-starter-code-splitting -->
+        <script src="src/system.2.0.0.s.min.js"></script>
+        <script>System.import('./dest/index-system.js');</script>
     </body>
 </html>
