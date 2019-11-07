@@ -4,8 +4,11 @@ import { func1 } from 'mod1';
 
 export default function () {
     console.log(func1());  
+    
+    let x = "asdfsdafsadfd_____safdsafads";  
+    
     return (
-        <div className="hehehe" num={ 0 } onHey={ () => 1}>
+        <div className="hehehe" num={ 0 } onHey={ () => 1} bar={ x }>
         heyy <span>fooo</span>
         </div>
     );

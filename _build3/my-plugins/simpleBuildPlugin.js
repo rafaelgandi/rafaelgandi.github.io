@@ -10,15 +10,17 @@ module.exports = function (options) {
             return null;
         },
         renderChunk: function (code, chunk, options) {
-            //console.log('===========================');
-            //console.log(chunk.facadeModuleId);
+            // console.log('===========================');
+            // console.log(chunk.facadeModuleId);
             
         },
         transform: function (code, id) {
+            
+        },
+        load(id, code) {
             // console.log('===========================');
             // console.log(id)
-            // console.log(code)
-            return code.replace('___COMP', "'hoooooo'");
+            // console.log('===========================');
         }
     };
 };

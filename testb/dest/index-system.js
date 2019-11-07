@@ -1,16 +1,2 @@
-System.register([], function (exports, module) {
-    'use strict';
-    return {
-        execute: function () {
-
-            exports('food', food);
-
-            function func1(){return "func1"}
-
-            var mod2 = "module 2 here!";
-
-            var bar= exports('bar',1);function food(){console.log('hoooooo');}console.log(func1());console.log(mod2);console.log(2222);module.import('./foo-77e17db4.js').then(function(foo){console.log(foo);});
-
-        }
-    };
-});
+System.register(["@babel/runtime/regenerator","@babel/runtime/helpers/asyncToGenerator"],function(e,n){"use strict";var t,o;return{setters:[function(e){t=e.default},function(e){o=e.default}],execute:function(){e("food",function(){console.log("food")});e("bar",1);console.log("func1"),console.log("module 2 here!"),console.log("testb/src/index")(o(t.mark(function e(){var o;return t.wrap(function(e){for(;;)switch(e.prev=e.next){case 0:return e.next=2,n.import("./foo-77e17db4.js");case 2:o=e.sent,console.log(o);case 4:case"end":return e.stop()}},e)})))()}}});
+//# sourceMappingURL=index-system.js.map
