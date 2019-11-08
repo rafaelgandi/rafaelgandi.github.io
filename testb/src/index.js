@@ -12,13 +12,15 @@ export function food () {
   
 }
 
-console.log(func1());
-//console.log(foo);
-console.log(mod2);// hrhrhr
+console.log((() => 'HOHOHOHOHO')() );
 
-console.log(__CURRENT_MODULE_PATH)
+console.log(func1() + ' 0000 ');
+//console.log(foo);
+console.log(mod2);// hrhrhr  
+
+console.log(__CURRENT_MODULE_PATH);         
 
 (async () => {
-    let foo = await import('foo.js');
+    let foo = await import('foo.js'); // -->
     console.log(foo);
 })();

@@ -3,12 +3,19 @@ const rimraf = require('rimraf');
 const chalk = require('chalk'); // See: https://www.npmjs.com/package/chalk
 const babel = require('rollup-plugin-babel');
 const includePaths = require('rollup-plugin-includepaths');
-const resolve = require('rollup-plugin-node-resolve'); // See: https://github.com/rollup/rollup-plugin-node-resolve
+const nodeResolve = require('rollup-plugin-node-resolve'); // See: https://github.com/rollup/rollup-plugin-node-resolve
 const scss = require('rollup-plugin-scss'); // See: https://github.com/thgh/rollup-plugin-scss
 const { uglify } = require('rollup-plugin-uglify'); // See: https://github.com/TrySound/rollup-plugin-uglify
 const replace = require('rollup-plugin-replace');
+const commonjs = require('rollup-plugin-commonjs');
+const fs = require('fs');
+const jetpack = require('fs-jetpack'); // See: https://github.com/szwacz/fs-jetpack#writepath-data-options
 const simpleBuildPlugin = require('./my-plugins/simpleBuildPlugin');
 const getCurrentFile = require('./my-plugins/get-current-file');
+const addBabelPolyfillToBundle = require('./my-plugins/add-babel-polyfill-to-bundle');
+
+
+const asyncAwait = require('rollup-plugin-async');
 
 const OPTIONS = {
     inputFiles: [
@@ -16,7 +23,7 @@ const OPTIONS = {
         '../testb/src/index2.js'
     ],
     outputDir: '../testb/dest/',
-    basePaths: ['../testb/src']
+    basePaths: ['../testb/src/']
 };
 rimraf.sync(OPTIONS.outputDir);
 
@@ -25,42 +32,60 @@ function _getTime() {
     return `[${ date.getHours() }:${ date.getMinutes() }:${ date.getSeconds() }]`;
 }
 
+function _getFileSize(file) {
+    let bytes = fs.statSync(file).size;
+    return `[${ Math.ceil(bytes/1024) }kb]`;
+}
+
 async function bundle(inputFile) {
     const inputOptions = {
         input:inputFile,
         // See: https://rollupjs.org/guide/en/#plugins-overview
         plugins:[
+            nodeResolve(),
             babel({
-                presets: ['@babel/preset-env'],
+                presets: [
+                    ['@babel/preset-env', {
+                        //"useBuiltIns": "usage"
+                    }]
+                ],
                 plugins: [
-                    '@babel/plugin-transform-async-to-generator',
+                    '@babel/plugin-transform-async-to-generator', // Not using the babel-plugin-transform-runtime for many reasons. See: https://babeljs.io/docs/en/babel-plugin-transform-runtime
                     '@babel/plugin-syntax-jsx',
                     ['@babel/plugin-transform-react-jsx', { 'pragma': 'cm.cholo' }]
                 ],
-                runtimeHelpers: true,
                 minified: true,
                 comments: false
             }),
+            commonjs({
+                include: OPTIONS.basePaths.map((bPath) => bPath + 'node_modules/**')
+            }),
+            asyncAwait(),
+            // Needed to make async/await feature work. //
+            // See: https://babeljs.io/docs/en/babel-polyfill#usage-in-browser  
+            addBabelPolyfillToBundle(),      
             // This is where you set you base paths
             // See: https://www.npmjs.com/package/rollup-plugin-includepaths
             includePaths({
                 paths: OPTIONS.basePaths
-            }),
-            resolve(),
+            }), 
             scss({
                 output: OPTIONS.outputDir + 'css/bundle.css'
-            }),
+            }),           
             simpleBuildPlugin(),
-            getCurrentFile(OPTIONS.basePaths[0]),
-            uglify()
+            getCurrentFile(OPTIONS.basePaths[0]),            
+            uglify({
+                mangle: false
+            })
         ]
     };
 
     const outputOptions = {
         dir: OPTIONS.outputDir,
-        sourcemap: true,
+        sourcemap: false,
         // See: https://rollupjs.org/guide/en/#outputentryfilenames
-        entryFileNames: '[name]-[format].js',
+        entryFileNames: '[name].js',
+        chunkFileNames: '[name]-[hash].js',
         // See: https://rollupjs.org/guide/en/#outputformat
         format: 'system' // See: https://github.com/rollup/rollup-starter-code-splitting
     };
@@ -71,8 +96,8 @@ async function bundle(inputFile) {
         output: [outputOptions],
         watch: {
             chokidar: true,
-            exclude: 'node_modules/**',
-            include: '../testb/src/**'
+            exclude: OPTIONS.basePaths.map((bPath) => bPath + 'node_modules/**'),
+            include: OPTIONS.basePaths.map((bPath) => bPath + '**')
         }
     };
     const watcher = rollup.watch(watchOptions);
@@ -94,6 +119,7 @@ async function bundle(inputFile) {
 // Bundle all files //
 OPTIONS.inputFiles.forEach((file) => {
     bundle(file);
+    bundle(file, true);
 });
 
 

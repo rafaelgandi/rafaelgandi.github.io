@@ -1,1 +1,0 @@
-{"version":3,"file":"foo-77e17db4.js","sources":["../src/foo.js"],"sourcesContent":["export default 'hello world!  ';\n\nexport const barr = true;"],"names":[],"mappings":"kFAAe,4BAEK"}
