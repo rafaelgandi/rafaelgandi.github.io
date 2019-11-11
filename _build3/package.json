@@ -20,15 +20,13 @@
     "http-server": "^0.11.1",
     "rimraf": "^3.0.0",
     "rollup": "^1.26.3",
-    "rollup-plugin-async": "^1.2.0",
     "rollup-plugin-babel": "^4.3.3",
     "rollup-plugin-buble": "^0.19.8",
     "rollup-plugin-commonjs": "^10.1.0",
     "rollup-plugin-includepaths": "^0.2.3",
     "rollup-plugin-node-resolve": "^5.2.0",
-    "rollup-plugin-replace": "^2.2.0",
     "rollup-plugin-scss": "^1.0.2",
-    "rollup-plugin-uglify": "^6.0.3"
+    "rollup-plugin-terser": "^5.1.2"
   },
   "scripts": {
     "build": "npm run javascript",
