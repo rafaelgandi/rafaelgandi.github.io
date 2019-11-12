@@ -1,5 +1,6 @@
 const rollup = require('rollup');
 const rimraf = require('rimraf');
+const path = require('path');
 const chalk = require('chalk'); // See: https://www.npmjs.com/package/chalk
 const babelCore = require("@babel/core"); // See: https://babeljs.io/docs/usage/api/
 const includePaths = require('rollup-plugin-includepaths');
@@ -14,6 +15,7 @@ const currentChecksumConstant = require('./my-plugins/current-checksum-constant'
 const myJSX = require('./my-plugins/my-jsx');
 const createSeparateTranspiledBundle = require('./my-plugins/create-separate-transpiled-bundle');
 const onWriteBundleInfo = require('./my-plugins/on-write-bundle-info');
+
 
 const OPTIONS = {
     inputFiles: [
@@ -44,7 +46,17 @@ async function bundle(inputFile) {
                 output: (styles, styleNodes) => {
                     //console.log(styleNodes)
                     if (!! styles) {
-                        jetpack.write(OPTIONS.outputDir + 'css/bundle.css', styles);
+                        let inputFilePath = (inputFile instanceof Array) ? inputFile[0] : inputFile,
+                            name = (() => {
+                                let filename = path.basename(inputFilePath),
+                                    pieces = filename.split('.');
+                                if (pieces.length === 1) { return filename; }
+                                pieces.pop();
+                                return pieces.join('.');
+                            })(),
+                            outputPath = OPTIONS.outputDir + `css/${ name }.css`;                    
+                        jetpack.write(outputPath, styles);
+                        console.log(chalk.hex('#D690E1')(`SASS BUILT: ${ outputPath }`));
                     }                
                 }
             }),  
