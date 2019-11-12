@@ -68,7 +68,7 @@ async function bundle(inputFile) {
                     return code;
                 }
             }),   
-            createSeparateTranspiledBundle(babelCore, jetpack),          
+            createSeparateTranspiledBundle(babelCore, jetpack, chalk),          
             terser({ mangle: false }),
             onWriteBundleInfo(chalk)
         ]

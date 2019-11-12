@@ -1,5 +1,6 @@
+const { echo, sizeAndTime } = require('./my-plugin-helpers');
 
-module.exports = function (babelCore, jetpack) {
+module.exports = function (babelCore, jetpack, chalk) {
     const babelPolyfillCode = jetpack.read(__dirname + '/polyfill.min.js');
     let outDir = '';
     return {
@@ -11,7 +12,8 @@ module.exports = function (babelCore, jetpack) {
             for (let f in bundle) {
                 let path = outDir + bundle[f].fileName,
                     code = jetpack.read(path),
-                    es5OutDir = outDir + 'es5/';
+                    es5OutDir = outDir + 'es5/',
+                    es5OutFilePath = es5OutDir + bundle[f].fileName;
                 let babelOutput = babelCore.transform(code, { 
                     presets: [
                         '@babel/preset-env'
@@ -35,7 +37,8 @@ module.exports = function (babelCore, jetpack) {
                     code = ';' + babelOutput.code;  
                 }
                 // Generate a separate bundle for transpiled es5 bundles //
-                jetpack.write(es5OutDir + bundle[f].fileName, code);                
+                jetpack.write(es5OutFilePath, code);
+                echo(chalk, '#F7C14D', `BABEL ${ babelCore.version } BUILT: ` + es5OutFilePath + sizeAndTime(es5OutFilePath));                    
             }
         }
     };
