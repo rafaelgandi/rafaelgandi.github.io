@@ -1,2 +1,0 @@
-System.register([],(function(exports,module){"use strict";return{execute:function(){exports("food",(function(){console.log("food")}));window.Lega={hey:function(){console.log("hey from Lega")}};exports("bar",1);Lega.hey(),console.log("HOHOHOHOHO"),console.log("func1 0000    ff "),console.log("module 2 here!"),console.log("testb/src/index"),console.log("403918dbfeda1b38d555cfd66ef679b5"),(async()=>{let foo=await module.import("./foo-ee5ac493.js");console.log(foo)})()}}}));
-//# sourceMappingURL=index.js.map

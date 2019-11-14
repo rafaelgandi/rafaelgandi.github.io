@@ -1,1 +1,0 @@
-{"version":3,"file":"foo-ee5ac493.js","sources":["../src/foo.js"],"sourcesContent":["export default 'hello world!  ';\n\nexport const barr = true;"],"names":[],"mappings":"+FAAe,kCAEK"}

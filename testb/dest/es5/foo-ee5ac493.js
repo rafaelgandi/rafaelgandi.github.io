@@ -1,1 +1,0 @@
-;System.register([],function(exports){"use strict";return{execute:function execute(){exports("default","hello world!  ");exports("barr",!0)}}});

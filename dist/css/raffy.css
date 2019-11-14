@@ -1,0 +1,416 @@
+/**
+ * Minimal base styles.
+ */
+/* Always force a scrollbar in non-IE */
+html {
+  overflow-y: scroll; }
+
+/* Accessible focus treatment: people.opera.com/patrickl/experiments/keyboard/test */
+a:hover, a:active {
+  outline: none; }
+
+ul, ol {
+  margin-left: 2em; }
+
+ol {
+  list-style-type: decimal; }
+
+/* Remove margins for navigation lists */
+nav ul, nav li {
+  margin: 0;
+  list-style: none;
+  list-style-image: none; }
+
+small {
+  font-size: 85%; }
+
+strong, th {
+  font-weight: bold; }
+
+td {
+  vertical-align: top; }
+
+/* Set sub, sup without affecting line-height: gist.github.com/413930 */
+sub, sup {
+  font-size: 75%;
+  line-height: 0;
+  position: relative; }
+
+sup {
+  top: -0.5em; }
+
+sub {
+  bottom: -0.25em; }
+
+pre {
+  /* www.pathf.com/blogs/2008/05/formatting-quoted-code-in-blog-posts-css21-white-space-pre-wrap/ */
+  white-space: pre;
+  white-space: pre-wrap;
+  word-wrap: break-word;
+  padding: 15px; }
+
+textarea {
+  overflow: auto; }
+
+/* www.sitepoint.com/blogs/2010/08/20/ie-remove-textarea-scrollbars/ */
+.ie6 legend, .ie7 legend {
+  margin-left: -7px; }
+
+/* Align checkboxes, radios, text inputs with their label by: Thierry Koblentz tjkdesign.com/ez-css/css/base.css  */
+input[type="radio"] {
+  vertical-align: text-bottom; }
+
+input[type="checkbox"] {
+  vertical-align: bottom; }
+
+.ie7 input[type="checkbox"] {
+  vertical-align: baseline; }
+
+.ie6 input {
+  vertical-align: text-bottom; }
+
+/* Hand cursor on clickable input elements */
+label, input[type="button"], input[type="submit"], input[type="image"], button {
+  cursor: pointer; }
+
+/* Webkit browsers add a 2px margin outside the chrome of form elements */
+button, input, select, textarea {
+  margin: 0; }
+
+/* Colors for form validity */
+input:invalid, textarea:invalid {
+  border-radius: 1px;
+  -moz-box-shadow: 0px 0px 5px red;
+  -webkit-box-shadow: 0px 0px 5px red;
+  box-shadow: 0px 0px 5px red; }
+
+.no-boxshadow input:invalid, .no-boxshadow textarea:invalid {
+  background-color: #f0dddd; }
+
+/* These selection declarations have to be separate
+   No text-shadow: twitter.com/miketaylr/status/12228805301
+   Also: hot pink! */
+::-moz-selection {
+  background: #366376;
+  color: #fff;
+  text-shadow: none; }
+
+::selection {
+  background: #366376;
+  color: #fff;
+  text-shadow: none; }
+
+/* Make buttons play nice in IE:
+   www.viget.com/inspire/styling-the-button-element-in-internet-explorer/ */
+button {
+  width: auto;
+  overflow: visible; }
+
+/* Bicubic resizing for non-native sized IMG:
+   code.flickr.com/blog/2008/11/12/on-ui-quality-the-little-things-client-side-image-resizing/ */
+.ie7 img {
+  -ms-interpolation-mode: bicubic; }
+
+/**
+ * You might tweak these..
+ */
+body, select, input, textarea {
+  /* #444 looks better than black: twitter.com/H_FJ/statuses/11800719859 */
+  color: #444; }
+
+/* Headers (h1, h2, etc) have no default font-size or margin; define those yourself */
+h1, h2, h3, h4, h5, h6 {
+  font-weight: bold; }
+
+Component-x {
+  display: none; }
+
+html {
+  /* See: https://developers.google.com/web/updates/2013/12/300ms-tap-delay-gone-away */
+  touch-action: manipulation; }
+  html.desktop, html .desktop body {
+    overflow: hidden;
+    width: 100%; }
+  html .left {
+    float: left; }
+  html .right {
+    float: right; }
+  html .clr {
+    clear: both;
+    font-size: 0; }
+  html .redb {
+    border: 1px solid red !important; }
+  html .hide {
+    display: none; }
+  html .text-center {
+    text-align: center; }
+  html .raff-stop-body-scroll {
+    /* See: https://benfrain.com/preventing-body-scroll-for-modals-in-ios/ */
+    /* See: https://css-tricks.com/almanac/properties/t/touch-action/ */
+    overflow: hidden !important;
+    touch-action: none; }
+    html .raff-stop-body-scroll .raffy-page-sections {
+      filter: blur(0.3em); }
+  html .raffy-show-page {
+    display: block !important; }
+  html .raffy-opacity-1 {
+    opacity: 1 !important; }
+  html body {
+    margin: 0;
+    padding: 0;
+    overflow-y: hidden;
+    font-size: 12px;
+    font-family: "Montserrat", sans-serif;
+    position: relative;
+    transition: opacity 0.5s ease-out;
+    opacity: 0; }
+    html body * {
+      box-sizing: border-box; }
+    html body a, html body a:link, html body a:active, html body a:visited {
+      color: #8E9A9C;
+      text-decoration: none;
+      transition: color 0.3s ease-out, opacity 0.3s ease-out; }
+    html body a:hover {
+      color: #366376; }
+    html body a:link {
+      -webkit-tap-highlight-color: transparent; }
+    html body #raffy-wrapper {
+      margin-top: 50px;
+      padding: 20px;
+      padding-top: 0;
+      position: relative;
+      /* See: https://www.w3schools.com/howto/tryit.asp?filename=tryhow_css_menu_icon_js */
+      /*@media screen and (max-width: 568px) {*/ }
+      html body #raffy-wrapper #raffy-profile-img,
+      html body #raffy-wrapper #raffy-profile-img-mobile {
+        display: inline-block;
+        position: relative;
+        border: 0;
+        overflow: hidden; }
+      html body #raffy-wrapper #raffy-main-navigation {
+        position: relative;
+        display: block;
+        background-color: #fff;
+        z-index: 90;
+        margin: 0 auto;
+        width: 70%; }
+        html body #raffy-wrapper #raffy-main-navigation nav {
+          float: right;
+          margin-top: 70px; }
+        html body #raffy-wrapper #raffy-main-navigation ul {
+          padding: 0; }
+        html body #raffy-wrapper #raffy-main-navigation li {
+          font-size: 1.3em;
+          float: left;
+          margin-left: 25px;
+          text-transform: uppercase; }
+        html body #raffy-wrapper #raffy-main-navigation li a {
+          font-size: 0.8em;
+          color: #A9A9AE; }
+        html body #raffy-wrapper #raffy-main-navigation li a:hover,
+        html body #raffy-wrapper #raffy-main-navigation li a.raffy-active-page-link {
+          color: #366376 !important; }
+        html body #raffy-wrapper #raffy-main-navigation #raffy-profile-img {
+          width: 120px;
+          height: 120px;
+          border-radius: 76px;
+          margin-top: 20px;
+          margin-left: 30px; }
+          html body #raffy-wrapper #raffy-main-navigation #raffy-profile-img img {
+            position: absolute;
+            top: -19px;
+            left: -10px;
+            width: 150px;
+            height: 150px; }
+      html body #raffy-wrapper section.raffy-page-sections {
+        font-size: 1.3em;
+        transition: opacity 0.3s ease-out;
+        opacity: 0;
+        display: none;
+        padding-top: 50px;
+        padding-bottom: 100px; }
+        html body #raffy-wrapper section.raffy-page-sections p {
+          line-height: 1.7em;
+          display: block;
+          width: 60%;
+          margin: 0 auto;
+          margin-top: 1em; }
+      html body #raffy-wrapper .raffy-list-wrapper {
+        width: 70%;
+        margin: 0 auto;
+        padding-bottom: 100px; }
+      html body #raffy-wrapper ul.raffy-list {
+        margin: 0;
+        padding: 0;
+        list-style: none; }
+        html body #raffy-wrapper ul.raffy-list li {
+          display: inline-block;
+          /* See: https://teamtreehouse.com/community/how-do-i-center-floated-list-items */
+          width: 14%;
+          height: 250px;
+          float: left;
+          padding: 10px;
+          margin: 3%; }
+        html body #raffy-wrapper ul.raffy-list .raffy-list-img-con {
+          width: 50%;
+          height: 150px;
+          overflow: hidden;
+          margin: 0 auto;
+          display: table-cell;
+          vertical-align: middle; }
+        html body #raffy-wrapper ul.raffy-list a.raffy-list-image-link {
+          border: 0; }
+        html body #raffy-wrapper ul.raffy-list img {
+          display: block;
+          max-width: 100%;
+          min-width: 100px;
+          max-height: 150px;
+          margin: 0 auto;
+          border: 0; }
+        html body #raffy-wrapper ul.raffy-list div.raffy-list-desc {
+          font-size: 0.8em;
+          padding-top: 10px;
+          margin: 0 auto;
+          width: 90%;
+          text-align: center; }
+      html body #raffy-wrapper .raffy-text {
+        width: 90%;
+        margin: 0 auto; }
+        html body #raffy-wrapper .raffy-text h1 {
+          margin-bottom: 10px;
+          font-size: 1.1em;
+          font-weight: normal;
+          text-transform: uppercase; }
+      html body #raffy-wrapper #raffy-page-home {
+        font-size: 1.5em;
+        text-align: center;
+        line-height: 1.6em; }
+      html body #raffy-wrapper #raffy-email-container {
+        text-align: center;
+        width: 100%;
+        margin: 0 auto;
+        font-size: 5em;
+        margin-top: 96px; }
+        html body #raffy-wrapper #raffy-email-container a {
+          text-decoration: none; }
+      html body #raffy-wrapper #raffy-contact-links {
+        margin-top: 200px;
+        text-align: center; }
+        html body #raffy-wrapper #raffy-contact-links a {
+          font-size: 0.7em;
+          text-transform: uppercase;
+          display: inline-block;
+          margin-right: 50px; }
+      html body #raffy-wrapper #raffy-main-navigation-mobile {
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        z-index: 100;
+        background-color: #fff;
+        display: none;
+        box-shadow: 0px 6px 17px -8px rgba(0, 0, 0, 0.95); }
+      html body #raffy-wrapper #raffy-main-navigation-mobile > div {
+        position: relative;
+        padding: 10px;
+        min-height: 90px; }
+      html body #raffy-wrapper #raffy-mobile-menu-trigger, html body #raffy-wrapper #raffy-profile-img-mobile {
+        position: absolute;
+        display: inline-block;
+        padding: 10px;
+        top: 5px; }
+      html body #raffy-wrapper #raffy-mobile-menu-trigger {
+        left: 15px;
+        font-size: 1.8em;
+        top: 25px;
+        display: inline-block;
+        transition: transform 0.5s ease-out; }
+      html body #raffy-wrapper #raffy-mobile-menu-trigger .burger-menu-bars {
+        width: 35px;
+        height: 3px;
+        background-color: #366376;
+        margin: 6px 0;
+        transition: 0.4s;
+        pointer-events: none; }
+      html body #raffy-wrapper #raffy-mobile-menu-trigger.burger-menu-bars-close {
+        transform: rotate(360deg); }
+      html body #raffy-wrapper .burger-menu-bars-close .bar1 {
+        transform: rotate(-45deg) translate(-9px, 6px); }
+      html body #raffy-wrapper .burger-menu-bars-close .bar2 {
+        opacity: 0; }
+      html body #raffy-wrapper .burger-menu-bars-close .bar3 {
+        transform: rotate(45deg) translate(-7px, -4px); }
+      html body #raffy-wrapper #raffy-profile-img-mobile {
+        right: 10px;
+        width: 70px;
+        height: 70px;
+        border-radius: 40px;
+        margin-top: 6px;
+        margin-right: 10px; }
+      html body #raffy-wrapper #raffy-profile-img-mobile img {
+        position: absolute;
+        top: -11px;
+        left: -12px;
+        width: 100px;
+        height: 100px; }
+      @media screen and (max-width: 800px) {
+        html body #raffy-wrapper #raffy-wrapper {
+          margin-top: 50px;
+          padding: 20px;
+          padding-top: 0; }
+        html body #raffy-wrapper #raffy-main-navigation-mobile {
+          display: block; }
+        html body #raffy-wrapper #raffy-main-navigation {
+          position: fixed;
+          top: 0;
+          bottom: 0;
+          display: block;
+          padding-left: 30px;
+          padding-right: 30px;
+          padding-top: 30px;
+          transform: translateX(-350px);
+          transition: transform 0.3s ease-out;
+          box-shadow: 10px 2px 33px -11px rgba(0, 0, 0, 0.46);
+          will-change: transform; }
+        html body #raffy-wrapper #raffy-main-navigation.raff-show-mobile-nav {
+          transform: translateX(-50px); }
+        html body #raffy-wrapper #raffy-main-navigation #raffy-profile-img {
+          display: none; }
+        html body #raffy-wrapper #raffy-main-navigation nav {
+          float: none;
+          display: block;
+          margin-top: 80px; }
+        html body #raffy-wrapper #raffy-main-navigation ul {
+          padding: 0; }
+        html body #raffy-wrapper #raffy-main-navigation li {
+          font-size: 1.3em;
+          float: none;
+          display: block;
+          margin-left: 0;
+          border-top: 1px solid #ccc; }
+        html body #raffy-wrapper #raffy-main-navigation li a {
+          display: block;
+          width: 100%;
+          padding: 20px; }
+        html body #raffy-wrapper section.raffy-page-sections {
+          padding-top: 50px; }
+        html body #raffy-wrapper section.raffy-page-sections p {
+          width: 80%; }
+        html body #raffy-wrapper ul.raffy-list li {
+          width: 99%; }
+        html body #raffy-wrapper #raffy-page-home {
+          font-size: 1.2em; }
+        html body #raffy-wrapper #raffy-email-container {
+          font-size: 1.2em;
+          margin-top: 168px; }
+        html body #raffy-wrapper #raffy-email-container a {
+          display: block;
+          width: 100%;
+          margin: 0 auto;
+          padding: 10px; }
+        html body #raffy-wrapper #raffy-contact-links {
+          margin-top: 160; }
+        html body #raffy-wrapper #raffy-contact-links a {
+          font-size: 0.9em;
+          padding: 10px;
+          margin-right: 0; } }

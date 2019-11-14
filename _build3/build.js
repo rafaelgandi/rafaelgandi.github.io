@@ -15,15 +15,15 @@ const currentChecksumConstant = require('./my-plugins/current-checksum-constant'
 const myJSX = require('./my-plugins/my-jsx');
 const createSeparateTranspiledBundle = require('./my-plugins/create-separate-transpiled-bundle');
 const onWriteBundleInfo = require('./my-plugins/on-write-bundle-info');
-
+const makeIndexHTML = require('./my-plugins/rollup-make-index-html');
+const indexHTMLTempalte = require('./my-plugins/index-html-template');
 
 const OPTIONS = {
     inputFiles: [
-        '../testb/src/index.js',
-        '../testb/src/index2.js'
+        '../src/raffy.jsx'
     ],
-    outputDir: '../testb/dest/',
-    basePaths: ['../testb/src/']
+    outputDir: '../dist/',
+    basePaths: ['../src/']
 };
 rimraf.sync(OPTIONS.outputDir);
 
@@ -39,7 +39,7 @@ async function bundle(inputFile) {
             // This is where you set you base paths
             // See: https://www.npmjs.com/package/rollup-plugin-includepaths
             includePaths({
-                paths: OPTIONS.basePaths
+                paths: OPTIONS.basePaths.map((bPath) => bPath)
             }),
             // See: https://github.com/thgh/rollup-plugin-scss 
             scss({
@@ -68,7 +68,12 @@ async function bundle(inputFile) {
                     return code;
                 }
             }),   
-            createSeparateTranspiledBundle(babelCore, jetpack, chalk),          
+            createSeparateTranspiledBundle(babelCore, jetpack, chalk), 
+            makeIndexHTML({
+                chalk, jetpack,
+                template: indexHTMLTempalte,
+                outputFilePath: '../index.html'
+            }),       
             terser({ mangle: false }),
             onWriteBundleInfo(chalk)
         ]
@@ -78,7 +83,7 @@ async function bundle(inputFile) {
         dir: OPTIONS.outputDir,
         sourcemap: true,
         // See: https://rollupjs.org/guide/en/#outputentryfilenames
-        entryFileNames: '[name].js',
+        entryFileNames: '[name]-[hash].js',
         chunkFileNames: '[name]-[hash].js',
         // See: https://rollupjs.org/guide/en/#outputformat
         format: 'system' // See: https://github.com/rollup/rollup-starter-code-splitting
