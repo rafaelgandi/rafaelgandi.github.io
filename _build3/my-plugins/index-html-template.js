@@ -41,16 +41,16 @@ module.exports = function (data) {
     </head>
     <body>
     	<div id="placeholder-raffy-layout-component">Loading...</div>
-    	<!-- See: https://www.sitepoint.com/using-es-modules/  cache-budst-->
-    	<!-- See: https://jakearchibald.com/2017/es-modules-in-browsers/ -->
-    	<!-- <script type="module" src="/js/compiled/raffy.js?20190904"></script>
-    	<script nomodule src="/js/compiled/es5/raffy.js?20190904"></script> -->
-    	<!-- <script src="src/system.2.0.0.s.min.js"></script> -->
     	<script>
             ${ data.systemJSCode }
     		document.addEventListener('DOMContentLoaded', function () {
-    			System.import('./dist/${ data.mainJS }').catch(function (e) {
-    				console.log("Error with SystemJS.import myFile.js", e );
+                var mainScriptPath = './dist/${ data.mainJS }';
+                try { eval("(async () => {})();"); } 
+                catch (err) {
+                    mainScriptPath = './dist/es5/${ data.mainJS }';
+                }
+    			System.import(mainScriptPath).catch(function (e) {
+    				console.log("Error with SystemJS.import ${ data.mainJS }", e);
     			});
     		}); 		
     	</script>
