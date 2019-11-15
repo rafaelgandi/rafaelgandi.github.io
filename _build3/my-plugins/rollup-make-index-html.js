@@ -11,7 +11,7 @@ module.exports = function ({ template, chalk, jetpack, outputFilePath }) {
                     data.mainCSS = bundle[f].name + '.css?mainjs='+data.mainJS.replace('.js', '');
                 }
             }
-            data.systemJSCode = jetpack.read(__dirname + '/system.2.0.0.s.min.js');
+            data.systemJSCode = jetpack.read(__dirname + '/system.2.0.0.s.es5.min.js');
             let html = template(data);
             jetpack.write(outputFilePath, html);
             echo(chalk, '#00B82C', 'BUILT INDEX: ' + outputFilePath + sizeAndTime(outputFilePath)); 
