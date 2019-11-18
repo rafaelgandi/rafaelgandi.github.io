@@ -20,7 +20,8 @@ module.exports = function (babelCore, jetpack, chalk) {
                     ],
                     plugins: [
                         // Not using the babel-plugin-transform-runtime for many reasons. See: https://babeljs.io/docs/en/babel-plugin-transform-runtime
-                        '@babel/plugin-transform-async-to-generator' 
+                        '@babel/plugin-transform-async-to-generator', 
+                        '@babel/plugin-syntax-dynamic-import' 
                     ],
                     sourceMaps: true,
                     comments: false,
