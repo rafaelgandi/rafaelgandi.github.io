@@ -28,14 +28,14 @@ export default class LayoutComponent extends cm.ComponentElement {
             <div data-component-type={__CURRENT_MODULE_PATH} id="raffy-wrapper">
                 <HeaderComponent 
                     onMainMenuTrigger={ this.onMainMenuTrigger.bind(this) } 
-                    ref={ (e) => (this.$HeaderComponent = e) } 
+                    ref={ (e) => (this.$HeaderComponent = e) }   
                     context={ this.context } 
                 />            
                 <section id="raffy-page-home" class="raffy-page-sections">
         			<p style="margin-top: 2.6em;">
         				Hi, my name's Rafael Gandionco and I'm a minimalist, photographer, and web developer from the Philippines.
                     </p>
-                    <p>    
+                    {/*<p>    
                         Both photography and web development are an ongoing passion of mine. For me, one complements the other. One 
                         enables me to express how I see the world around me in a more organic and abstract way, while the other helps 
                         me express my creativity in building software.   	
@@ -48,7 +48,7 @@ export default class LayoutComponent extends cm.ComponentElement {
                     <p>				
                         Through my photography and web development with the help of the values I learned from minimalism, I hope to help 
                         people discover the beauty in the ordinary things and situations we find in our everyday lives.
-                    </p>  
+                    </p>*/}  
         		</section>
         		<section id="raffy-page-projects" class="raffy-page-sections">
                     <div class="raffy-text  text-center" style="margin-top: 80px;"><h1>Tools I use for web development.</h1></div>      
