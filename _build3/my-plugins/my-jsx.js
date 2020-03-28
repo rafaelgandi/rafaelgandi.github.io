@@ -17,7 +17,7 @@ module.exports = function (babelCore, opt) {
                         // For JSX
                         // See: https://itnext.io/lessons-learned-using-jsx-without-react-bbddb6c28561
                         '@babel/plugin-syntax-jsx',
-                        ['@babel/plugin-transform-react-jsx', { 'pragma': 'cm.cholo' }],
+                        '@babel/plugin-transform-react-jsx',
                         '@babel/plugin-syntax-dynamic-import'
                     ],
                     sourceMaps: true,

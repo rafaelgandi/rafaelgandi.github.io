@@ -1,10 +1,9 @@
 /node_modules
-/vendor
-Homestead.json
-Homestead.yaml
 .env
-composer.lock
-.phpintel
-/nbproject
-/laradock
-/~_build2
+.env.backup
+npm-debug.log
+yarn-error.log
+package-lock.json
+/_build3/node_modules
+/_build3/package-lock.json
+/src/node_modules

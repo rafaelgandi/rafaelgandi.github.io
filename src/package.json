@@ -1,0 +1,15 @@
+{
+  "name": "vectto2-third-parties",
+  "version": "1.0.0",
+  "description": "Vectto 2 third party js packages",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "immutable": "^4.0.0-rc.12",
+    "notyf": "^3.1.0"
+  }
+}

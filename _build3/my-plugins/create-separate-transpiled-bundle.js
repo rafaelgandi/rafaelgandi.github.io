@@ -1,7 +1,6 @@
 const { echo, sizeAndTime } = require('./my-plugin-helpers');
 
 module.exports = function (babelCore, jetpack, chalk) {
-    const babelPolyfillCode = jetpack.read(__dirname + '/polyfill.min.js');
     let outDir = '';
     return {
         name: 'create-separate-transpiled-bundle',
@@ -29,17 +28,13 @@ module.exports = function (babelCore, jetpack, chalk) {
                     // See: https://stackoverflow.com/questions/34973442/how-to-stop-babel-from-transpiling-this-to-undefined-and-inserting-use-str
                     sourceType: 'script' 
                 });
-                if (! bundle[f].isDynamicEntry) {
-                    // Needed to make async/await feature work. //
-                    // See: https://babeljs.io/docs/en/babel-polyfill#usage-in-browser    
-                    code = ';' + babelPolyfillCode + ';' + babelOutput.code;    
-                }    
-                else {
-                    code = ';' + babelOutput.code;  
-                }
+                // NOTE: babel polyfill.min.js needs to be included externally for async/await to work.
+                // See: https://babeljs.io/docs/en/babel-polyfill#usage-in-browser   
+                code = ';' + babelOutput.code;
                 // Generate a separate bundle for transpiled es5 bundles //
-                jetpack.write(es5OutFilePath, code);
-                echo(chalk, '#F7C14D', `BABEL ${ babelCore.version } BUILT: ` + es5OutFilePath + sizeAndTime(es5OutFilePath));                    
+                jetpack.writeAsync(es5OutFilePath, code).then(() => {
+                    //echo(chalk, '#F7C14D', `BABEL ${ babelCore.version } BUILT: ` + es5OutFilePath + sizeAndTime(es5OutFilePath));     
+                });                               
             }
         }
     };

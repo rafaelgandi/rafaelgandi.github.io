@@ -1,66 +1,69 @@
 const rollup = require('rollup');
-const rimraf = require('rimraf');
 const path = require('path');
+const rimraf = require('rimraf');
 const chalk = require('chalk'); // See: https://www.npmjs.com/package/chalk
 const babelCore = require("@babel/core"); // See: https://babeljs.io/docs/usage/api/
-const includePaths = require('rollup-plugin-includepaths');
-const nodeResolve = require('rollup-plugin-node-resolve'); // See: https://github.com/rollup/rollup-plugin-node-resolve
-const scss = require('rollup-plugin-scss'); // See: https://github.com/thgh/rollup-plugin-scss
+const includePaths = require('rollup-plugin-includepaths'); // See: https://www.npmjs.com/package/rollup-plugin-includepaths
+const nodeResolve = require('@rollup/plugin-node-resolve'); // See: https://github.com/rollup/rollup-plugin-node-resolve
 const { terser } = require('rollup-plugin-terser'); // See: https://www.npmjs.com/package/rollup-plugin-uglify-es
-const commonjs = require('rollup-plugin-commonjs');
+const commonjs = require('@rollup/plugin-commonjs');
+const alias = require('@rollup/plugin-alias'); // See: https://github.com/rollup/plugins/tree/master/packages/alias
 const jetpack = require('fs-jetpack'); // See: https://github.com/szwacz/fs-jetpack#writepath-data-options
-const simpleBuildPlugin = require('./my-plugins/simpleBuildPlugin');
+//const utils = require('@rollup/pluginutils'); // See: https://github.com/rollup/plugins/tree/master/packages/pluginutils
 const currentFileConstant = require('./my-plugins/current-file-constant');
 const currentChecksumConstant = require('./my-plugins/current-checksum-constant');
 const myJSX = require('./my-plugins/my-jsx');
 const createSeparateTranspiledBundle = require('./my-plugins/create-separate-transpiled-bundle');
 const onWriteBundleInfo = require('./my-plugins/on-write-bundle-info');
-const makeIndexHTML = require('./my-plugins/rollup-make-index-html');
-const indexHTMLTempalte = require('./my-plugins/index-html-template');
+const ixrCss = require('./my-plugins/rollup-vectto-ixr-css');
+const testing = require('./my-plugins/rollup-vectto-testing');
+const vecttoResolveNamedDirectory = require('./my-plugins/rollup-vectto-resolve-named-directory');
+const vecttoGraphQL = require('./my-plugins/rollup-vectto-graphql');
+const progress = require('rollup-plugin-progress'); // See: https://github.com/jkuri/rollup-plugin-progress
+const cssPurge = require('css-purge'); // See: https://rbtech.github.io/css-purge/#getStarted
+const slash = require('slash'); // See: https://github.com/sindresorhus/slash#readme
 
 const OPTIONS = {
+    // Entry Scripts //
     inputFiles: [
-        '../src/raffy.jsx'
+        '../public/src/vectto/pages/home/index-home.jsx',
+        '../public/src/vectto/pages/system-message/index-system-message.jsx'
     ],
-    outputDir: '../dist/',
-    basePaths: ['../src/']
+    outputDir: '../public/dist/',
+    basePaths: ['../public/src/']
 };
 rimraf.sync(OPTIONS.outputDir);
 
 async function bundle(inputFile) {
     const inputOptions = {
         input:inputFile,
+        external: ['jquery', 'jquery-slim', 'prop-types', 'bootstrap', 'react-bootstrap-orig'],
         // See: https://rollupjs.org/guide/en/#plugins-overview
         plugins:[
+            alias({
+                entries: [
+                    { find: '@lib', replacement: 'vectto/lib' },
+                    { find: '@pages', replacement: 'vectto/pages' },
+                    { find: '@components', replacement: 'vectto/components' },
+                    { find: '@third-party', replacement: 'vectto/third-party' },
+                    { find: 'react', replacement: 'vectto/third-party/react/dummy/react.js' },
+                    { find: 'react-dom', replacement: 'vectto/third-party/react/dummy/react-dom.js' },
+                    { find: 'react-bootstrap', replacement: 'vectto/third-party/bootstrap/js/react-bootstrap-dummy.js' }
+                ]            
+            }),
+            vecttoResolveNamedDirectory(OPTIONS.basePaths, { slash }),
             nodeResolve(),            
             commonjs({
-                include: OPTIONS.basePaths.map((bPath) => bPath + 'node_modules/**')
+                include: OPTIONS.basePaths.map((bPath) => bPath + 'vectto/node_modules/**'),
+                sourceMap: false
             }),
-            // This is where you set you base paths
+            // This is where you set your base paths
             // See: https://www.npmjs.com/package/rollup-plugin-includepaths
             includePaths({
                 paths: OPTIONS.basePaths.map((bPath) => bPath)
             }),
-            // See: https://github.com/thgh/rollup-plugin-scss 
-            scss({
-                output: (styles, styleNodes) => {
-                    //console.log(styleNodes)
-                    if (!! styles) {
-                        let inputFilePath = (inputFile instanceof Array) ? inputFile[0] : inputFile,
-                            name = (() => {
-                                let filename = path.basename(inputFilePath),
-                                    pieces = filename.split('.');
-                                if (pieces.length === 1) { return filename; }
-                                pieces.pop();
-                                return pieces.join('.');
-                            })(),
-                            outputPath = OPTIONS.outputDir + `css/${ name }.css`;                    
-                        jetpack.write(outputPath, styles);
-                        console.log(chalk.hex('#D690E1')(`SASS BUILT: ${ outputPath }`));
-                    }                
-                }
-            }),  
-            simpleBuildPlugin(),         
+            ixrCss(inputFile, OPTIONS.outputDir, jetpack, chalk, cssPurge, slash),   
+            vecttoGraphQL(jetpack, slash), 
             myJSX(babelCore, {
                 piggyBack: (code, id) => {
                     code = currentFileConstant(code, OPTIONS.basePaths[0], id);
@@ -69,24 +72,41 @@ async function bundle(inputFile) {
                 }
             }),   
             createSeparateTranspiledBundle(babelCore, jetpack, chalk), 
-            makeIndexHTML({
-                chalk, jetpack,
-                template: indexHTMLTempalte,
-                outputFilePath: '../index.html'
-            }),       
             terser({ mangle: false }),
+            progress({ clearLine: false }),
             onWriteBundleInfo(chalk)
-        ]
+        ],
+        onwarn(warning, warn) {
+            // See: https://github.com/rollup/rollup/issues/1518#issuecomment-321875784w
+            // Suppress eval warnings //
+            if (warning.code === 'EVAL') { return; }
+            if (warning.code === 'THIS_IS_UNDEFINED') {
+                console.log(chalk.bgRed(warning.message+ ' File: ' + warning.loc.file));
+                console.log(warning.loc);
+                console.log(chalk.bgRed(warning.url));
+                return;
+            }
+            warn(warning);
+        }
     };
 
     const outputOptions = {
         dir: OPTIONS.outputDir,
         sourcemap: true,
         // See: https://rollupjs.org/guide/en/#outputentryfilenames
-        entryFileNames: '[name]-[hash].js',
+        entryFileNames: '[name].js',
         chunkFileNames: '[name]-[hash].js',
         // See: https://rollupjs.org/guide/en/#outputformat
-        format: 'system' // See: https://github.com/rollup/rollup-starter-code-splitting
+        // See: https://github.com/rollup/rollup-starter-code-splitting
+        format: 'system', 
+        paths: {
+            // See: https://engineering.mixmax.com/blog/rollup-externals/
+            'jquery': path.resolve('/src/vectto/third-party/jquery/jquery-3.4.1.min.js'),
+            'jquery-slim': path.resolve('/src/vectto/third-party/jquery/jquery-3.4.1.slim.min.js'),
+            'prop-types': path.resolve('/src/vectto/third-party/react/prop-types.development.js'),
+            'bootstrap': path.resolve('/src/vectto/third-party/bootstrap/js/bootstrap.min.js'),
+            'react-bootstrap-orig': path.resolve('/src/vectto/third-party/bootstrap/js/react-bootstrap.min.js')
+        }
     };
     
     // Buid and Watch for Updates //
@@ -95,7 +115,9 @@ async function bundle(inputFile) {
         output: [outputOptions],
         watch: {
             chokidar: true,
-            exclude: OPTIONS.basePaths.map((bPath) => bPath + 'node_modules/**'),
+            exclude: [
+                ...OPTIONS.basePaths.map((bPath) => bPath + 'node_modules/**')
+            ],
             include: OPTIONS.basePaths.map((bPath) => bPath + '**')
         }
     };
@@ -108,14 +130,28 @@ async function bundle(inputFile) {
         }  
         if (e.code === 'FATAL') {
             console.log(chalk.bgRed('encountered an unrecoverable error...'));
-        }    
+        }   
+        if (e.code === 'BUNDLE_END') {
+            console.log(chalk.bgYellow(`bundle end for ...${ inputFile }`));
+        }     
     });
 }
 
 // Bundle all files //
-OPTIONS.inputFiles.forEach((file) => {
+let welcomeAscii = `
+=======================     
+ __                __       
+|__)   .| _| _ _    _)      
+|__)|_|||(_|(-|    __)      
+=======================     
+Powered by: rollupjs ${ rollup.VERSION } 
+and gulp                    
+Starting build...           `;
+console.log(chalk.bgCyan(welcomeAscii));                                                                                                                                                    
+OPTIONS.inputFiles.map((file) => {
     bundle(file);
 });
+console.log(chalk.bgRed(`${ OPTIONS.inputFiles.length } watched instances found`));
 
 
 

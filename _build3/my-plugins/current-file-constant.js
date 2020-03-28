@@ -10,5 +10,9 @@ function _getFromTheBasePath(basePath, filePath) {
 }
 
 module.exports = function (code, basePath, id) {
-    return code.replace(/__CURRENT_MODULE_PATH/ig, '"' + _getFromTheBasePath(basePath, id) + '"');
+    return code
+    .replace(
+        /__CURRENT_MODULE_PATH/ig, 
+        '"' + _getFromTheBasePath(basePath, id).replace(/^public\/js\//ig, '') + '"'
+    );
 };
