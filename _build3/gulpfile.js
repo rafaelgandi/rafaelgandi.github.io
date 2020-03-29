@@ -10,11 +10,11 @@ require('events').EventEmitter.defaultMaxListeners = 15;
 // See: https://goede.site/setting-up-gulp-4-for-automatic-sass-compilation-and-css-injection
 gulp.task('compile-sass', function() { // Compiler for sass files for components 
     return (
-        gulp.src('../public/src/**/*.scss')
+        gulp.src('../src/**/*.scss')
             .pipe(sourcemaps.init())
             .pipe(sass({
                 outputStyle: 'compressed',
-                includePaths: ['../public/src']
+                includePaths: ['../src']
             }))
             .pipe(sourcemaps.write('.'))
             .on('error', sass.logError)
@@ -28,7 +28,7 @@ gulp.task('build-sass', () => {
     console.log('Gulp builder 3 SASS is running...');
     console.log(require('node-sass').info);
     // SASS compiler 
-    gulp.watch('../public/src/**/*.scss', gulp.series('compile-sass')).on('change', (sassFile) => {
+    gulp.watch('../src/**/*.scss', gulp.series('compile-sass')).on('change', (sassFile) => {
         console.log('SCSS compiled file ' + sassFile);
     });
 });

@@ -118,6 +118,17 @@ export function addCss(css){ // See: https://stackoverflow.com/q/3922139
      }
  }
  
+export function isInsideFrame() {
+     // See: http://stackoverflow.com/a/326076
+     try { return window.self !== window.top; } 
+     catch (e) { return true; }
+}
+ 
+export function  isMobile() {
+     // See: http://stackoverflow.com/a/14301832
+     return typeof window.orientation !== 'undefined';
+} 
+ 
  
  
  

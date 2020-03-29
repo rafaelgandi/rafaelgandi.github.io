@@ -1,0 +1,1 @@
+{"version":3,"file":"HomePage.css","sources":["components/HomePage/styles/HomePage.scss"],"sourcesContent":["#__ixr[bigger-text] {\n    font-size: 1.5em !important;\n    text-align: center;\n    line-height: 1.6em;\n}"],"names":[],"mappings":"AAAA,AAAA,MAAM,CAAA,AAAA,WAAC,AAAA,CAAa,CAChB,SAAS,CAAE,gBAAgB,CAC3B,UAAU,CAAE,MAAM,CAClB,WAAW,CAAE,KAAK,CACrB"}

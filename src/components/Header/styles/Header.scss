@@ -1,0 +1,53 @@
+@import 'sass/util', 'sass/variables';
+
+.bg-raffy-navbar {
+    //background-color: #F7C14D;
+    background-color: #ccc;
+    @include small-shadow();
+    @include media-breakpoint-up(md) {
+        padding: 2.5rem 6rem;
+    }
+    @include media-breakpoint-down(md) {
+        padding: 0.5rem 1rem;
+    }
+    .__ixr[profile-pic] {
+        img {
+            width: 130px;
+            height: 130px;
+            border-radius: 76px;
+        }
+        @include media-breakpoint-down(md) {
+            img {
+                width: 80px;
+                height: 80px;
+                border-radius: 76px;
+            }
+        }        
+    }
+    #__ixr[responsive-navbar-nav] {
+        .nav-item {
+            font-size: 1.3em; 
+            text-transform: uppercase;            
+            .nav-link {
+                font-size: 0.8em;
+                color: #A9A9AE;
+                &:hover,
+                &.raffy-active-page-link {
+                    color: $link-highlight-color !important;
+                }
+            }
+        }
+        @include media-breakpoint-down(md) {
+            margin-top: 30px;
+            .nav-item {
+                text-align: center; 
+                padding: 8px;
+                margin-bottom: 5px;
+                background-color: $link-highlight-color;                
+                .nav-link {
+                    color: #fff;
+                }
+            }
+        }   
+    }
+}

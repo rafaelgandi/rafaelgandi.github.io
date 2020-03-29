@@ -26,11 +26,10 @@ const slash = require('slash'); // See: https://github.com/sindresorhus/slash#re
 const OPTIONS = {
     // Entry Scripts //
     inputFiles: [
-        '../public/src/vectto/pages/home/index-home.jsx',
-        '../public/src/vectto/pages/system-message/index-system-message.jsx'
+        '../src/index.jsx'
     ],
-    outputDir: '../public/dist/',
-    basePaths: ['../public/src/']
+    outputDir: '../dist/',
+    basePaths: ['../src/']
 };
 rimraf.sync(OPTIONS.outputDir);
 
@@ -42,19 +41,15 @@ async function bundle(inputFile) {
         plugins:[
             alias({
                 entries: [
-                    { find: '@lib', replacement: 'vectto/lib' },
-                    { find: '@pages', replacement: 'vectto/pages' },
-                    { find: '@components', replacement: 'vectto/components' },
-                    { find: '@third-party', replacement: 'vectto/third-party' },
-                    { find: 'react', replacement: 'vectto/third-party/react/dummy/react.js' },
-                    { find: 'react-dom', replacement: 'vectto/third-party/react/dummy/react-dom.js' },
-                    { find: 'react-bootstrap', replacement: 'vectto/third-party/bootstrap/js/react-bootstrap-dummy.js' }
+                    { find: 'react', replacement: 'third-party/react/dummy/react.js' },
+                    { find: 'react-dom', replacement: 'third-party/react/dummy/react-dom.js' },
+                    { find: 'react-bootstrap', replacement: 'third-party/bootstrap/js/react-bootstrap-dummy.js' }
                 ]            
             }),
             vecttoResolveNamedDirectory(OPTIONS.basePaths, { slash }),
             nodeResolve(),            
             commonjs({
-                include: OPTIONS.basePaths.map((bPath) => bPath + 'vectto/node_modules/**'),
+                include: OPTIONS.basePaths.map((bPath) => bPath + 'node_modules/**'),
                 sourceMap: false
             }),
             // This is where you set your base paths
@@ -101,11 +96,11 @@ async function bundle(inputFile) {
         format: 'system', 
         paths: {
             // See: https://engineering.mixmax.com/blog/rollup-externals/
-            'jquery': path.resolve('/src/vectto/third-party/jquery/jquery-3.4.1.min.js'),
-            'jquery-slim': path.resolve('/src/vectto/third-party/jquery/jquery-3.4.1.slim.min.js'),
-            'prop-types': path.resolve('/src/vectto/third-party/react/prop-types.development.js'),
-            'bootstrap': path.resolve('/src/vectto/third-party/bootstrap/js/bootstrap.min.js'),
-            'react-bootstrap-orig': path.resolve('/src/vectto/third-party/bootstrap/js/react-bootstrap.min.js')
+            'jquery': path.resolve('/src/third-party/jquery/jquery-3.4.1.min.js'),
+            'jquery-slim': path.resolve('/src/third-party/jquery/jquery-3.4.1.slim.min.js'),
+            'prop-types': path.resolve('/src/third-party/react/prop-types.development.js'),
+            'bootstrap': path.resolve('/src/third-party/bootstrap/js/bootstrap.min.js'),
+            'react-bootstrap-orig': path.resolve('/src/third-party/bootstrap/js/react-bootstrap.min.js')
         }
     };
     

@@ -26,6 +26,7 @@
     "gulp": "^4.0.2",
     "gulp-sass": "^4.0.2",
     "gulp-sourcemaps": "^2.6.5",
+    "http-server": "^0.12.1",
     "rimraf": "^3.0.0",
     "rollup": "^1.26.3",
     "rollup-plugin-babel": "^4.3.3",
@@ -38,7 +39,8 @@
     "build": "npm run buildjs & npm run gulpsass",
     "buildjs": "node build",
     "test": "env NODE_OPTIONS=--max-old-space-size=8192",
-    "gulpsass": "gulp build-sass"
+    "gulpsass": "gulp build-sass",
+    "serve": "node_modules/.bin/http-server ../"
   },
   "author": "Rafael Gandionco",
   "license": "ISC"

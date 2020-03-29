@@ -42,3 +42,55 @@
             user-select: none; /* Non-prefixed version, currently
                                   supported by Chrome and Opera */
 }
+
+// See: https://getbootstrap.com/docs/4.0/layout/overview/#responsive-breakpoints
+@mixin media-breakpoint-up($size) {
+    @if $size == 'xs' {
+        // Extra small devices (portrait phones, less than 576px)
+        // No media query since this is the default in Bootstrap
+        @content;
+    } 
+    @elseif $size == 'sm' {
+        // Small devices (landscape phones, 576px and up)
+        @media (min-width: 576px) { @content; }
+    }
+    @elseif $size == 'md' {
+        // Medium devices (tablets, 768px and up)
+        @media (min-width: 768px) { @content; }
+    }
+    @elseif $size == 'lg' {
+        // Large devices (desktops, 992px and up)
+        @media (min-width: 992px) { @content; }
+    }
+    @elseif $size == 'xl' {
+        // Extra large devices (large desktops, 1200px and up)
+        @media (min-width: 1200px) { @content; }
+    }
+}
+
+@mixin media-breakpoint-down($size) {
+    @if $size == 'xs' {
+        // Extra small devices (portrait phones, less than 576px)
+        @media (max-width: 575.98px) { @content; }
+    } 
+    @elseif $size == 'sm' {
+        // Small devices (landscape phones, less than 768px)
+        @media (max-width: 767.98px) { @content; }
+    }
+    @elseif $size == 'md' {
+        // Medium devices (tablets, less than 992px)
+        @media (max-width: 991.98px) { @content; }
+    }
+    @elseif $size == 'lg' {
+        // Large devices (desktops, less than 1200px)
+        @media (max-width: 1199.98px) { @content; }
+    }
+    @elseif $size == 'xl' {
+        // Extra large devices (large desktops)
+        // No media query since the extra-large breakpoint has no upper bound on its width
+        @content;
+    }
+}
+
+
+
