@@ -21,8 +21,13 @@ export default function Header(props) {
     }
     
     return (
-        <Navbar collapseOnSelect expand="lg" bg="raffy-navbar" fixed="top">
-            <Navbar.Brand href="#home" className={ css['profile-pic'] }>
+        <Navbar 
+            collapseOnSelect 
+            expand="lg" 
+            bg="raffy-navbar" 
+            fixed="top" 
+        >
+            <Navbar.Brand href={ links[0].link } className={ css['profile-pic'] }>
                 <picture>
                     <source type="image/webp" srcSet="images/profile3_comp.webp" />
                     <source type="image/jpeg" srcSet="images/profile3_comp_moz.jpg" />
@@ -31,7 +36,7 @@ export default function Header(props) {
             </Navbar.Brand>
             <Navbar.Toggle aria-controls={ css['responsive-navbar-nav'] } />
             <Navbar.Collapse id={ css['responsive-navbar-nav'] } className="justify-content-end">
-                <Nav>
+                <Nav defaultActiveKey={ (!!props.defaultActiveKey) ? props.defaultActiveKey : '/' }>
                     { 
                         links.map(({ link, linkLabel, external }) => (
                             <Nav.Item key={ link }>
@@ -39,8 +44,9 @@ export default function Header(props) {
                                     rel={ link } 
                                     href={ link } 
                                     data-is-external={ !!external ? 1 : 0 }
-                                    onClick={ handleNavigateClick 
-                                }>{ linkLabel }</Nav.Link>
+                                    onClick={ handleNavigateClick} 
+                                    eventKey={ link } 
+                                >{ linkLabel }</Nav.Link>
                             </Nav.Item>
                         )) 
                     }
@@ -51,5 +57,6 @@ export default function Header(props) {
 }
 
 Header.propTypes = {
-    onNavigate: PropTypes.func.isRequired
+    onNavigate: PropTypes.func.isRequired,
+    defaultActiveKey: PropTypes.string
 };

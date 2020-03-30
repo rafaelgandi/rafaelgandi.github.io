@@ -16,10 +16,7 @@
         grid-template-columns: repeat(4, 1fr);
     }
     .__ixr[grid-item] {
-        padding: 1rem;
-        border: 1px solid #ccc;
-        border-radius: 3px;
-        //@include small-shadow();
+        padding: 1rem;  
         a {
             display: block;
             .__ixr[img-con] {

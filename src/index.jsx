@@ -15,13 +15,15 @@ const App = () => {
     const [showHomePage, setShowHomePage] = useState(false);
     const [showContactPage, setShowContactPage] = useState(false);
     const [showWebDevPage, setShowWebDevPage] = useState(false);
-    const currentUri = (parent !== window) ? document.referrer : document.location; // See: http://stackoverflow.com/a/7739035   
+    const currentPathName = window.location.pathname.trim();
+    const currentUri = (parent !== window) ? document.referrer : document.location.href; // See: http://stackoverflow.com/a/7739035   
     
     function onNavigate(id, isExternal) {
         if (isExternal) {
             window.open(id);
             return;
         }
+        window.scrollTo(0, 0);
         simpleRouter.navigate(id); 
     } 
     
@@ -41,13 +43,14 @@ const App = () => {
             }
         }        
         
-        console.log(window.location.pathname);
+        //console.log(window.location.pathname);
         
         //simpleRouter.navigate(window.location.pathname); 
         simpleRouter.navigate('/'); 
     }
     
     useEffect(() => {
+        document.body.style.opacity = 1;
         // Breakout of frame if in mobile and in frameset (.tk) //   
         if (isInsideFrame() && isMobile()) {
             window.top.location.href = constants.uri.myGithubPageUri;
@@ -76,7 +79,10 @@ const App = () => {
         <Container id="raffy-wrapper">
             <Row>
                 <Col>
-                    <Header onNavigate={ onNavigate } />
+                    <Header 
+                        onNavigate={ onNavigate } 
+                        defaultActiveKey={ currentPathName }
+                    />
                     <div id={ css['pages-wrapper'] }>
                         <PageSection id="raffy-page-home" show={ showHomePage }><HomePage /></PageSection>
                         <PageSection id="raffy-page-web-dev" show={ showWebDevPage }><WebDevPage /></PageSection>

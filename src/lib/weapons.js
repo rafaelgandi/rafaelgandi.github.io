@@ -1,8 +1,14 @@
 export default [
     {
+        'link': 'https://reactjs.org/',
+        'image': 'images/weapons/react.svg',
+        'desc': 'React Framework',
+        'header': 'React'
+    },
+    {
         'link': 'https://developer.mozilla.org/en-US/docs/Web/JavaScript',
         'image': 'images/weapons/javascript.svg',
-        'desc': 'Javascript',
+        'desc': 'Vanilla Javascript',
         'header': 'Vanilla Javascript'
     },        
     {
@@ -24,22 +30,28 @@ export default [
         'header': 'Laravel PHP Framework'
     },
     {
-        'link': 'http://codeigniter.com/',
-        'image': 'images/weapons/ci.svg',
-        'desc': 'Codeigniter PHP Framework',
-        'header': 'Codeigniter PHP Framework'
-    },
-    {
         'link': 'http://www.mysql.com/',
         'image': 'images/weapons/mysql.svg',
         'desc': 'MySQL Relational Database',
         'header': 'MySQL Relational Database'
     },
     {
+        'link': 'https://graphql.org/',
+        'image': 'images/weapons/graphql.svg',
+        'desc': 'GraphQL',
+        'header': 'GraphQL'
+    },
+    {
         'link': 'http://www.w3.org/html/logo/',
         'image': 'images/weapons/html5.svg',
         'desc': 'HTML5',
         'header': 'HTML5'
+    },
+    {
+        'link': 'https://sass-lang.com/',
+        'image': 'images/weapons/sass.svg',
+        'desc': 'Sass',
+        'header': 'Sass'
     },
     {
         'link': 'http://phonegap.com/',

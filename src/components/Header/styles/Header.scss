@@ -2,13 +2,13 @@
 
 .bg-raffy-navbar {
     //background-color: #F7C14D;
-    background-color: #ccc;
-    @include small-shadow();
+    background-color: #fff;
     @include media-breakpoint-up(md) {
         padding: 2.5rem 6rem;
     }
     @include media-breakpoint-down(md) {
-        padding: 0.5rem 1rem;
+        padding: 0.5rem 1rem;        
+        @include small-shadow();
     }
     .__ixr[profile-pic] {
         img {
@@ -32,8 +32,8 @@
                 font-size: 0.8em;
                 color: #A9A9AE;
                 &:hover,
-                &.raffy-active-page-link {
-                    color: $link-highlight-color !important;
+                &.active {
+                    color: $link-highlight-color;
                 }
             }
         }
@@ -46,6 +46,10 @@
                 background-color: $link-highlight-color;                
                 .nav-link {
                     color: #fff;
+                    &.active {
+                        font-weight: bold;
+                        color: #fff;
+                    }
                 }
             }
         }   
