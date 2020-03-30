@@ -13,6 +13,7 @@ const jetpack = require('fs-jetpack'); // See: https://github.com/szwacz/fs-jetp
 const currentFileConstant = require('./my-plugins/current-file-constant');
 const currentChecksumConstant = require('./my-plugins/current-checksum-constant');
 const myJSX = require('./my-plugins/my-jsx');
+const indexBustCache = require('./my-plugins/rollup-my-bust-cache');
 const createSeparateTranspiledBundle = require('./my-plugins/create-separate-transpiled-bundle');
 const onWriteBundleInfo = require('./my-plugins/on-write-bundle-info');
 const ixrCss = require('./my-plugins/rollup-vectto-ixr-css');
@@ -69,6 +70,7 @@ async function bundle(inputFile) {
             createSeparateTranspiledBundle(babelCore, jetpack, chalk), 
             terser({ mangle: false }),
             progress({ clearLine: false }),
+            indexBustCache({ jetpack, chalk }),
             onWriteBundleInfo(chalk)
         ],
         onwarn(warning, warn) {

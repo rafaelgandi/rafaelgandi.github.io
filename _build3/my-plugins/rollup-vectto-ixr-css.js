@@ -8,6 +8,7 @@
 
 const { echo, sizeAndTime } = require('./my-plugin-helpers');
 const path = require('path');
+const crypto = require('crypto'); // See: https://odino.org/generating-the-md5-hash-of-a-string-in-nodejs/
 
 function _ixr(name, componentIdPath) { // Same ixr() as the one on vectto/util/ComponentModule/ComponentModule.js
     let mod = componentIdPath.trim();
@@ -16,7 +17,7 @@ function _ixr(name, componentIdPath) { // Same ixr() as the one on vectto/util/C
     .replace(/\.js$/ig, '')
     .replace(/\//ig, '_')
     .replace(/\./ig, '_');
-    return mod + '_cho8__' + name + '__8lo';
+    return 'cholo'+crypto.createHash('md5').update(mod).digest("hex") + '_nk8__' + name + '__8ie';
 }
 
 function _getUniqueIdFromPath(componentIdPath) {

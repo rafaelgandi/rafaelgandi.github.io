@@ -6,7 +6,7 @@
     margin: 0 auto;
     display: grid;
     grid-gap: 1rem;
-    @include media-breakpoint-up(sm) {
+    @include media-breakpoint-up(xs) {
         grid-template-columns: repeat(2, 1fr);
     }
     @include media-breakpoint-up(md) {

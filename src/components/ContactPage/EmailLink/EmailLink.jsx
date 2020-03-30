@@ -20,7 +20,7 @@ export default function EmailLink() {
     }
     
     useEffect(() => {
-        let $temp = document.createElement('div');
+        let $temp = document.createElement('div'); 
         $temp.innerHTML = decodeEmail();
         document.getElementById(css['email-container']).appendChild($temp.children[0]);
     }, []);
