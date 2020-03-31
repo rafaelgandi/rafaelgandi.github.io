@@ -40,7 +40,7 @@
     "buildjs": "node build",
     "test": "env NODE_OPTIONS=--max-old-space-size=8192",
     "gulpsass": "gulp build-sass",
-    "serve": "npx reload -p 8888 -d ../"
+    "serve": "npx reload -p 8888 -d ../ -f"
   },
   "author": "Rafael Gandionco",
   "license": "ISC"

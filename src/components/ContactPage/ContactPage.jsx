@@ -4,7 +4,7 @@ import css from './styles/ContactPage.css';
 import EmailLink from './EmailLink/EmailLink.jsx';
 import constants from './lib/constants';
 
-export default function ContactPage() {
+export default function ContactPage() { 
     return (
         <>
             <EmailLink />
