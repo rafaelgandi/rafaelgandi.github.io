@@ -23,7 +23,8 @@
                 height: 150px;
                 overflow: hidden;
                 margin: 0 auto;	
-                vertical-align: middle;
+                vertical-align: middle; 
+                position: relative; 
                 img {
                     display: block;
                     max-width: 100%;
@@ -31,6 +32,8 @@
                     max-height: 150px;
                     margin: 0 auto;
                     border:0;
+                    position: absolute;
+                    bottom: 3px;
                 }
             }            
             .__ixr[desc] {

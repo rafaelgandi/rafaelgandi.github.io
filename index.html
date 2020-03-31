@@ -17,7 +17,7 @@
     	<!-- CSS: implied media="all" -->
     	<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Montserrat&font-display=swap">
         <link rel="stylesheet" href="/src/third-party/bootstrap/css/bootstrap.4.4.1.min.css">
-    	<link rel="stylesheet" href="dist/css/index.css?cache=1585542284633">
+    	<link rel="stylesheet" href="dist/css/index.css?cache=1585618333897">
     	<script>
     	(function () {
     		// See: https://www.smashingmagazine.com/2016/08/sghpa-single-page-app-hack-github-pages/
@@ -42,14 +42,14 @@
             try { 
                 // ES6 Scripts
                 eval("(async () => {})();");		
-                System.import('/dist/index.js?cache=1585542284633').catch(handleError); 
+                System.import('/dist/index.js?cache=1585618333897').catch(handleError); 
             } 
             catch (err) {
                 // ES5 Scripts
                 // Needed to make async/await feature work. //
                 // See: https://babeljs.io/docs/en/babel-polyfill#usage-in-browser   
                 System.import('/src/third-party/babel-polyfill.min.js').then(function () {
-                    System.import('/dist/es5/index.js?cache=1585542284633').catch(handleError);	
+                    System.import('/dist/es5/index.js?cache=1585618333897').catch(handleError);	
                 });	
             }
         }); 		
