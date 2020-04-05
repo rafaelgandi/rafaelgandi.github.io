@@ -24,16 +24,23 @@
             }
         }        
     }
+    .__ixr[initial-profile-pic] {
+        @include blur(6);        
+    }
     #__ixr[responsive-navbar-nav] {
         .nav-item {
             font-size: 1.3em; 
-            text-transform: uppercase;            
+            text-transform: uppercase;
+            margin-right: 3px;            
             .nav-link {
                 font-size: 0.8em;
                 color: #A9A9AE;
+                transition: background-color 0.5s ease-out;
                 &:hover,
                 &.active {
-                    color: $link-highlight-color;
+                    // color: $link-highlight-color;
+                    // text-decoration: underline;
+                    background-color: $link-highlight-color;
                 }
             }
         }
@@ -42,13 +49,14 @@
             .nav-item {
                 text-align: center; 
                 padding: 8px;
+                margin: 0;
                 margin-bottom: 5px;
                 background-color: $link-highlight-color;                
                 .nav-link {
-                    color: #fff;
+                    //color: #fff;
                     &.active {
                         font-weight: bold;
-                        color: #fff;
+                        color: $link-normal-color;
                     }
                 }
             }

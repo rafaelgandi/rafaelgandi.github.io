@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import css from './styles/GridList.css';    
+import css from './styles/GridList.css';
+import LazyImg from './components/LazyImg';    
 
 export default function GridList(props) {
     return (
@@ -9,9 +10,11 @@ export default function GridList(props) {
                 props.listData.map(({ image, link, header, desc}) => (
                     <div className={ css['grid-item'] } key={ image + link} >
                         <a href={ link } title={ header } target="_blank">
-                            <div className={ css['img-con'] }>
-                                <img src={ image } alt={ header } />
-                            </div>                          
+                            <LazyImg 
+                                src={ image } 
+                                alt={ header } 
+                                additionalContainerClass={css['img-con']} 
+                            />                       
                             <div className={ css['desc'] }>{ (!!desc) ? desc : header }</div>
                         </a>
                     </div>
