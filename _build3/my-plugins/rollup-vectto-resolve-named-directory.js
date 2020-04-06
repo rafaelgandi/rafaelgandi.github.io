@@ -1,6 +1,6 @@
 /*
     Transforms:
-    vectto/pages/home/TimerContainer/ ====> vectto/pages/home/TimerContainer/TimerContainer.jsx
+    vectto/pages/home/TimerContainer ====> vectto/pages/home/TimerContainer/TimerContainer.jsx
 */
 
 const fs = require('fs');

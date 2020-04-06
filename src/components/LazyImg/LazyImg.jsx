@@ -15,7 +15,7 @@ export default function LazyImg(props) {
         }
         new IntersectionObserver((entries, observer) => {
             entries.map((entry) => {
-                if (entry.isIntersecting) {
+                if (entry.isIntersecting) {            
                     callback();
                     observer.unobserve(entry.target);
                 }
