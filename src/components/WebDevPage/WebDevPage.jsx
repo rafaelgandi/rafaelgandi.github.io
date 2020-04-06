@@ -1,10 +1,10 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import css from './styles/WebDevPage.css';
-import GridList from './components/GridList';
-import openSourceProjects from './lib/openSourceProjects';
-import projects from './lib/projects';
-import weapons from './lib/weapons';
+import GridList from 'components/GridList';
+import openSourceProjects from 'lib/openSourceProjects';
+import projects from 'lib/projects';
+import weapons from 'lib/weapons';
 
 export default function WebDevPage() {
     return (

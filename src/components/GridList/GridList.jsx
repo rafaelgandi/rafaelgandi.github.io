@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import css from './styles/GridList.css';
-import LazyImg from './components/LazyImg';    
+import LazyImg from 'components/LazyImg';    
 
 export default function GridList(props) {
     return (

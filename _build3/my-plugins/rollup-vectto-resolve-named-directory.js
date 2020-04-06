@@ -35,10 +35,22 @@ const removeLastForwardSlash = (path) => {
 module.exports = function (baseDirPaths = [], { slash }) {
     // See: https://github.com/rollup/plugins/blob/master/packages/alias/src/index.js#L25
     const normalizeId = (id) => {
-        if ((IS_WINDOWS && typeof id === 'string') || VOLUME.test(id)) {
+        if ((IS_WINDOWS && typeof id === 'string') || VOLUME.test(id)) { 
             return slash(id.replace(VOLUME, ''));
         }
         return id;
+    };
+    const makeAbsPath = (id) => {
+        return slash(path.resolve(__dirname + '../../', id));
+    };
+    const isRelativePath = (id) => {
+        let dir = path.dirname(id).trim();
+        return /^\./.test(dir);
+    };
+    const resolveRelativePathToAbs = (id, importer) => {
+        let dirPath = path.dirname(importer),
+            dir = id.replace(/^.\//, '').trim();
+        return slash(path.resolve(dirPath + path.sep + dir));
     };
     return {
         name: 'rollup-vectto-resolve-named-directory',
@@ -46,18 +58,24 @@ module.exports = function (baseDirPaths = [], { slash }) {
             id = normalizeId(id);
             for (let i = 0; i < baseDirPaths.length; i++) {                    
                 let baseDirPath = removeLastForwardSlash(baseDirPaths[i]);
-                if (isDirectory(slash(baseDirPath + path.sep + id))) {
+                if (isRelativePath(id) && importer) {
+                    id = resolveRelativePathToAbs(id, importer);
+                }
+                else {
+                    id = makeAbsPath(baseDirPath + path.sep + id);
+                }                
+                if (isDirectory(id)) {
                     //console.log(isDirectory, id);
                     let moduleName = removeLastForwardSlash(id).split(path.sep).pop(),
-                        moduleFile = slash(baseDirPath + path.sep + id + path.sep + moduleName),
+                        moduleFile = slash(id + path.sep + moduleName),
                         updatedId = '';
                     if (fileExists(moduleFile + '.jsx')) {                            
                         updatedId = moduleFile + '.jsx';                            
                     }
                     else if (fileExists(moduleFile + '.js')) {
                         updatedId =  moduleFile + '.js';
-                    }                          
-                    updatedId = slash(path.resolve(__dirname + '../../', updatedId)); // Make it an absolute path                        
+                    }                                         
+                    updatedId = makeAbsPath(updatedId); // Make it an absolute path                        
                     // See: https://github.com/rollup/plugins/blob/master/packages/alias/src/index.js#L93
                     return this.resolve(updatedId, importer, { skipSelf: true }).then((resolved) => {
                         let finalResult = resolved;

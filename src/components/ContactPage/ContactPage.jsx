@@ -1,9 +1,9 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import css from './styles/ContactPage.css';
-import EmailLink from './EmailLink/EmailLink.jsx';
-import constants from './lib/constants';
-import contactLabels from './lib/contactLabels';
+import EmailLink from './EmailLink';
+import constants from 'lib/constants';
+import contactLabels from 'lib/contactLabels';
 
 export default function ContactPage() { 
     return (
