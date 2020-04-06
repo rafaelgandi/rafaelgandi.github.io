@@ -17,7 +17,8 @@ function _ixr(name, componentIdPath) { // Same ixr() as the one on vectto/util/C
     .replace(/\.js$/ig, '')
     .replace(/\//ig, '_')
     .replace(/\./ig, '_');
-    return 'cholo'+crypto.createHash('md5').update(mod).digest("hex") + '_nk8__' + name + '__8ie';
+    const componentName = componentIdPath.replace('styles', '').trim().split(path.sep).pop();
+    return componentName + '_cholo'+crypto.createHash('md5').update(mod).digest("hex") + '_nk8__' + name + '__8ie';
 }
 
 function _getUniqueIdFromPath(componentIdPath) {

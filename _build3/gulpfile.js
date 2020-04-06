@@ -1,6 +1,7 @@
 const gulp = require('gulp');
 const sass = require('gulp-sass'); // On installing gulp-sass see: https://stackoverflow.com/questions/50338202/gulp-sass-error-when-installing
 const sourcemaps = require('gulp-sourcemaps');
+const reactFilesShortcut = require('./react-files-shortcut');
 // LM: 2018-06-28
 // Use to avoid "MaxListenersExceededWarning: Possible EventEmitter memory leak detected. 11 finish listeners added. Use emitter.setMaxListeners() to increase limit" error.
 // See: https://stackoverflow.com/questions/8313628/node-js-request-how-to-emitter-setmaxlisteners
@@ -24,12 +25,17 @@ gulp.task('compile-sass', function() { // Compiler for sass files for components
             }))
     );    
 });
+
 gulp.task('build-sass', () => {    
     console.log('Gulp builder 3 SASS is running...');
     console.log(require('node-sass').info);
     // SASS compiler 
     gulp.watch('../src/**/*.scss', gulp.series('compile-sass')).on('change', (sassFile) => {
         console.log('SCSS compiled file ' + sassFile);
+    });
+    // React shorcut files maker watcher
+    gulp.watch('../src/**/*.react').on('add', (reactShortcutFile) => {
+        reactFilesShortcut(reactShortcutFile);
     });
 });
 
