@@ -1,5 +1,5 @@
 export default [
-    {"href":"instagram","title":"Go to my instagram page","label":"Instagram"},
+    {"href":"instagram","title":"Follow me on instagram","label":"Instagram"},
     {"href":"facebook","title":"Add me on facebook","label":"Facebook"},
     {"href":"linkedin","title":"View my linkedin profile","label":"LinkedIn"},
     {"href":"zerothreetwo","title":"Read a photo essay I did for Zerothreetwo.com","label":"032"},

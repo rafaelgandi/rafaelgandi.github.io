@@ -38,8 +38,7 @@
                 transition: background-color 0.5s ease-out;
                 &:hover,
                 &.active {
-                    // color: $link-highlight-color;
-                    // text-decoration: underline;
+                    color: $dark-font-color;
                     background-color: $link-highlight-color;
                 }
             }

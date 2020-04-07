@@ -1,11 +1,6 @@
 
 @import 'util', 'variables';
 
-body {
-    padding: 0;
-}
-
-
 html {
     /* See: https://developers.google.com/web/updates/2013/12/300ms-tap-delay-gone-away */
     touch-action: manipulation;
@@ -18,6 +13,13 @@ html {
     .clr {clear:both; font-size:0; }  
     .hide {display: none;}
     
+    ::selection {
+        background: $accent-color; /* WebKit/Blink Browsers */
+    }
+    ::-moz-selection {
+        background: $accent-color; /* Gecko Browsers */
+    }
+    
     body {
         margin: 0;
         padding: 0;
@@ -26,7 +28,7 @@ html {
         position: relative;
         transition: opacity 0.5s ease-out;
         opacity: 0;
-        color: #333;
+        color: $dark-font-color;
         * {
             box-sizing: border-box;	
         }        
