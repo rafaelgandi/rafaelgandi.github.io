@@ -33,6 +33,7 @@ html {
             box-sizing: border-box;	
         }        
         a, a:link, a:active, a:visited { 
+            outline: none;
             color:  $link-normal-color; 
             text-decoration: none;
             transition: color 0.3s ease-out, opacity 0.3s ease-out;
