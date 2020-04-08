@@ -9,10 +9,12 @@
     margin-top: 96px;
     a {
         text-decoration: none;  
+        transition: background-color 0.5s ease-out;
+        padding: 10px 20px;
         &:hover {
             background-color: $accent-color;
             color: $dark-font-color;
-            padding: 10px 20px;
+            
         }
     }
     @include media-breakpoint-down(md) {
