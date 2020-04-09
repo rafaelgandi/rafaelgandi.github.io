@@ -1,15 +1,15 @@
-import React, { Suspense, useState, useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import ReactDOM from 'react-dom';
 import css from './index.css';
 import { Container, Col, Row } from 'react-bootstrap';
 import Header from './components/Header';
 import PageSection from './components/PageSection';
 import HomePage from './components/HomePage';
-import ContactPage from './components/ContactPage';
-import WebDevPage from './components/WebDevPage';
 import simpleRouter from './lib/simpleRouter';
 import { isInsideFrame, isMobile, typeOf } from './lib/helpers';
 import constants from './lib/constants';
+const WebDevPage = React.lazy(() => import('./components/WebDevPage'));
+const ContactPage = React.lazy(() => import('./components/ContactPage'));
 
 const App = () => {
     const [showHomePage, setShowHomePage] = useState(false);
@@ -42,10 +42,6 @@ const App = () => {
                 return;
             }
         }        
-        
-        //console.log(window.location.pathname);
-        
-        //simpleRouter.navigate(window.location.pathname); 
         simpleRouter.navigate('/'); 
     }
     
@@ -74,7 +70,7 @@ const App = () => {
         });
         setInitialPage();
     }, []);
-    
+
     return (
         <Container id="raffy-wrapper">
             <Row>
@@ -85,8 +81,8 @@ const App = () => {
                     />
                     <div id={ css['pages-wrapper'] }>
                         <PageSection id="raffy-page-home" show={ showHomePage }><HomePage /></PageSection>
-                        <PageSection id="raffy-page-web-dev" show={ showWebDevPage }><WebDevPage /></PageSection>
-                        <PageSection id="raffy-page-contact" show={ showContactPage }><ContactPage /></PageSection>  
+                        <PageSection id="raffy-page-web-dev" show={ showWebDevPage } suspense><WebDevPage /></PageSection>
+                        <PageSection id="raffy-page-contact" show={ showContactPage } suspense><ContactPage /></PageSection>  
                     </div>
                             
                 </Col>
