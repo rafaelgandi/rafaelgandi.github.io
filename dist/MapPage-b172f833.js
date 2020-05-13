@@ -1,0 +1,2 @@
+System.register(["./index-70c24609.js","/src/third-party/bootstrap/js/react-bootstrap.min.js","/src/third-party/react/prop-types.development.js"],(function(exports){"use strict";var React;return{setters:[function(module){React=module.R},function(){},function(){}],execute:function(){exports("default",(function(){return React.createElement("div",{className:"text-center"},"map should go here")}))}}}));
+//# sourceMappingURL=MapPage-b172f833.js.map

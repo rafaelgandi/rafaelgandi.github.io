@@ -17,6 +17,7 @@ export default ({
         blog: '/blog',
         photography: '/photography',
         webDevelopment: '/web-development',
-        contact: '/contact'
+        contact: '/contact',
+        map: '/find-me-here'
     }
 });

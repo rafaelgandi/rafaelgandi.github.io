@@ -10,12 +10,14 @@ import { isInsideFrame, isMobile, typeOf } from './lib/helpers';
 import constants from './lib/constants';
 const WebDevPage = React.lazy(() => import('./components/WebDevPage'));
 const ContactPage = React.lazy(() => import('./components/ContactPage'));
+const MapPage = React.lazy(() => import('./components/MapPage'));
 
 const App = () => {
     const [showHomePage, setShowHomePage] = useState(false);
     const [showContactPage, setShowContactPage] = useState(false);
     const [showWebDevPage, setShowWebDevPage] = useState(false);
-    const currentPathName = window.location.pathname.trim();
+    const [showMapPage, setShowMapPage] = useState(false);
+    const currentPathName = window.location.pathname.trim(); 
     const currentUri = (parent !== window) ? document.referrer : document.location.href; // See: http://stackoverflow.com/a/7739035   
     
     function onNavigate(id, isExternal) {
@@ -37,6 +39,10 @@ const App = () => {
                 simpleRouter.navigate(constants.routes.contact); 
                 return;
             }
+            else if (currentUri.indexOf(constants.routes.map) !== -1) {
+                simpleRouter.navigate(constants.routes.map); 
+                return;
+            }
             else {
                 simpleRouter.navigate('/'); 
                 return;
@@ -56,17 +62,26 @@ const App = () => {
         .route(constants.routes.home, () => {
             setShowContactPage(false);
             setShowWebDevPage(false);
-            setShowHomePage(true);            
+            setShowHomePage(true);  
+            setShowMapPage(false);          
         })
         .route(constants.routes.webDevelopment, () => {
             setShowHomePage(false);
             setShowContactPage(false);
-            setShowWebDevPage(true);            
+            setShowWebDevPage(true);  
+            setShowMapPage(false);          
         })
         .route(constants.routes.contact, () => {
             setShowHomePage(false);
             setShowWebDevPage(false);
             setShowContactPage(true);
+            setShowMapPage(false);
+        })
+        .route(constants.routes.map, () => {
+            setShowHomePage(false);
+            setShowWebDevPage(false);
+            setShowContactPage(false);
+            setShowMapPage(true);
         });
         setInitialPage();
     }, []);
@@ -83,6 +98,8 @@ const App = () => {
                         <PageSection id="raffy-page-home" show={ showHomePage }><HomePage /></PageSection>
                         <PageSection id="raffy-page-web-dev" show={ showWebDevPage } suspense><WebDevPage /></PageSection>
                         <PageSection id="raffy-page-contact" show={ showContactPage } suspense><ContactPage /></PageSection>  
+                        
+                        <PageSection id="raffy-page-map" show={ showMapPage } suspense><MapPage /></PageSection>  
                     </div>
                             
                 </Col>

@@ -24,3 +24,5 @@ html {  touch-action: manipulation;}html.desktop,html .desktop body {  overflow:
 
 /****** LazyImg.css ******/
 @keyframes pulse {  0% {    background-position: -468px 0;  }  100% {    background-position: 468px 0;  }}.LazyImg_cholo0e4e47b253fbca773982babc2470882d_nk8__pulsate__8ie {  animation-duration: 1s;  animation-fill-mode: forwards;  animation-iteration-count: infinite;  animation-name: pulse;  animation-timing-function: linear;  background: #f6f7f8;  background: linear-gradient(to right, #eee 8%, #ddd 18%, #eee 33%);  background-size: 800px 104px;  width: 100%;  height: 100%;}.LazyImg_cholo0e4e47b253fbca773982babc2470882d_nk8__hide__8ie {  opacity: 0;}.LazyImg_cholo0e4e47b253fbca773982babc2470882d_nk8__img-container__8ie {  box-sizing: border-box;}.LazyImg_cholo0e4e47b253fbca773982babc2470882d_nk8__img-container__8ie img {  transition: opacity 1s ease-in-out;}
+
+/****** MapPage.css ******/
