@@ -42,16 +42,16 @@ module.exports = function (pathToReactShortcutFile) {
         return; 
     }
     const componentFileContents = `
-        import React from 'react';
-        import PropTypes from 'prop-types';
-        import css from './styles/${ componentName }.css';
-        
-        export default function ${ componentName }(props) {
-            return (
-                <></>
-            );
-        }
-        ${ componentName }.propTypes = {};
+import React from 'react';
+import PropTypes from 'prop-types';
+import css from './styles/${ componentName }.css';
+
+export default function ${ componentName }(props) {
+    return (
+        <></>
+    );
+}
+${ componentName }.propTypes = {};
     `;
     const componentDir = dir + path.sep + componentName;
     const componentFile = componentDir + path.sep + componentName + '.jsx';

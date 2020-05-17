@@ -2,17 +2,8 @@
 .__ixr[page-sections] {
     font-size: 1.3em;
     transition: opacity 0.3s ease-out; 
-    opacity:0;
-    display: none;
     padding-top: 50px;
     padding-bottom: 100px;
-    .__ixr[page-spinner] {
-        background-color: $accent-color;
-    }
-    &.__ixr[show] {
-        opacity:1;
-        display: block;
-    }
     p {
         line-height: 1.7em;
         display: block;

@@ -10,6 +10,7 @@
   "license": "ISC",
   "dependencies": {
     "immutable": "^4.0.0-rc.12",
-    "notyf": "^3.1.0"
+    "notyf": "^3.1.0",
+    "react-router-dom": "^5.2.0"
   }
 }

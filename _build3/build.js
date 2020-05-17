@@ -20,9 +20,14 @@ const ixrCss = require('./my-plugins/rollup-vectto-ixr-css');
 const testing = require('./my-plugins/rollup-vectto-testing');
 const vecttoResolveNamedDirectory = require('./my-plugins/rollup-vectto-resolve-named-directory');
 const vecttoGraphQL = require('./my-plugins/rollup-vectto-graphql');
+const ejsAsset = require('./my-plugins/rollup-ejs-asset');
 const progress = require('rollup-plugin-progress'); // See: https://github.com/jkuri/rollup-plugin-progress
 const cssPurge = require('css-purge'); // See: https://rbtech.github.io/css-purge/#getStarted
 const slash = require('slash'); // See: https://github.com/sindresorhus/slash#readme
+const json = require('@rollup/plugin-json'); // See: https://github.com/rollup/plugins/tree/master/packages/json
+const replace = require('@rollup/plugin-replace'); // See: https://github.com/rollup/plugins/tree/master/packages/replace
+//const isDevelopment = true;
+process.env.NODE_ENV = 'development';
 
 const OPTIONS = {
     // Entry Scripts //
@@ -51,6 +56,10 @@ async function bundle(inputFile) {
             nodeResolve(),            
             commonjs({
                 include: OPTIONS.basePaths.map((bPath) => bPath + 'node_modules/**'),
+                namedExports: {
+                    // See: https://stackoverflow.com/questions/50080893/rollup-error-isvalidelementtype-is-not-exported-by-node-modules-react-is-inde
+                    '../src/node_modules/react-is/index.js': ['isValidElementType']
+                },
                 sourceMap: false
             }),
             // This is where you set your base paths
@@ -58,19 +67,37 @@ async function bundle(inputFile) {
             includePaths({
                 paths: OPTIONS.basePaths.map((bPath) => bPath)
             }),
+            json(),
             ixrCss(inputFile, OPTIONS.outputDir, jetpack, chalk, cssPurge, slash),   
             vecttoGraphQL(jetpack, slash), 
             myJSX(babelCore, {
                 piggyBack: (code, id) => {
                     code = currentFileConstant(code, OPTIONS.basePaths[0], id);
-                    code = currentChecksumConstant(jetpack, code, id);
                     return code;
                 }
             }),   
             createSeparateTranspiledBundle(babelCore, jetpack, chalk), 
             terser({ mangle: false }),
             progress({ clearLine: false }),
-            indexBustCache({ jetpack, chalk }),
+            ejsAsset(
+                '../src/ejs/index.ejs',
+                '../index.html',
+                {
+                    'cacheTime': (new Date()).getTime(),
+                    'globalJS': ejsAsset.getTemplate('../src/ejs/_js-globals.ejs', {
+                        'NODE_ENV': process.env.NODE_ENV
+                    }),
+                    'globalCSS': ejsAsset.getTemplate('../src/ejs/_css-globals.ejs'),
+                    'panicOverlayScript': (process.env.NODE_ENV === 'development') 
+                        ? ejsAsset.getTemplate('../src/ejs/_panic-overlay.ejs')
+                        : ''     
+                },
+                { chalk }
+            ),
+            // See: https://github.com/rollup/rollup/issues/487
+            replace({
+                'process.env.NODE_ENV': JSON.stringify(process.env.NODE_ENV)
+            }),
             onWriteBundleInfo(chalk)
         ],
         onwarn(warning, warn) {

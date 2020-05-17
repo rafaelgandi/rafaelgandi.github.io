@@ -2,6 +2,8 @@ import { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 import css from './styles/Header.css';
 import { Navbar, Nav } from 'react-bootstrap';
+import { Link } from 'react-router-dom';
+import constants from 'lib/constants';
 
 export default function Header(props) {
     
@@ -13,18 +15,21 @@ export default function Header(props) {
         initialProfPicClass: css['initial-profile-pic'] 
     });
     const links = [
-        { link: '/', linkLabel: 'Me' },
-        { link: 'https://medium.com/rafael-gandionco', linkLabel: 'Blog', external: true },
-        { link: 'http://tinyurl.com/RafaelGandioncoPhotography', linkLabel: 'Photography', external: true },
-        { link: '/web-development', linkLabel: 'Web Development' },
-        { link: '/contact', linkLabel: 'Contact' }
+        { link: constants.routes.home, linkLabel: 'Me' },
+        { link: constants.uri.medium, linkLabel: 'Blog', external: true },
+        { link: constants.uri.googlePhotosPage, linkLabel: 'Photography', external: true },
+        { link: constants.routes.webDevelopment, linkLabel: 'Web Development' },
+        { link: constants.routes.contact, linkLabel: 'Contact' }
     ];    
     
     function handleNavigateClick(e) {
-        e.preventDefault();
         let id = e.currentTarget.rel,
             isExternal = !!parseInt(e.currentTarget.getAttribute('data-is-external'), 10);
-        props.onNavigate(id, isExternal);
+        if (isExternal) {
+            e.preventDefault();
+            window.open(id);
+            return;
+        }    
     }
     
     function updateProfPicImage() {
@@ -43,7 +48,6 @@ export default function Header(props) {
     useEffect(() => {
         updateProfPicImage();
     }, []);
-    
     return (
         <Navbar 
             collapseOnSelect 
@@ -60,16 +64,18 @@ export default function Header(props) {
             </Navbar.Brand>
             <Navbar.Toggle aria-controls={ css['responsive-navbar-nav'] } />
             <Navbar.Collapse id={ css['responsive-navbar-nav'] } className="justify-content-end">
-                <Nav defaultActiveKey={ (!!props.defaultActiveKey) ? props.defaultActiveKey : '/' }>
+                {/* See: https://github.com/ReactTraining/react-router/issues/4463 */}
+                <Nav>
                     { 
                         links.map(({ link, linkLabel, external }) => (
                             <Nav.Item key={ link }>
                                 <Nav.Link 
+                                    as={ Link }
                                     rel={ link } 
-                                    href={ link } 
+                                    to={ link } 
                                     data-is-external={ !!external ? 1 : 0 }
-                                    onClick={ handleNavigateClick} 
-                                    eventKey={ link } 
+                                    onClick={ handleNavigateClick}                                     
+                                    active={ window.location.pathname === link }
                                 >{ linkLabel }</Nav.Link>
                             </Nav.Item>
                         )) 
@@ -81,6 +87,5 @@ export default function Header(props) {
 }
 
 Header.propTypes = {
-    onNavigate: PropTypes.func.isRequired,
     defaultActiveKey: PropTypes.string
 };

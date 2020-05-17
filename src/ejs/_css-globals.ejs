@@ -1,0 +1,14 @@
+<!-- CSS: implied media="all" -->
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Montserrat&font-display=swap">
+<link rel="stylesheet" href="/src/third-party/bootstrap/css/bootstrap.4.4.1.min.css">
+<link rel="stylesheet" href="/dist/css/index.css?cache=<%= (new Date()).getTime() %>">
+<script>
+(function () { 
+	// See: https://www.smashingmagazine.com/2016/08/sghpa-single-page-app-hack-github-pages/
+	var redirect = sessionStorage.redirect;
+	delete sessionStorage.redirect;
+	if (redirect && redirect != location.href) {
+		history.replaceState(null, null, redirect);
+	}
+})();
+</script>

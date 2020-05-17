@@ -1,0 +1,22 @@
+<script src="/src/third-party/systemjs/systemjs-2.es5.min.js" charset="utf-8"></script>
+<script src="/src/third-party/react/<%- (NODE_ENV === 'development') ? 'react-dev-bundle' : 'react-bundle' %>.js" charset="utf-8"></script>
+<script>
+document.addEventListener('DOMContentLoaded', function () {
+    function handleError(error) {
+        throw error;
+    }    	    
+    try { 
+        // ES6 Scripts
+        eval("(async () => {})();");		
+        System.import('/dist/index.js?cache=<%= (new Date()).getTime() %>').catch(handleError); 
+    } 
+    catch (err) {
+        // ES5 Scripts
+        // Needed to make async/await feature work. //
+        // See: https://babeljs.io/docs/en/babel-polyfill#usage-in-browser   
+        System.import('/src/third-party/babel-polyfill.min.js').then(function () {
+            System.import('/dist/es5/index.js?cache=<%= (new Date()).getTime() %>').catch(handleError);	
+        });	
+    }
+}); 		
+</script>
