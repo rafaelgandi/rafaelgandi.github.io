@@ -84,12 +84,12 @@ async function bundle(inputFile) {
                 '../index.html',
                 {
                     'cacheTime': (new Date()).getTime(),
-                    'globalJS': ejsAsset.getTemplate('../src/ejs/_js-globals.ejs', {
+                    'globalJS': ['@', '../src/ejs/_js-globals.ejs', {
                         'NODE_ENV': process.env.NODE_ENV
-                    }),
-                    'globalCSS': ejsAsset.getTemplate('../src/ejs/_css-globals.ejs'),
+                    }],
+                    'globalCSS': ['@', '../src/ejs/_css-globals.ejs'],
                     'panicOverlayScript': (process.env.NODE_ENV === 'development') 
-                        ? ejsAsset.getTemplate('../src/ejs/_panic-overlay.ejs')
+                        ? ['@', '../src/ejs/_panic-overlay.ejs']
                         : ''     
                 },
                 { chalk }

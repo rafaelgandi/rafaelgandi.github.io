@@ -10,7 +10,7 @@ import HomePage from 'components/HomePage';
 import { isInsideFrame, isMobile } from 'lib/helpers';
 const WebDevPage = React.lazy(() => import('components/WebDevPage'));
 const ContactPage = React.lazy(() => import('components/ContactPage'));
-const MapPage = React.lazy(() => import('components/MapPage'));
+const MapPage = React.lazy(() => import('components/MapPage')); 
 
 const App = () => { 
     useEffect(() => {

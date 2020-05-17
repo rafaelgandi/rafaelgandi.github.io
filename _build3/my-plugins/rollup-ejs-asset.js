@@ -7,6 +7,21 @@ const path = require('path');
 const glob = require('glob'); // See: https://dustinpfister.github.io/2017/11/28/nodejs-glob/
 
 function ejsAsset(inPath, outPath, data = {}, { chalk }) {
+    function reCrawlEjsTemplates(data) {
+        let _data = {};
+        //console.log(data)
+        for (let p in data) {
+            if (data[p] instanceof Array) {
+                if (data[p][0] === '@') {
+                    let d = (!!data[p][2]) ? data[p][2] : {};
+                    _data[p] = ejsAsset.getTemplate(data[p][1], d);
+                    continue;
+                }
+            }
+            _data[p] = data[p];
+        }
+        return _data;
+    }
     return {
         name: 'rollup-ejs-asset',
         buildStart() {
@@ -21,12 +36,11 @@ function ejsAsset(inPath, outPath, data = {}, { chalk }) {
         },
         generateBundle: function () {
             const template = jetpack.read(inPath);
-            const html = ejs.render(template, data); 
-            if (jetpack.exists(outPath)) {
-                jetpack.remove(outPath);
-            }           
+            //console.log(data)
+            const html = ejs.render(template, reCrawlEjsTemplates(data)); 
+            if (jetpack.exists(outPath)) { jetpack.remove(outPath); }    
             jetpack.write(outPath, html);            
-            echo(chalk, '#00B82C', `EJS WRITE TO FILE ${ outPath } ` + sizeAndTime(outPath)); 
+            echo(chalk, '#00B82C', `EJS WRITE TO FILE ${ outPath } ` + sizeAndTime(outPath));
         }
     };
 }
