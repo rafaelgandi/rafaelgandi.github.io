@@ -1,9 +1,10 @@
-import React, { Suspense, useEffect } from 'react';
+import React, { Suspense } from 'react';
 import ReactDOM from 'react-dom';
-import css from './index.css';
-import { Container, Col, Row } from 'react-bootstrap';
+import './index.css';
+import { Container } from 'react-bootstrap';
 import { Route, BrowserRouter, Switch } from 'react-router-dom';
 import constants from 'lib/constants';
+import useFirstRender from 'hooks/useFirstRender';
 import PageNotFound from 'components/PageNotFound';
 import PageSpinner from 'components/PageSpinner';
 import HomePage from 'components/HomePage';
@@ -13,14 +14,14 @@ const ContactPage = React.lazy(() => import('components/ContactPage'));
 const MapPage = React.lazy(() => import('components/MapPage')); 
 
 const App = () => { 
-    useEffect(() => {
+    useFirstRender(() => {
         document.body.style.opacity = 1;
         // Breakout of frame if in mobile and in frameset (.tk) //   
         if (isInsideFrame() && isMobile()) {
             window.top.location.href = constants.uri.myGithubPageUri;
             return;
         } 
-    }, []);
+    });
     return (
         <Suspense fallback={<PageSpinner />}>
             <Container id="raffy-wrapper">

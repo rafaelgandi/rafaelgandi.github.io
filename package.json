@@ -1,0 +1,28 @@
+{
+  "name": "rafaelgandi.github.io",
+  "version": "1.0.0",
+  "description": "My personal site on github pages... Update with minimalist aesthetic and functionality.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "cd _build3 && npm run build",
+    "server": "cd _build3 && npm run serve"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/rafaelgandi/rafaelgandi.github.io.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/rafaelgandi/rafaelgandi.github.io/issues"
+  },
+  "homepage": "https://github.com/rafaelgandi/rafaelgandi.github.io#readme",
+  "devDependencies": {
+    "babel-eslint": "^10.1.0",
+    "eslint": "^7.2.0",
+    "eslint-plugin-react": "^7.20.0",
+    "eslint-plugin-react-hooks": "^4.0.4"
+  }
+}
