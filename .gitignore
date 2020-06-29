@@ -8,3 +8,4 @@ package-lock.json
 /_build3/package-lock.json
 /src/node_modules
 /old
+/.history

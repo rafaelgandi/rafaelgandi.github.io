@@ -90,7 +90,9 @@ async function bundle(inputFile) {
                     'globalCSS': ['@', '../src/ejs/_css-globals.ejs'],
                     'panicOverlayScript': (process.env.NODE_ENV === 'development') 
                         ? ['@', '../src/ejs/_panic-overlay.ejs']
-                        : ''     
+                        : '',
+                    'analytics': ['@', '../src/ejs/_analytics.ejs'],      
+                    'fbMeta': ['@', '../src/ejs/_fb-meta.ejs']      
                 },
                 { chalk }
             ),
