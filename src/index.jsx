@@ -9,9 +9,11 @@ import PageNotFound from 'components/PageNotFound';
 import PageSpinner from 'components/PageSpinner';
 import HomePage from 'components/HomePage';
 import { isInsideFrame, isMobile } from 'lib/helpers';
+//import * as Sentry from '@sentry/browser';
 const WebDevPage = React.lazy(() => import('components/WebDevPage'));
 const ContactPage = React.lazy(() => import('components/ContactPage'));
 const MapPage = React.lazy(() => import('components/MapPage')); 
+if (window.Sentry) { window.Sentry.init({dsn: constants.sentryDSN}); }
 
 const App = () => { 
     useFirstRender(() => {
@@ -20,7 +22,8 @@ const App = () => {
         if (isInsideFrame() && isMobile()) {
             window.top.location.href = constants.uri.myGithubPageUri;
             return;
-        } 
+        }
+        //window.Sentry.captureMessage('hello!', 'info');
     });
     return (
         <Suspense fallback={<PageSpinner />}>

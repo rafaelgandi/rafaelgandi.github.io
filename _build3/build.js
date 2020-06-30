@@ -92,7 +92,8 @@ async function bundle(inputFile) {
                         ? ['@', '../src/ejs/_panic-overlay.ejs']
                         : '',
                     'analytics': ['@', '../src/ejs/_analytics.ejs'],      
-                    'fbMeta': ['@', '../src/ejs/_fb-meta.ejs']      
+                    'fbMeta': ['@', '../src/ejs/_fb-meta.ejs'],      
+                    'sentry': ['@', '../src/ejs/_sentry.ejs']      
                 },
                 { chalk }
             ),
