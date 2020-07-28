@@ -7,7 +7,7 @@ module.exports = function (babelCore, jetpack, chalk) {
         generateBundle: function (options) {
             outDir = options.dir;
         },
-        writeBundle: function (bundle) {
+        writeBundle: function (options, bundle) {
             for (let f in bundle) {
                 let path = outDir + bundle[f].fileName,
                     code = jetpack.read(path),

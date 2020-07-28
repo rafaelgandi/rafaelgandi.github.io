@@ -8,7 +8,7 @@ module.exports = function (chalk) {
         generateBundle: function (options) {
             outDir = options.dir;
         },
-        writeBundle: function (bundle) {
+        writeBundle: function (options, bundle) {
             for (let f in bundle) {
                 let path = outDir + bundle[f].fileName;                
                 echo(chalk, '#EA884A', 'BUILT: ' + path + sizeAndTime(path));    

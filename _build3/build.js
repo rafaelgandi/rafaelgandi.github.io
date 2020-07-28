@@ -4,7 +4,7 @@ const rimraf = require('rimraf');
 const chalk = require('chalk'); // See: https://www.npmjs.com/package/chalk
 const babelCore = require("@babel/core"); // See: https://babeljs.io/docs/usage/api/
 const includePaths = require('rollup-plugin-includepaths'); // See: https://www.npmjs.com/package/rollup-plugin-includepaths
-const nodeResolve = require('@rollup/plugin-node-resolve'); // See: https://github.com/rollup/rollup-plugin-node-resolve
+const nodeResolve = require('@rollup/plugin-node-resolve'); // See: https://github.com/rollup/plugins/tree/master/packages/node-resolve
 const { terser } = require('rollup-plugin-terser'); // See: https://www.npmjs.com/package/rollup-plugin-uglify-es
 const commonjs = require('@rollup/plugin-commonjs');
 const alias = require('@rollup/plugin-alias'); // See: https://github.com/rollup/plugins/tree/master/packages/alias
@@ -39,6 +39,7 @@ const OPTIONS = {
 };
 rimraf.sync(OPTIONS.outputDir);
 
+
 async function bundle(inputFile) {
     const inputOptions = {
         input:inputFile,
@@ -52,16 +53,16 @@ async function bundle(inputFile) {
                     { find: 'react-bootstrap', replacement: 'third-party/bootstrap/js/react-bootstrap-dummy.js' }
                 ]            
             }),
-            vecttoResolveNamedDirectory(OPTIONS.basePaths, { slash }),
-            nodeResolve(),            
+            vecttoResolveNamedDirectory(OPTIONS.basePaths, { slash }),         
             commonjs({
                 include: OPTIONS.basePaths.map((bPath) => bPath + 'node_modules/**'),
-                namedExports: {
-                    // See: https://stackoverflow.com/questions/50080893/rollup-error-isvalidelementtype-is-not-exported-by-node-modules-react-is-inde
-                    '../src/node_modules/react-is/index.js': ['isValidElementType']
-                },
+                // namedExports: {
+                //     // See: https://stackoverflow.com/questions/50080893/rollup-error-isvalidelementtype-is-not-exported-by-node-modules-react-is-inde
+                //     '../src/node_modules/react-is/index.js': ['isValidElementType']
+                // },
                 sourceMap: false
             }),
+            nodeResolve.default(),   
             // This is where you set your base paths
             // See: https://www.npmjs.com/package/rollup-plugin-includepaths
             includePaths({
@@ -174,7 +175,7 @@ let welcomeAscii = `
 Powered by: rollupjs ${ rollup.VERSION } 
 and gulp                    
 Starting build...           `;
-console.log(chalk.bgCyan(welcomeAscii));                                                                                                                                                    
+console.log(chalk.bgMagenta(chalk.black(welcomeAscii)));                                                                                                                                                    
 OPTIONS.inputFiles.map((file) => {
     bundle(file);
 });
