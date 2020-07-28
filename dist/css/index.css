@@ -4,20 +4,20 @@ html {  touch-action: manipulation;}html.desktop,html .desktop body {  overflow:
 /****** PageNotFound.css ******/
 
 
-/****** WebDevPage.css ******/
-.WebDevPage_cholo47c7a6b278094381145f038198d46262_nk8__web-dev-h1__8ie {  font-size: 1.8em;  text-align: center;  margin-bottom: 50px;}
+/****** HomePage.css ******/
+#HomePage_cholo629ae4011f036fab4efbf3070f9282ce_nk8__bigger-text__8ie {  font-size: 1.5em !important;  text-align: center;  line-height: 1.6em;}
 
 /****** PageSpinner.css ******/
 .PageSpinner_cholo587467210ed8c6f9a0b94434a80b2054_nk8__page-spinner__8ie {  background-color: #54FFC3;}
 
-/****** ContactPage.css ******/
-.ContactPage_choloce82197443190596532790efc0a0a67e_nk8__contact-links__8ie {  margin-top: 200px;  text-align: center;}.ContactPage_choloce82197443190596532790efc0a0a67e_nk8__contact-links__8ie a {  font-size: 0.7em;  text-transform: uppercase;  display: inline-block;  margin-right: 50px;}@media (max-width: 991.98px) {  .ContactPage_choloce82197443190596532790efc0a0a67e_nk8__contact-links__8ie {    margin-top: 100px;  }  .ContactPage_choloce82197443190596532790efc0a0a67e_nk8__contact-links__8ie a {    font-size: 0.9em;    padding: 10px;    margin-right: 0;  }}
-
-/****** HomePage.css ******/
-#HomePage_cholo629ae4011f036fab4efbf3070f9282ce_nk8__bigger-text__8ie {  font-size: 1.5em !important;  text-align: center;  line-height: 1.6em;}
+/****** WebDevPage.css ******/
+.WebDevPage_cholo47c7a6b278094381145f038198d46262_nk8__web-dev-h1__8ie {  font-size: 1.8em;  text-align: center;  margin-bottom: 50px;}
 
 /****** MapPage.css ******/
 .MapPage_cholo4dc24efd9a291dc96a96b68c69519fcc_nk8__google-maps__8ie {  position: relative;  padding-bottom: 75%;  height: 0;  overflow: hidden;  margin-top: 100px;}.MapPage_cholo4dc24efd9a291dc96a96b68c69519fcc_nk8__google-maps__8ie iframe {  position: absolute;  top: 0;  left: 0;  width: 100% !important;  height: 100% !important;}
+
+/****** ContactPage.css ******/
+.ContactPage_choloce82197443190596532790efc0a0a67e_nk8__contact-links__8ie {  margin-top: 200px;  text-align: center;}.ContactPage_choloce82197443190596532790efc0a0a67e_nk8__contact-links__8ie a {  font-size: 0.7em;  text-transform: uppercase;  display: inline-block;  margin-right: 50px;}@media (max-width: 991.98px) {  .ContactPage_choloce82197443190596532790efc0a0a67e_nk8__contact-links__8ie {    margin-top: 100px;  }  .ContactPage_choloce82197443190596532790efc0a0a67e_nk8__contact-links__8ie a {    font-size: 0.9em;    padding: 10px;    margin-right: 0;  }}
 
 /****** Layout.css ******/
 #Layout_cholo549b30d895e13d81490f0f6300c2a7dc_nk8__pages-wrapper__8ie {  margin-top: 200px;}@media (max-width: 991.98px) {  #Layout_cholo549b30d895e13d81490f0f6300c2a7dc_nk8__pages-wrapper__8ie {    margin-top: 100px;  }}
