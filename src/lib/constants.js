@@ -18,7 +18,7 @@ export default ({
         photography: '/photography',
         webDevelopment: '/web-development',
         contact: '/contact',
-        map: '/find-me-here'
+        map: '/house'
     },
     sentryDSN: "https://e27a7cb37aeb44ecb21ce81727e34c3d@o414015.ingest.sentry.io/5302774"
 });
